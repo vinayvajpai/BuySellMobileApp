@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BuySell.Views.MyBalancePage"
+    xmlns:effects="clr-namespace:BuySell.Utility"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:control="clr-namespace:BuySell.CustomControl"
+    ios:Page.UseSafeArea="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <control:CustomTitleControl Grid.Row="0" TitleText="MY BALANCE" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <!--My balance-->
+                <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid Margin="20" RowSpacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" Text="Credits" FontAttributes="Bold" TextColor="Black" FontSize="17" HorizontalOptions="Start" VerticalOptions="FillAndExpand"/>
+                        <Label Grid.Column="1" Grid.Row="0" Text="$000" FontAttributes="Bold" TextColor="Black" FontSize="17" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+
+                        <Label Grid.Column="0" Grid.Row="1" Text="Pending" FontAttributes="Bold" TextColor="Black" FontSize="17" HorizontalOptions="Start" VerticalOptions="FillAndExpand"/>
+                        <Label Grid.Column="1" Grid.Row="1" Text="$121.85" FontAttributes="Bold" TextColor="Black" FontSize="17" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+
+                        <Label Grid.Column="0" Grid.Row="2" Text="Redeemable" FontAttributes="Bold" TextColor="Black" FontSize="17" HorizontalOptions="Start" VerticalOptions="FillAndExpand"/>
+                        <Label Grid.Column="1" Grid.Row="2" Text="$16.05" FontAttributes="Bold" TextColor="Black" FontSize="17" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+                    </Grid>
+                    <BoxView HeightRequest="1" Margin="20,0" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <!--BoxView-->
+                <Label Grid.Row="2" Margin="20,10" Text="Redemption History" HorizontalOptions="StartAndExpand" FontAttributes="Bold" TextColor="Black" FontSize="20" VerticalOptions="FillAndExpand"/>
+                <!--BoxView-->
+                <BoxView Grid.Row="3" Margin="20,0" HeightRequest="1" BackgroundColor="LightGray"/>
+                <!--ListView-->
+                <ScrollView Grid.Row="4">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout BindableLayout.ItemsSource="{Binding MyBalanceList, Mode=TwoWay}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="20,20,20,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Column="0" Grid.Row="0" Text="{Binding Date}" TextColor="Black" FontSize="17" HorizontalOptions="Start" VerticalOptions="FillAndExpand"/>
+                                        <Label Grid.Column="0" Grid.Row="1" Text="{Binding Description}" FontAttributes="Bold" TextColor="Black" FontSize="17" HorizontalOptions="Start" VerticalOptions="FillAndExpand"/>
+                                        <Label Grid.Column="0" Grid.Row="2" Text="{Binding CardNumber}" TextColor="Black" FontSize="17" HorizontalOptions="Start" VerticalOptions="FillAndExpand"/>
+                                        <Label Grid.Column="0" Grid.Row="3" Text="{Binding Process}" FontAttributes="Bold" TextColor="#46C175" FontSize="14" HorizontalOptions="Start" VerticalOptions="FillAndExpand"/>
+                                        <Label Grid.Column="1" Grid.RowSpan="2" Text="$105" FontAttributes="Bold" TextColor="Black" FontSize="17" HorizontalOptions="End" VerticalOptions="EndAndExpand"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                        <BoxView HeightRequest="1" BackgroundColor="{Binding ThemeColor}"/>
+                        <Frame HorizontalOptions="CenterAndExpand" Margin="0,20" BorderColor="Black" BackgroundColor="Yellow" HasShadow="False" Padding="20" CornerRadius="10">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Redeem Balance" FontAttributes="Bold" TextColor="red"/>
+                                <Image Source="NextArrow" HeightRequest="20" WidthRequest="20" effects:TintImageEffect.TintColor="red"/>
+                            </StackLayout>
+                        </Frame>
+                        <StackLayout Spacing="0" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                            <Label Text="Question" TextColor="red" FontAttributes="Bold" TextDecorations="Underline"/>
+                            <Label Text="?" TextColor="Red" FontAttributes="Bold" TextDecorations="Underline"/>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+            <!--CustomBottomNavigation-->
+            <control:CustomBottomNavigation  VerticalOptions="EndAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

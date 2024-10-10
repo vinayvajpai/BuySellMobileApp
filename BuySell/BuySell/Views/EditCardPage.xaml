@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BuySell.Views.EditCardPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:control="clr-namespace:BuySell.CustomControl"
+    ios:Page.UseSafeArea="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid RowDefinitions="8*,Auto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <Grid Grid.Row="0" Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Row="0" Grid.Column="0"  Source="Back_Img.png" Aspect="AspectFit" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HeightRequest="25" WidthRequest="25">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label  Grid.Row="0"  Grid.Column="1" Text="EDIT CARD" TextColor="Black" VerticalOptions="CenterAndExpand" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                    <Frame Grid.Row="0" Grid.Column="2" Margin="0,0,10,0" BackgroundColor="{Binding ThemeColor}" CornerRadius="5" HasShadow="False" Padding="2">
+                        <Label FontSize="10" Text="Save"  TextColor="White" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
+                        <!--<Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Save_Clicked"/>
+                        </Frame.GestureRecognizers>-->
+                    </Frame>
+                    <!--BoxView-->
+                    <BoxView Grid.Row="1" Grid.ColumnSpan="3" Margin="0,10,0,0" BackgroundColor="{Binding ThemeColor}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="1"/>
+                </Grid>
+
+                <ScrollView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout Margin="20,10"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Text="Card Details" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand"/>
+                    <control:CustomEntry Placeholder="Card Number" HeightRequest="50" BorderColor="Gray" CornerRadius="5"/>
+                </StackLayout>
+
+                 <StackLayout Orientation="Horizontal" Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                     <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" HeightRequest="50" VerticalOptions="FillAndExpand">
+                         <Grid.ColumnDefinitions>
+                             <ColumnDefinition Width="5*"/>
+                             <ColumnDefinition Width="5*"/>
+                         </Grid.ColumnDefinitions>
+                    <control:CustomEntry Grid.Column="0" Placeholder="MM/YY"  BorderColor="Gray" CornerRadius="5"/>
+                    <control:CustomEntry Grid.Column="1" Placeholder="CVV"  BorderColor="Gray" CornerRadius="5"/>
+                    </Grid>
+                </StackLayout>
+
+                 <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Text="Phone Number" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand"/>
+                    <control:CustomEntry Placeholder="Associated with your account" HeightRequest="50" BorderColor="Gray" CornerRadius="5"/>
+                </StackLayout>
+
+                 <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Text="Billing Address" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand"/>
+                    <control:CustomEntry Placeholder="Street Address" HeightRequest="50" BorderColor="Gray" CornerRadius="5"/>
+                </StackLayout>
+
+                 <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <control:CustomEntry Placeholder="Apt, suite, etc." HeightRequest="50" BorderColor="Gray" CornerRadius="5"/>
+                </StackLayout>
+
+                 <StackLayout Margin="20,10" Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <control:CustomEntry Placeholder="City" HeightRequest="60" BorderColor="Gray" CornerRadius="5"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                     <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" HeightRequest="50" VerticalOptions="FillAndExpand">
+                         <Grid.ColumnDefinitions>
+                             <ColumnDefinition Width="5*"/>
+                             <ColumnDefinition Width="5*"/>
+                         </Grid.ColumnDefinitions>
+                    <control:CustomEntry Grid.Column="0" Placeholder="State"  BorderColor="Gray" CornerRadius="5"/>
+                    <control:CustomEntry Grid.Column="1" Placeholder="Zip"  BorderColor="Gray" CornerRadius="5"/>
+                    </Grid>
+                </StackLayout>
+                 </StackLayout>
+                </ScrollView>
+                </Grid>
+                <!--CustomBottomNavigation-->
+                <control:CustomBottomNavigation Grid.Row="1"  VerticalOptions="EndAndExpand" SelectedTabIndex="5"/>
+            </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BuySell.CustomControl"
+             x:Class="BuySell.Views.SellerClosetView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             xmlns:effects="clr-namespace:BuySell.Utility"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"  
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,Auto" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <!--<control:CustomTitleControl x:Name="header" Grid.Row="0" TitleText="MY STORE" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackCommand="{Binding PagePopCommand}"/>-->
+                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Column="0" Grid.Row="0" Source="Back_Img" Margin="10,10,10,10" HeightRequest="25" WidthRequest="25" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Grid.Column="1" Grid.Row="0" x:Name="header" Margin="10,10,10,10" FontSize="17" TextColor="Black" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand"/>
+                    <Image x:Name="searchTxt" Grid.Column="2" Grid.Row="0" Focused="searchTxt_Focused" Source="SearchGlass"  HeightRequest="20" WidthRequest="20" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SearchPopUpCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image x:Name="blockUserImg" Grid.Column="3" Grid.Row="0" Source="DotsImg" HeightRequest="20" WidthRequest="20" VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding UserBlockDownCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <BoxView Grid.Row="1" Grid.ColumnSpan="4" HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="{Binding ThemeColor}"/>
+                </Grid>
+                <control:CustomFilterView  x:Name="filterView" IsShowFilterCount="False" IsShowCatAll="True" IsVisible="{Binding IsShowFilter}"  Grid.Row="1"/>
+                <StackLayout Grid.Row="2">
+                    <CollectionView Margin="0,0"  x:Name="TopTrandingItemsList" VerticalScrollBarVisibility="Never" ItemsLayout="VerticalGrid, 2" RemainingItemsThreshold="{Binding ItemTreshold}" RemainingItemsThresholdReachedCommand="{Binding ItemTresholdReachedCommand}"  ItemsSource="{Binding TopTrendingItemsList, Mode=TwoWay}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                 <control:CustomProductCell BindingContext="{Binding .}" Command="{Binding BindingContext.TopTrandingItemsCommand,Source={x:Reference TopTrandingItemsList}}" CommandParameter="{Binding .}"  CallbackLikeDislike="imgLikeUnlike_Clicked"/>
+                                <!--<ContentView Padding="5">
+                                    <Grid x:Name="gridItem"  IsClippedToBounds="True" HorizontalOptions="CenterAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="{Binding Row1}"/>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="30"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="{Binding Row1}"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Frame Padding="2" Grid.Row="0" HasShadow="False" HeightRequest="150" BackgroundColor="{Binding ThemeCol}" CornerRadius="6">
+                                            <Frame Margin="0"   Padding="5" HasShadow="False"  BackgroundColor="white" BorderColor="white">
+                                                <Grid>
+                                                    <ff:CachedImage x:Name="proImg" Source="{Binding ProductImage}" Aspect="AspectFill" RetryCount="3" RetryDelay="0" CacheDuration="0"  DownsampleToViewSize="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                                                    <ActivityIndicator Color="{Binding ThemeCol}" BindingContext="{x:Reference proImg}"  IsRunning="{Binding IsLoading}"  IsVisible="{Binding IsLoading}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                                </Grid>
+                                            </Frame>
+                                        </Frame>
+                                        <Label Margin="0,0,20,0" Grid.Row="1" Text="{Binding ProductName}" FontSize="14" LineBreakMode="TailTruncation" TextColor="Black" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" WidthRequest="150"/>
+                                        <Grid Margin="0,0,0,0" Grid.Row="2" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="1"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="1"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="20"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="{Binding Price,StringFormat='{$}'}" FontSize="13" Grid.Column="0" FontAttributes="Bold" TextColor="{Binding ThemeCol}" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand"/>
+                                            <Label  Grid.Column="1"  BackgroundColor="Gray" VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand"/>
+                                            <Label Text="{Binding Size,StringFormat='Size: {0}'}" FontAttributes="Bold" FontSize="13" Grid.Column="2"  TextColor="#7C7C7C" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand"/>
+                                           
+                                            <Label Grid.Row="0" Grid.Column="3"  BackgroundColor="Gray" VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand"/>
+                                           
+                                            <Image x:Name="imgHeart" Grid.Column="4" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent" Aspect="AspectFit" HeightRequest="20" WidthRequest="20" Source="{Binding ProductRating, Mode=TwoWay}">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="imgLikeUnlike_Clicked"  CommandParameter="{Binding .}" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.TopTrandingItemsCommand,Source={x:Reference TopTrandingItemsList}}" CommandParameter="{Binding .}"/>
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+                                </ContentView>-->
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <ContentView>
+                                <Label Text="No Data Found" IsVisible="{Binding IsNoData}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Gray" FontSize="14"/>
+                            </ContentView>
+                        </CollectionView.EmptyView>
+                        <!--<CollectionView.Footer>
+                            <Grid IsVisible="{Binding IsLoadMore}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
+                                <Grid.Triggers>
+                                    <Trigger TargetType="Grid"
+                                 Property="IsVisible"
+                                 Value="False">
+                                        <Setter Property="HeightRequest"
+                                    Value="0"/>
+                                    </Trigger>
+                                </Grid.Triggers>
+                                <Label Text="Loading..."
+                           TextColor="{Binding ThemeColor}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"
+                           FontSize="Medium"/>
+                            </Grid>
+                        </CollectionView.Footer>-->
+                    </CollectionView>
+                </StackLayout>
+                <Grid IsVisible="{Binding IsLoadMore}" Opacity="0.5"  BackgroundColor="{Binding ThemeColor}" VerticalOptions="EndAndExpand" Grid.Row="0" Grid.RowSpan="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.Triggers>
+                        <Trigger TargetType="Grid"
+                                 Property="IsVisible"
+                                 Value="False">
+                            <Setter Property="HeightRequest"
+                                    Value="0"/>
+                        </Trigger>
+                    </Grid.Triggers>
+                    <Label Text="Loading..."
+                           TextColor="White"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"
+                           FontSize="Medium"/>
+                </Grid>
+            </Grid>
+            <!--CustomBottomNavigation-->
+            <control:CustomBottomNavigation Grid.Row="1" VerticalOptions="EndAndExpand" SelectedTabIndex="5"/>
+            <Grid HorizontalOptions="FillAndExpand"  Grid.RowSpan="2" VerticalOptions="StartAndExpand" Margin="0,0,0,0" TranslationY="{Binding TranslationY, Mode=TwoWay}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Frame Padding="0" Grid.Row="0"   CornerRadius="0" HasShadow="false" Margin="0,0" HeightRequest="60" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="{Binding ThemeColor}">
+                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Spacing="10">
+                        <Frame HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Margin="10,0" HasShadow="False" CornerRadius="10" Padding="0">
+                            <Grid Margin="0" ColumnDefinitions="10*,Auto" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <control:CustomEntry Grid.Column="0" x:Name="searchText" Placeholder="Search my store" FontSize="14" ReturnType="Search" ReturnCommand="{Binding SearchCommand}" IsCurvedCornersEnabled="False" NoLine="True" Text="{Binding SearchText,Mode=TwoWay}" BorderWidth="0" VerticalOptions="CenterAndExpand"  BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Margin="10,0,0,0"/>
+                                <!--<Image Grid.Column="1" Source="BlackCross" VerticalOptions="Center"  HorizontalOptions="End" HeightRequest="20" WidthRequest="20" Aspect="Fill" Margin="0,0,25,0">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer  Command="{Binding SearchClrTxtCommand}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>-->
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+                <Frame Grid.Row="0" HasShadow="False" WidthRequest="18" IsClippedToBounds="True" HeightRequest="18" HorizontalOptions="End" VerticalOptions="Start" BackgroundColor="Black" CornerRadius="11" Margin="20,3,5,20" Padding="2">
+                    <Image Source="DeleteCrossW.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center"  WidthRequest="12" HeightRequest="12"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SearchPopUpCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </Grid>
+            <ContentView Grid.Row="0" Grid.RowSpan="2" x:Name="UserBlockPopup" VerticalOptions="FillAndExpand" BackgroundColor="#C0808080" Padding="0, 0" IsVisible="{Binding UserBlockPopupIsVisible,Mode=TwoWay}">
+                <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Frame Padding="0" Grid.Row="0" CornerRadius="5" HasShadow="True" Margin="30,0" HeightRequest="80" WidthRequest="350" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" BackgroundColor="WhiteSmoke">
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Label Grid.Column="1" Text="Block User" TextColor="{Binding ThemeColor}" IsVisible="{Binding IsBlockUserTxt, Mode=TwoWay}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Label Grid.Column="1" Text="You cant block your self account." TextColor="{Binding ThemeColor}" IsVisible="{Binding IsOwnBlockTxt, Mode=TwoWay}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                    <Frame Grid.Row="0" HasShadow="False" WidthRequest="25" IsClippedToBounds="True" HeightRequest="25" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" BackgroundColor="Black" CornerRadius="16" Margin="5,-10,20,20" Padding="3">
+                        <Image Source="DeleteCrossW.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center"  WidthRequest="15" HeightRequest="15" effects:TintImageEffect.TintColor="White"/>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PopupCancelCommand}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </Grid>
+            </ContentView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

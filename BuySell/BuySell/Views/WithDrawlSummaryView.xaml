@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BuySell.Views.WithDrawlSummaryView"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:control="clr-namespace:BuySell.CustomControl" xmlns:xct="http://xamarin.com/schemas/2020/toolkit" xmlns:converter="clr-namespace:BuySell.Converter"
+             ios:Page.UseSafeArea="true">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:StringToDecimalConverter x:Key="StringToDecimalConverter"/>
+            <converter:BooleanInverter x:Key="BoolInverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <Grid Grid.Row="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Column="0" Grid.Row="0" Source="Back_Img" Margin="20,15" HeightRequest="25" WidthRequest="25" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Grid.Column="1" Grid.Row="0" Text="WITHDRAWAL SUMMARY" Margin="0,15" TextColor="Black" FontSize="16" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    <BoxView Grid.Row="1" Grid.ColumnSpan="3" BackgroundColor="#1567A6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="1"/>
+                </Grid>
+
+                <ScrollView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackLayout Grid.Row="0" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" Margin="0,30,0,0">
+                            <Label Text="How much do you want to withdraw?" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="20" TextColor="Black"/>
+                            <Label Text="Available Balance"  HorizontalTextAlignment="Center" Margin="0,20,0,0" FontAttributes="Bold" FontSize="20" TextColor="Black"/>
+                            <control:CustomEntry IsReadOnly="True"  NoLine="True" IsCurvedCornersEnabled="False" Text="{Binding WithDrawAmount, StringFormat='{}{0:$#,0.00}' , Converter={x:StaticResource StringToDecimalConverter}}" Keyboard="Numeric" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                            <Label Text="Withdrawal Amount" HorizontalTextAlignment="Center" Margin="0,20,0,0" FontAttributes="Bold" FontSize="20" TextColor="Black"/>
+                            <control:CustomEntry NoLine="True" IsCurvedCornersEnabled="False" Text="{Binding Price}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  HorizontalTextAlignment="Center" Keyboard="Numeric" CursorPosition="1"/>
+                            <!--<Label FontSize="18" TextColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Center" FontAttributes="Bold">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="$"/>
+                                        <Span Text="{Binding WithDrawAmount}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                                    <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding WithdrawCommand}"/>
+                                </Label.GestureRecognizers>
+                            </Label>-->
+                        </StackLayout>
+                        <!--<BoxView Grid.Row="1" HeightRequest="1" Margin="0,100,0,0" BackgroundColor="#1567A6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>-->
+                        <!--<StackLayout Grid.Row="2" Margin="20,10" Orientation="Horizontal">
+                            <Label  Text="Transfer Fee (2.5%)"  HorizontalTextAlignment="Start" FontSize="20"/>
+                            <Label  Text="{Binding TransferFee}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Start" FontSize="14"/>
+                        </StackLayout>-->
+                        <BoxView Grid.Row="3" HeightRequest="1" BackgroundColor="#1567A6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                        <StackLayout Grid.Row="4" Margin="20,10" Orientation="Horizontal">
+                            <Label Text="Deposit Amount" HorizontalTextAlignment="Start" FontAttributes="Bold" FontSize="20" TextColor="Black"/>
+                            <Label  Text="{Binding DepositAmount}" FontAttributes="Bold" TextColor="Black" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Start" FontSize="14"/>
+                         </StackLayout>
+                        <BoxView Grid.Row="5" HeightRequest="1" BackgroundColor="#1567A6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                        <StackLayout Grid.Row="6" Orientation="Horizontal">
+                            <Label Text="Bank Account" Margin="20,10" HorizontalTextAlignment="Start" FontSize="20"/>
+                            <Label  Text="{Binding CheckAccNo}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="Start" FontSize="14"/>
+                            <Image Source="NextArrow" HeightRequest="20" WidthRequest="20" Margin="0,0,10,0" HorizontalOptions="End" VerticalOptions="FillAndExpand"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AddAccount_Tapped"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <BoxView Grid.Row="7" HeightRequest="1" BackgroundColor="#1567A6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                        <!--CustomBorderButton-->
+                        <control:CustomBorderButton Grid.Row="8" TitleText="Submit" BgColor="#1567A6" Margin="100,20" fontsize="17" ClickCommand="{Binding SubmitCommand}" TextColor="White" BorderColor="Black"/>
+                    </Grid>
+                </ScrollView>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BuySell.CustomControl"
+    x:Class="BuySell.CustomControl.CustomFilterView">
+    <ContentView.Content>
+        <Grid  RowDefinitions="Auto,Auto,0" RowSpacing="0" Margin="0,0,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="Start" >
+            <ScrollView Grid.Row="0"   HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never" Orientation="Horizontal" Margin="5,5">
+
+                <StackLayout Padding="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+                    <!--<control:CustomFrame x:Name="ClearAllButton" Padding="10,5" Margin="10,0" CornerRadius="20"  BackgroundColor="{Binding BackgroundColorClearAll}">-->
+                    <control:CustomFrame x:Name="ClearAllButton" Padding="10,5" Margin="10,0" CornerRadius="20">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                            <Label VerticalOptions="Center"  TextColor="White" FontSize="13" Text="Clear All"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ClearAllTapped"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </control:CustomFrame>
+
+                    <StackLayout x:Name="filterList" Orientation="Horizontal">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Padding="1">
+                                    <control:CustomFrame Padding="5,0,5,0" Margin="10,0" CornerRadius="20"  BackgroundColor="WhiteSmoke">
+                                        <StackLayout Spacing="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                            <StackLayout x:Name="stk" IsVisible="{Binding IsKeyVisible}" Spacing="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="4,0" VerticalOptions="CenterAndExpand">
+                                                <Label  VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" TextColor="Black" FontSize="11" Text="{Binding KEY, Mode=TwoWay}"/>
+                                                <Image IsVisible="{Binding DownVisible, Mode=TwoWay}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Source="Down_Img"  HeightRequest="20" WidthRequest="15"/>
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="FilterSelected" CommandParameter="{Binding .}"/>
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+                                            <Label Grid.Column="0" IsVisible="{Binding IsKeyVisible}" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="5,0,5,3" TextColor="Gray" FontSize="10" Text="{Binding Value, Mode=TwoWay}"/>
+                                            <StackLayout HeightRequest="35" IsVisible="true" Orientation="Horizontal">
+                                                <Label  VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" Margin="5,0,0,0" TextColor="Black" FontSize="11" Text="{Binding Value, Mode=TwoWay}"/>
+                                                <Image IsVisible="{Binding DownVisible, Mode=TwoWay}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Source="Down_Img"  HeightRequest="20" WidthRequest="15"/>
+                                                <StackLayout.Triggers>
+                                                    <DataTrigger TargetType="StackLayout" Binding="{Binding Source={x:Reference stk},Path=IsVisible}" Value="true">
+                                                        <Setter Property="IsVisible" Value="false" />
+                                                    </DataTrigger>
+                                                </StackLayout.Triggers>
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="FilterSelected" CommandParameter="{Binding .}"/>
+                                                </StackLayout.GestureRecognizers>
+                                            </StackLayout>
+                                            <!--<Image Grid.Column="1" IsVisible="{Binding CrossVisible, Mode=TwoWay}" VerticalOptions="CenterAndExpand" Source="BlackCross" HeightRequest="20" WidthRequest="15"/>-->
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="FilterSelected" CommandParameter="{Binding .}"/>
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+                                    </control:CustomFrame>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="FilterSelected" CommandParameter="{Binding .}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+
+                </StackLayout>
+
+            </ScrollView>
+            <BoxView x:Name="boxViewColor" Grid.Row="1" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="0,5,0,0" BackgroundColor="{Binding ThemeColor}"/>
+            <Label x:Name="lblFilterCount" Grid.Row="2" IsVisible="True" Margin="0,0,20,0" TextColor="{Binding ThemeColor}" FontAttributes="Bold" FontSize="13" Text="{Binding TotalCount, Mode=TwoWay}"  HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

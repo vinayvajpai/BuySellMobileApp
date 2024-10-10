@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:control="clr-namespace:BuySell.CustomControl"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+    ios:Page.UseSafeArea="true"
+    xmlns:converter="clr-namespace:BuySell.Converter"
+    NavigationPage.HasNavigationBar="False"
+    x:Class="BuySell.Views.BuyingSellingViews.BuyingListView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanInverter x:Key="BooleanInverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid RowDefinitions="40">
+                <control:CustomTitleControl x:Name="titleView" Grid.Row="0" TitleText="BUYING" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackCommand="{Binding PagePopCommand}"/>
+                <!--<control:CustomFrame Margin="5" Padding="5" CornerRadius="5" VerticalOptions="FillAndExpand" BackgroundColor="{Binding ThemeColor}" Grid.Row="0" HorizontalOptions="EndAndExpand">
+                    <Label Text="View My Store" VerticalOptions="CenterAndExpand" TextColor="White" FontSize="13"/>
+                    <control:CustomFrame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ViewStore_Tapped"/>
+                    </control:CustomFrame.GestureRecognizers>
+                </control:CustomFrame>-->
+            </Grid>
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0"/>
+                    <RowDefinition Height="Auto"/>
+                    <!--<RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>-->
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" RowSpacing="0" Margin="0,0,0,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="2"/>
+                        <RowDefinition Height="1"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Pending" Style="{StaticResource Key=FilterTextStyle}" Grid.Row="0" Grid.Column="0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectSellingFilter_Tapped" CommandParameter="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="Completed" Style="{StaticResource Key=FilterTextStyle}" Grid.Row="0" Grid.Column="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectSellingFilter_Tapped" CommandParameter="2"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView x:Name="sep1" HorizontalOptions="FillAndExpand" VerticalOptions="End" BackgroundColor="#1567A6"  Grid.Column="0" Grid.Row="1" />
+                    <BoxView x:Name="sep2" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Column="1" Grid.Row="1" />
+                    <BoxView HorizontalOptions="FillAndExpand" BackgroundColor="{Binding ThemeColor}" Grid.Row="2" Grid.ColumnSpan="2"/>
+                </Grid>
+            </Grid>
+            <control:CustomFrame VerticalOptions="StartAndExpand" Margin="10,0" Padding="2" CornerRadius="5">
+                <control:CustomEntry x:Name="SerachEntry" HeightRequest="40" BorderWidth="0" Placeholder="Search" Text="{Binding SearchedString,Mode=TwoWay}"/>
+            </control:CustomFrame>
+            <!--ListView-->
+            <Grid>
+                <CollectionView x:Name="listBuying" Margin="0,10" ItemsSource="{Binding TempSellByProductList, Mode=TwoWay}" SelectionMode="Single" SelectedItem="{Binding SelectedOrderItem,Mode=TwoWay}">
+                    <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <!--<ViewCell>-->
+                            <StackLayout Spacing="0">
+                                <Grid Margin="10,10,10,5" RowSpacing="5"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="40"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="5.5*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="20"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Frame Grid.RowSpan="4" Grid.Column="0" Grid.Row="0" Padding="5" HasShadow="False" IsClippedToBounds="True"   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" BorderColor="{Binding OrderProductItem.Product.ThemeCol}">
+                                        <ff:CachedImage x:Name="ProductImage" Source="{Binding OrderProductItem.Product.ProductImage}" RetryCount="3" RetryDelay="0" CacheDuration="0" HeightRequest="100"  Aspect="AspectFill"/>
+                                    </Frame>-->
+                                    <Frame Grid.Column="0" Margin="0,0,10,0" Grid.RowSpan="4" Padding="5" HasShadow="False" BackgroundColor="Transparent" BorderColor="{Binding OrderProductItem.Product.ThemeCol}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                                        <ff:CachedImage Source="{Binding OrderProductItem.Product.ProductImage}" Aspect="AspectFill" HeightRequest="80" WidthRequest="80"/>
+                                    </Frame>
+                                    <Label  Text="{Binding OrderProductItem.Product.ProductName}" Grid.Row="0" Grid.Column="1" LineBreakMode="TailTruncation" FontSize="13" TextColor="Gray" FontAttributes="Bold" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"/>
+                                    <!--<StackLayout Spacing="5" Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                                        <Label  Text="{Binding OrderProductItem.Product.Price}" LineBreakMode="TailTruncation" FontSize="12" TextColor="{Binding ThemeColor}" FontAttributes="Bold" VerticalOptions="StartAndExpand" HorizontalOptions="Start"/>
+                                        <Label FontSize="12" Text="|"/>
+                                        <Label  Text="{Binding OrderProductItem.Product.Size,StringFormat='Size: {0}'}" FontSize="12" VerticalOptions="StartAndExpand" HorizontalOptions="Start" FontAttributes="Bold" TextColor="{Binding product.ThemeCol}"/>
+                                        <Label FontSize="12" Text="|"/>
+                                        <Label Text="{Binding OrderProductItem.Product.Brand}" FontSize="12" VerticalOptions="StartAndExpand" HorizontalOptions="Start" TextColor="{Binding product.ThemeCol}" FontAttributes="Bold"/>
+                                    </StackLayout>-->
+
+
+                                    <!--<Grid  Grid.Column="1" Grid.Row="1" ColumnDefinitions="Auto,Auto,Auto,Auto,Auto" Grid.ColumnSpan="2">
+                                        <Label Grid.Column="0" Grid.Row="0"  Text="{Binding OrderProductItem.Product.Price}" FontSize="13" TextColor="Gray" FontAttributes="Bold"/>
+                                        <Label Grid.Column="1" Grid.Row="0"  Text=" | " FontSize="13" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold"/>
+                                        <Label Grid.Column="2" Grid.Row="0"  Text="{Binding  OrderProductItem.Product.Size}" FontSize="13" TextColor="Gray" FontAttributes="Bold"/>
+                                        <Label Grid.Column="3" Grid.Row="0"  Text=" | " FontSize="13" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold"/>
+                                        <Label Grid.Column="4" Grid.Row="0"  Text="{Binding OrderProductItem.Product.Brand}" FontSize="13" TextColor="Gray" FontAttributes="Bold"/>
+                                    </Grid>-->
+                                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"  Text="{Binding OrderProductItem.Product.ProdDetails}" FontSize="13" TextColor="Gray" FontAttributes="Bold" LineBreakMode="TailTruncation" MaxLines="2"/>
+
+                                    <Label Grid.Row="2" FontAttributes="Bold" Grid.Column="1" IsVisible="{Binding OrderProductItem.Product.IsBuyingView}" Text="{Binding OrderProductItem.Product.UserName,StringFormat='Seller: @{0}'}" FontSize="13" TextColor="Gray"/>
+                                    <Label Grid.Row="2" FontAttributes="Bold" Grid.Column="1" IsVisible="{Binding OrderProductItem.Product.IsSellingView}" Text="{Binding BuyerUserName,StringFormat='Buyer: @{0}'}" FontSize="13" TextColor="Gray"/>
+                                   
+                                    <control:CustomFrame Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="1" HeightRequest="30" Padding="5" CornerRadius="5" BackgroundColor="{Binding OrderProductItem.Shipment.StatusColor}">
+                                        <Label HorizontalOptions="CenterAndExpand" FontSize="13" TextColor="White" VerticalOptions="CenterAndExpand" Text="{Binding OrderProductItem.Shipment.StatusType}"/>
+                                    </control:CustomFrame>
+                                    <Image Source="NextArrow" Margin="0,0,0,0" Grid.Column="3" HeightRequest="20" WidthRequest="20" Grid.RowSpan="4">
+                                    </Image>
+                                </Grid>
+                                <BoxView VerticalOptions="EndAndExpand" HeightRequest="1" BackgroundColor="LightGray"/>
+                            </StackLayout>
+                        <!--</ViewCell>-->
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                     <CollectionView.EmptyView>
+                            <ContentView>
+                                <Label Text="No Data Found" IsVisible="{Binding IsNoData}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Gray" FontSize="14"/>
+                            </ContentView>
+                        </CollectionView.EmptyView>
+            </CollectionView>
+                <!--<CollectionView x:Name="listSelling" Margin="0,10" ItemsSource="{Binding SellByProductList}" SelectedItem="{Binding SelectedSellingItem}"  RemainingItemsThreshold="{Binding SellItemThreshold}" RemainingItemsThresholdReachedCommand="{Binding SellItemTresholdReachedCmd}"  IsVisible="false">
+                    <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Spacing="0">
+                                <Grid Margin="10,10,10,5" RowSpacing="5"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="5.5*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                        <ColumnDefinition Width="20"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Frame Grid.RowSpan="4" Grid.Column="0" Grid.Row="0" Padding="5" HasShadow="False"  VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" BorderColor="{Binding product.ThemeCol}">
+                                        <ff:CachedImage x:Name="ProductImage" Source="GreenDress" RetryCount="3" RetryDelay="0" CacheDuration="0"  Aspect="AspectFill"/>
+                                    </Frame>
+                                    <Label  Text="Green Dress" Grid.Row="0" Grid.Column="1" LineBreakMode="TailTruncation" FontSize="12" TextColor="Gray" FontAttributes="Bold" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"/>
+                                    <StackLayout Spacing="5" Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                                        <Label  Text="$20" LineBreakMode="TailTruncation" FontSize="12" TextColor="{Binding ThemeColor}" FontAttributes="Bold" VerticalOptions="StartAndExpand" HorizontalOptions="Start"/>
+                                        <Label FontSize="12" Text="|"/>
+                                        <Label  Text="Size: S" FontSize="12" VerticalOptions="StartAndExpand" HorizontalOptions="Start" FontAttributes="Bold" TextColor="{Binding product.ThemeCol}"/>
+                                        <Label FontSize="12" Text="|"/>
+                                        <Label Text="Gap" FontSize="12" VerticalOptions="StartAndExpand" HorizontalOptions="Start" TextColor="{Binding product.ThemeCol}" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                    <Label Grid.Row="2" FontAttributes="Bold" Grid.Column="1" Text="Seller: @sellername" FontSize="14"/>
+                                    <control:CustomFrame Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="1" HeightRequest="30" Padding="5" CornerRadius="5" BackgroundColor="{Binding statuscolor}">
+                                        <Label HorizontalOptions="CenterAndExpand" FontSize="13" TextColor="White" VerticalOptions="CenterAndExpand" Text="{Binding status}"/>
+                                    </control:CustomFrame>
+                                    <Image Source="NextArrow" Margin="0,0,0,0" Grid.Column="3" HeightRequest="20" WidthRequest="20" Grid.RowSpan="4"/>
+                                </Grid>
+                                <BoxView VerticalOptions="EndAndExpand" HeightRequest="1" BackgroundColor="WhiteSmoke"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>-->
+            </Grid>
+
+            <!--CustomBottomNavigation-->
+            <control:CustomBottomNavigation VerticalOptions="EndAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
+             xmlns:forms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             mc:Ignorable="d"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             Title="Safe Area"
+             ios:Page.UseSafeArea="true"
+    x:Class="BuySell.Popup.ColorPickerPopup">
+    <ContentPage.Content>
+        <Frame Margin="30,0" Padding="10" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" CornerRadius="10">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <forms:SKCanvasView HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="{Binding Source={x:Reference ColorWheel}, Path=SelectedColor}" PaintSurface="SKCanvasView_PaintSurface"/>
+                <colorpicker:ColorWheel x:Name="ColorWheel" ShowAlphaSlider="True" ShowLuminositySlider="false" ShowLuminosityWheel="false" IsVisible="True" Vertical="True" Padding="5"/>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                    <Frame Padding="10" HorizontalOptions="CenterAndExpand" Margin="0,10,20,10" WidthRequest="100" HasShadow="False" BorderColor="{Binding ThemeColor}">
+                    <Label Text="Cancel" FontSize="18" TextColor="{Binding ThemeColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Cancel_Tapped"/>
+                    </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <Frame Padding="10" HorizontalOptions="CenterAndExpand" Margin="0,10,20,10" WidthRequest="100" HasShadow="False" BorderColor="{Binding ThemeColor}">
+                        <Label Text="Done" FontSize="18" TextColor="{Binding ThemeColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Done_Tapped"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</pages:PopupPage>

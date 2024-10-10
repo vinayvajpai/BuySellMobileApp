@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BuySell.Views.AlertsPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true"
+             xmlns:control="clr-namespace:BuySell.CustomControl"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <control:CustomTitleControl Grid.Row="0" x:Name="titleControl" TitleText="Notifications" BackCommand="{Binding PagePopCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,0,0,0">
+                <ListView ItemsSource="{Binding AlertsModelList, Mode=TwoWay}" HasUnevenRows="True" SelectedItem="{Binding SelectedAlert , Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <control:CustomFrame Padding="0" CornerRadius="0" HasShadow="False">
+                                    <Grid Margin="5,0" RowDefinitions="Auto" ColumnDefinitions="2*,8*,Auto" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                        <!--row 0 column 0 contains userimage and his action icon-->
+                                        <Grid Grid.Row="0" Grid.Column="0" RowDefinitions="Auto,80,Auto" >
+                                            <Frame  Grid.Row="1" HasShadow="False" Padding="0" IsClippedToBounds="True" CornerRadius="32.5" HeightRequest="65" WidthRequest="65" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BorderColor="LightGray">
+                                                <Image Source="{Binding UserImage, Mode=TwoWay}"/>
+                                            </Frame>
+                                            <Frame  Grid.Row="1" HasShadow="False" BorderColor="LightGray" Padding="5" CornerRadius="12" HeightRequest="15" WidthRequest="15" Margin="0,0,0,0" HorizontalOptions="End" VerticalOptions="End">
+                                                <Image Source="{Binding ActivityImage, Mode=TwoWay}" HeightRequest="10" WidthRequest="10"/>
+                                            </Frame>
+                                        </Grid>
+                                        <!--row 0 column 1 contains username and users action message -->
+                                        <Grid  Grid.Row="0" Grid.Column="1" RowDefinitions="Auto,Auto" ColumnDefinitions="8*,2*" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                            <Label Grid.Row="0" Grid.Column="0" VerticalOptions="CenterAndExpand">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding UserName, Mode=TwoWay}" TextColor="Maroon" FontAttributes="Bold" FontSize="14"/>
+                                                        <Span Text=" "/>
+                                                        <Span Text="{Binding AlertText}" FontAttributes="Bold" FontSize="14"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <!--<Frame  Grid.Column="1" Grid.RowSpan="2" HasShadow="False" IsClippedToBounds="True" Padding="1" BorderColor="{Binding ThemeColor}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                            <Image Source="{Binding ProductImage , Mode=TwoWay}" HeightRequest="50" WidthRequest="50" HorizontalOptions="End" VerticalOptions="CenterAndExpand"/>
+                                            </Frame>-->
+                                            <Label Text="{Binding NotificationTime , Mode=TwoWay}"  FontSize="12" Grid.Row="1" Grid.Column="0"/>
+                                        </Grid>
+                                        <!--row 0 and column 2 contains arrow to see details-->
+                                        <StackLayout Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+                                            <Frame   HasShadow="False" IsClippedToBounds="True" Padding="1" BorderColor="{Binding ThemeColor}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
+                                                <Image Source="{Binding ProductImage , Mode=TwoWay}" HeightRequest="50" WidthRequest="50" HorizontalOptions="End" VerticalOptions="CenterAndExpand"/>
+                                            </Frame>
+
+                                            <Image Source="NextArrow"  Margin="0,0,0,0" HeightRequest="20" WidthRequest="20" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding NotificationArrowTapped}"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+
+                                        </StackLayout>
+                                    </Grid>
+                                </control:CustomFrame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+            <!--CustomBottomNavigation-->
+            <control:CustomBottomNavigation VerticalOptions="End" SelectedTabIndex="2"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

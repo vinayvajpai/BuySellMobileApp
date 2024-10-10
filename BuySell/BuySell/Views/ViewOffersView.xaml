@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="View Offer"
+    xmlns:controls="clr-namespace:BuySell.CustomControl"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    ios:Page.UseSafeArea="true"
+    x:Class="BuySell.Views.ViewOffersView"
+    NavigationPage.HasNavigationBar="False">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="0,0,0,0" Spacing="0">
+            <!--Back-->
+            <Button Text="Back" BackgroundColor="Transparent" FontSize="17"
+                         HorizontalOptions="Start"
+                         HeightRequest="30"
+                    Clicked="Back_Clicked"
+                         WidthRequest="50"/>
+            <Label Text="View Offer" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="validPersonTemplate">
+                <ViewCell>
+                    <StackLayout Margin="10,5" Spacing="2" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Frame AnchorY="-20"  IsClippedToBounds="True" BackgroundColor="LightGray" HasShadow="False" CornerRadius="30" HeightRequest="60" WidthRequest="60" VerticalOptions="Start" HorizontalOptions="Start" Padding="0">
+                            <!--<Image x:Name="sellerImg" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Source="Avatar.png" Aspect="AspectFill"  HeightRequest="60" WidthRequest="60"/>-->
+                            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <ff:CachedImage x:Name="imgSeller" Source="{Binding SellerProfile}" HeightRequest="60" WidthRequest="60" LoadingPlaceholder="Loading.." Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                                <ActivityIndicator Color="White" BindingContext="{x:Reference imgSeller}"  IsRunning="{Binding IsLoading}"  IsVisible="{Binding IsLoading}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </Frame>
+                        <controls:CustomFrame Margin="0,20,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" BackgroundColor="WhiteSmoke" CornerRadius="0,30,30,30">
+                            <StackLayout>
+                                <Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold"/>
+                                <Label Text="{Binding PaymentMsg}" TextColor="Black" />
+                                <!--<Label  Text="{Binding msgTime,StringFormat='{0:h:mm tt}'}" TextColor="Black"/>-->
+                            </StackLayout>
+                        </controls:CustomFrame>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="invalidPersonTemplate">
+                <ViewCell>
+                    <StackLayout Margin="10,5" Orientation="Horizontal" Spacing="2"  HorizontalOptions="FillAndExpand">
+                        <controls:CustomFrame Margin="0,40,0,0" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="{Binding thmcolor}" CornerRadius="30,0,30,30">
+                            <StackLayout>
+                                <Label Text="{Binding Name}" TextColor="White" FontAttributes="Bold"/>
+                                <Label Text="{Binding PaymentMsg}" TextColor="White" />
+                                <Label Text="{Binding msgTime,StringFormat='{0:h:mm tt}'}" TextColor="White"/>
+                            </StackLayout>
+                        </controls:CustomFrame>
+                        <Frame AnchorY="-20"  IsClippedToBounds="True" BackgroundColor="LightGray" HasShadow="False" CornerRadius="30" HeightRequest="60" WidthRequest="60" VerticalOptions="Start" HorizontalOptions="Start" Padding="0">
+                            <!--<Image x:Name="sellerImg" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  Source="Avatar.png" Aspect="AspectFill"  HeightRequest="60" WidthRequest="60"/>-->
+                            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <ff:CachedImage x:Name="imgBuyer" Source="{Binding BuyerProfile}" HeightRequest="60" WidthRequest="60" LoadingPlaceholder="Loading.." Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                                <ActivityIndicator Color="White" BindingContext="{x:Reference imgBuyer}"  IsRunning="{Binding IsLoading}"  IsVisible="{Binding IsLoading}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </Frame>
+                        <!--<controls:CustomFrame AnchorY="-20" BackgroundColor="LightGray" IsClippedToBounds="True" Padding="2" VerticalOptions="Start" HorizontalOptions="End" HasShadow="False" CornerRadius="30" HeightRequest="60" WidthRequest="60">
+                            <controls:CustomFrame Padding="5" CornerRadius="30" HeightRequest="60" WidthRequest="60">
+                                <Image Source="{Binding BuyerProfile}" Aspect="AspectFit"/>
+                            </controls:CustomFrame>
+                        </controls:CustomFrame>-->
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <controls:ChatDataTemplateSelector x:Key="chatDataTemplateSelector"
+                ValidTemplate="{StaticResource validPersonTemplate}"
+                InvalidTemplate="{StaticResource invalidPersonTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Spacing="10">
+                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="0" Margin="0,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--LoginBackCommand-->
+                    <Image Grid.Row="0" Grid.Column="0" Margin="20,0" Source="Back_Img.png" Aspect="AspectFit" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" WidthRequest="25" HeightRequest="25">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Back_Clicked"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label  Grid.Row="0"  Grid.Column="1" Text="View Offer" TextColor="Black" VerticalOptions="CenterAndExpand" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                </Grid>
+                <BoxView Grid.Row="1" HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="LightGray"/>
+                <StackLayout Grid.Row="2" Margin="15,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid Margin="10,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="5.5*"/>
+                            <ColumnDefinition Width="1.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Frame Grid.Column="0" Grid.RowSpan="4" HeightRequest="60" BorderColor="{Binding ThemeColor}" HasShadow="False" BackgroundColor="Transparent" Padding="3">
+                            <ff:CachedImage x:Name="imgProduct" Aspect="AspectFill"/>
+                        </Frame>
+                        <StackLayout Margin="5,0" Grid.Column="1" Grid.Row="0" Spacing="10" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                            <Label x:Name="lblTitle" Grid.Row="0" Text="{Binding Description}" FontSize="12" TextColor="Black" FontAttributes="Bold"/>
+                            <StackLayout Grid.Row="1" Spacing="0" Orientation="Horizontal">
+                                <Label FontSize="12" TextColor="Black" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <!--<Span Text="$"/>-->
+                                            <Span x:Name="lblPrice" Text="{Binding DollerValue}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text=" | " FontSize="12" />
+                                            <Span Text=" Size : " FontSize="12" TextColor="Black" FontAttributes="Bold"/>
+                                            <Span x:Name="lblSize" Text="{Binding Size}" FontSize="12" TextColor="Black" FontAttributes="Bold"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text=" | " FontSize="12"/>
+                                            <Span x:Name="lblBrandName" Text="{Binding Brand}" FontSize="12" TextColor="{Binding ThemeColor}" FontAttributes="Bold"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                            <Label Grid.Row="2">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Buyer : " FontSize="12" FontAttributes="Bold" TextColor="Black"/>
+                                        <Span x:Name="lblBuyerName" Text="{Binding Seller}" FontSize="12" TextColor="Black" FontAttributes="Bold"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                        <StackLayout Grid.Column="2" Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                            <Frame HasShadow="False" BackgroundColor="red" Padding="1" HeightRequest="40" WidthRequest="20" CornerRadius="8">
+                                <Label HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="$" FontAttributes="Bold" TextColor="White" FontSize="13"/>
+                                            <Span Text="{Binding objdashboardModel.OfferPrice}" TextColor="White" FontAttributes="Bold" FontSize="15"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </Frame>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+
+                <!--BindableStackLayout-->
+                <StackLayout Grid.Row="3" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid Margin="20,0" RowSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="1"/>
+                        </Grid.RowDefinitions>
+                        <controls:CustomBorderButton Grid.Column="0" Grid.Row="0" TitleText="Accept" IsVisible="{Binding IsAccept}" ClickCommand="{Binding AcceptOfferCmd}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" TextColor="White" BorderColor="White" BgColor="{Binding ThemeColor}"/>
+                        <controls:CustomBorderButton Grid.Column="1" Grid.Row="0" TitleText="Counter" IsVisible="{Binding IsCounter}" ClickCommand="{Binding CounterOfferCmd}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" TextColor="White" BorderColor="White" BgColor="{Binding ThemeColor}"/>
+                        <controls:CustomBorderButton Grid.Column="2" Grid.Row="0" TitleText="Decline" IsVisible="{Binding IsDecline}" ClickCommand="{Binding DeclineOfferCmd}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" TextColor="White" BorderColor="White" BgColor="{Binding ThemeColor}"/>
+                    </Grid>
+                    <BoxView Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="LightGray"/>
+                </StackLayout>
+                <Frame Padding="0,2" IsVisible="{Binding IsOrderSold}" HasShadow="False" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Label Text ="item Sold! View" FontSize="18" TextColor="Gray" FontAttributes="None"/>
+                        <Label Text ="Order Details" FontSize="18" TextColor="Gray" FontAttributes="Bold" TextDecorations="Underline">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OrderDetailsCmd}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </Frame>
+
+                <BoxView IsVisible="{Binding IsOrderSold}"  Grid.ColumnSpan="3" HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="LightGray"/>
+            </StackLayout>
+            <ListView Grid.Row="3" x:Name="listView" HasUnevenRows="True" SeparatorVisibility="None" ItemTemplate="{StaticResource chatDataTemplateSelector}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" ItemsSource="{Binding listChat}" />
+            <Frame Grid.Row="4" HasShadow="False" Padding="0" Margin="0" HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" BorderColor="LightGray">
+                <StackLayout Spacing="0">
+                    <StackLayout Spacing="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <!--<Image Source="SmilyIcon" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Aspect="AspectFit" Margin="5,0,0,0"/>-->
+                        <controls:CustomEntry NoLine="True" PlaceholderColor="Gray" Text="{Binding messageBoxText}" Placeholder="Type a message" IsCurvedCornersEnabled="False" CornerRadius="0" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand"/>
+                        <!--<Image Source="share" HeightRequest="25" WidthRequest="25" BackgroundColor="Transparent" HorizontalOptions="Start" Aspect="AspectFit" Margin="5,0,10,0"/>-->
+                        <Label Text="➤" TextColor="{Binding ThemeColor}" FontSize="30" HorizontalOptions="EndAndExpand" Margin="0,0,5,0" VerticalOptions="CenterAndExpand">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SendMsgCmd}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <!--<Frame Grid.Row="4" HasShadow="False" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BorderColor="LightGray">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand">
+                            --><!--<Image Source="FillHeart" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Aspect="AspectFit" Margin="5,0,0,0"/>-->
+                            <!--<Image Source="SmilyIcon" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Aspect="AspectFit" Margin="5,0,0,0"/>--><!--
+                            <Image Source="Gallery" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Aspect="AspectFit" Margin="15,0,0,0"/>
+                            <Image Source="CameraIcon" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Aspect="AspectFit" Margin="5,0,0,0"/>
+                            <Image Source="MicIcon" HeightRequest="20" WidthRequest="20" HorizontalOptions="Start" Aspect="AspectFit" Margin="5,0,0,0"/>
+                        </StackLayout>
+                    </Frame>-->
+                </StackLayout>
+            </Frame>
+            <!--CustomBorderButton-->
+            <!--<controls:CustomBorderButton TitleText="Cancel Offer" ClickCommand="{Binding CancelCommand}" VerticalOptions="EndAndExpand"  TextColor="White" BgColor="{Binding ThemeColor}"  BorderColor="{Binding ThemeColor}" />-->
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

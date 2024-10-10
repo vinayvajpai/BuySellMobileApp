@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BuySell.CustomControl"
+             x:Class="BuySell.Views.Login_Flow.UserRegistrationPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             xmlns:converter="clr-namespace:BuySell.Converter"
+             xmlns:effects="clr-namespace:BuySell.Utility" 
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:datavalidator x:Key="stringValidationConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout x:Name="stk" Grid.Column="0" Margin="20,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Image x:Name="imgBack" Source="BackArrow" Aspect="AspectFit" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" HeightRequest="25" WidthRequest="25">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Grid.Row="0" Spacing="0">
+                        <Label x:Name="titleControl" Text="Registration" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="18"/>
+                    </StackLayout>
+                    <!--BoxView-->
+                    <BoxView x:Name="boxView" Grid.Row="1" BackgroundColor="{Binding ThemeColor}" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" VerticalOptions="End"/>
+                </Grid>
+
+                <ScrollView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0">
+                        <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomEntry x:Name="NameOnCard"  Placeholder="Full Name" Text="{Binding AddAddModel.FullName,Mode=TwoWay}" TextChanged="NameOnCard_TextChanged" Completed="NameOnCard_Completed" MaxLength="200" Style="{StaticResource CustomEntryStyle}"/>
+                            <Label x:Name="NameOnCardInvalid" Text="Invalid name" TextColor="Red" FontSize="10" IsVisible="False"/>
+                        </StackLayout>
+                        <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomEntry x:Name="ShippingAdd1" Placeholder="Address" Text="{Binding AddAddModel.AddressLine1,Mode=TwoWay}" TextChanged="ShippingAdd1_TextChanged" Completed="ShippingAdd1_Completed" Style="{StaticResource CustomEntryStyle}"/>
+                            <Label x:Name="ShipAddInvalid" Text="Invalid shipping address" TextColor="Red" FontSize="10" IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomEntry x:Name="ShippingAdd2" Placeholder="Address 2" Text="{Binding AddAddModel.AddressLine2}" MaxLength="200" Style="{StaticResource CustomEntryStyle}"/>
+                        </StackLayout>
+
+                        <StackLayout Margin="20,10"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomEntry x:Name="CityTxt" Placeholder="City"  Text="{Binding AddAddModel.City,Mode=TwoWay}" FontSize="14" TextChanged="CityTxt_TextChanged" Completed="CityTxt_Completed" Style="{StaticResource CustomEntryStyle}"/>
+                            <Label x:Name="CityInvalid" Text="Invalid city name" TextColor="Red" FontSize="10" IsVisible="False"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Spacing="0">
+                            <Grid HorizontalOptions="FillAndExpand" RowDefinitions="8*,Auto" ColumnSpacing="10"  VerticalOptions="StartAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Frame Padding ="0" HasShadow="False" CornerRadius="5" HeightRequest="50" BorderColor="#999999" Margin="0,0,20,0" Grid.Column="0" Grid.Row="0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="8*"/>
+                                            <ColumnDefinition Width="2*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <control:CustomEntry IsReadOnly="True" Grid.Column="0" InputTransparent="True" x:Name="CountryPickerText" TextChanged="CountryPickerText_TextChanged" Text="{Binding AddAddModel.State, Mode=TwoWay}" HeightRequest="45" BorderColor="White" Placeholder="Select State" Margin="2,0,0,0" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="{StaticResource TextBasicFontSize}">
+                                            <control:CustomEntry.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding SelectStateCommand}" />
+                                            </control:CustomEntry.GestureRecognizers>
+                                        </control:CustomEntry>
+                                        <Image Grid.Column="1" Source="Down_Img" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="20" HeightRequest="20" Margin="0,0,10,0"/>
+                                    </Grid>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SelectStateCommand}" />
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                <control:CustomEntry  Grid.Column="1" Grid.Row="0"  x:Name="ZipTxt" Placeholder="Zip" Text="{Binding AddAddModel.ZipCode,Mode=TwoWay}" TextChanged="ZipTxt_TextChanged" Completed="ZipTxt_Completed" Keyboard="Numeric" MaxLength="6" Style="{StaticResource CustomEntryStyle}"/>
+                                <Label x:Name="ZipInvalid"  Grid.Column="1" Grid.Row="1" Text="Invalid zip code" TextColor="Red" FontSize="10" IsVisible="False"/>
+                                <Label x:Name="CountryInvalid"  Grid.Column="0" Grid.Row="1" Text="Invalid country name" TextColor="Red" FontSize="10" IsVisible="False"/>
+                            </Grid>
+                        </StackLayout>
+
+                        <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomEntry x:Name="PhoneNumber"  Placeholder="Phone number" Keyboard="Telephone" Text="{Binding AddAddModel.PhoneNo,Mode=TwoWay}" TextChanged="PhoneNumber_TextChanged" Completed="PhoneNumber_Completed" MaxLength="200" Style="{StaticResource CustomEntryStyle}"/>
+                            <Label x:Name="PhoneNumberInvalid" Text="Invalid phone number" TextColor="Red" FontSize="10" IsVisible="False"/>
+                        </StackLayout>
+                        
+                        <control:CustomBorderButton  x:Name="ContinueBtn" TitleText="Continue" fontsize="18" ClickCommand="{Binding ContinueCommand, Mode=TwoWay}" Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" TextColor="White" BgColor="{Binding ThemeColor}" BorderColor="{Binding ThemeColor}" IsEnabled="False" Opacity="0.7">
+                            <control:CustomBorderButton.Triggers>
+                                <MultiTrigger TargetType="control:CustomBorderButton">
+                                    <MultiTrigger.Conditions>
+                                        <BindingCondition Binding="{Binding Source={x:Reference NameOnCard}, Path=Text.Length,Converter={StaticResource stringValidationConverter}}" Value="True" />
+                                        <BindingCondition Binding="{Binding Source={x:Reference ShippingAdd1}, Path=Text.Length,Converter={StaticResource stringValidationConverter}}" Value="True" />
+                                        <BindingCondition Binding="{Binding Source={x:Reference ShippingAdd2}, Path=Text.Length,Converter={StaticResource stringValidationConverter}}" Value="True" />
+                                        <!--<BindingCondition Binding="{Binding Source={x:Reference CountryPickerText}, Path=Text.Length,Converter={StaticResource stringValidationConverter}}" Value="True" />-->
+                                        <BindingCondition Binding="{Binding Source={x:Reference ZipTxt}, Path=Text.Length,Converter={StaticResource stringValidationConverter}}" Value="True" />
+                                        <BindingCondition Binding="{Binding Source={x:Reference PhoneNumber}, Path=Text.Length,Converter={StaticResource stringValidationConverter}}" Value="True" />
+                                        <BindingCondition Binding="{Binding Source={x:Reference NameOnCardInvalid}, Path=IsVisible}" Value="False" />
+                                        <BindingCondition Binding="{Binding Source={x:Reference ShipAddInvalid}, Path=IsVisible}" Value="False" />
+                                        <BindingCondition Binding="{Binding Source={x:Reference CityInvalid},  Path=IsVisible}" Value="False" />
+                                        <BindingCondition Binding="{Binding Source={x:Reference ZipInvalid},  Path=IsVisible}" Value="False" />
+                                        <BindingCondition Binding="{Binding Source={x:Reference CountryInvalid}, Path=IsVisible}" Value="False" />
+                                        <BindingCondition Binding="{Binding Source={x:Reference PhoneNumberInvalid}, Path=IsVisible}" Value="False" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="IsEnabled" Value="True" />
+                                    <Setter Property="Opacity" Value="1.0"/>
+                                </MultiTrigger>
+                            </control:CustomBorderButton.Triggers>
+                        </control:CustomBorderButton>
+
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+            <!--<control:CustomBottomNavigation  VerticalOptions="EndAndExpand" SelectedTabIndex="5"/>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

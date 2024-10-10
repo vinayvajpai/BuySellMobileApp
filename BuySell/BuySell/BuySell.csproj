@@ -1,0 +1,187 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <BuildWithMSBuildOnMono>true</BuildWithMSBuildOnMono>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Xam.Plugin.DeviceInfo" Version="4.1.1" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.2.0.564" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Plugin.MediaManager.Forms" Version="1.1.1" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.5" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.88.3" />
+    <PackageReference Include="SkiaSharp" Version="2.88.3" />
+    <PackageReference Include="ColorPicker.Xamarin.Forms" Version="1.3.4.21" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.5" />
+    <PackageReference Include="Xamarin.Controls.ImageCropper" Version="1.0.1" />
+    <PackageReference Include="Plugin.ListViewWithEmptyMessage" Version="1.0.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.3" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.3" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Xamarin.Forms.PinchZoomImage" Version="1.2.0" />
+    <PackageReference Include="Stripe.net" Version="41.2.0" />
+    <PackageReference Include="XamarinFastEntry.Behaviors" Version="1.1.1" />
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\Blackout-Midnight.ttf" />
+    <None Remove="Resources\OpenSans-BoldItalic.ttf" />
+    <None Remove="Views\" />
+    <None Remove="ViewModel\" />
+    <None Remove="Model\" />
+    <None Remove="CustomControl\" />
+    <None Remove="Helper\" />
+    <None Remove="Effects\" />
+    <None Remove="Utility\" />
+    <None Remove="Rg.Plugins.Popup" />
+    <None Remove="Acr.UserDialogs" />
+    <None Remove="Services\" />
+    <None Remove="Xamarin.FFImageLoading" />
+    <None Remove="Xamarin.FFImageLoading.Transformations" />
+    <None Remove="Xamarin.FFImageLoading.Forms" />
+    <None Remove="Plugin.MediaManager.Forms" />
+    <None Remove="Xam.Plugin.Media" />
+    <None Remove="Trigger\" />
+    <None Remove="Xamarin.CommunityToolkit" />
+    <None Remove="CustomControl\ImageCrop\" />
+    <None Remove="SkiaSharp.Views.Forms" />
+    <None Remove="SkiaSharp" />
+    <None Remove="Popup\" />
+    <None Remove="ColorPicker.Xamarin.Forms" />
+    <None Remove="Xamarin.FFImageLoading.Svg.Forms" />
+    <None Remove="Xamarin.Essentials" />
+    <None Remove="Xamarin.Controls.ImageCropper" />
+    <None Remove="Plugin.ListViewWithEmptyMessage" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Model\RestResponse\" />
+    <None Remove="WebServices\" />
+    <None Remove="Model\LoginResponse\" />
+    <None Remove="Model\SignUpResponse\" />
+    <None Remove="Microsoft.AppCenter.Analytics" />
+    <None Remove="Microsoft.AppCenter.Crashes" />
+    <None Remove="sqlite-net-pcl" />
+    <None Remove="Persistence\" />
+    <None Remove="Xamarin.Forms.PinchZoomImage" />
+    <None Remove="Stripe.net" />
+    <None Remove="XamarinFastEntry.Behaviors" />
+    <None Remove="Converter\" />
+    <None Remove="Resources\" />
+    <None Remove="Resources\arial-black.ttf" />
+    <None Remove="Plugin.Media" />
+    <None Remove="Views\BuyingSellingViews\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helper\" />
+    <Folder Include="Effects\" />
+    <Folder Include="Services\" />
+    <Folder Include="Trigger\" />
+    <Folder Include="Model\RestResponse\" />
+    <Folder Include="WebServices\" />
+    <Folder Include="Model\LoginResponse\" />
+    <Folder Include="Model\SignUpResponse\" />
+    <Folder Include="Persistence\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Popup\ToolTipPopup.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\arial-black.ttf" />
+    <EmbeddedResource Include="Resources\Blackout-Midnight.ttf" />
+    <EmbeddedResource Include="Resources\OpenSans-BoldItalic.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Views\AddShippingFromAddressPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AlertsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BrandPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BuyingSellingViews\OrderDetailsShippingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ChangePasswordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CountryListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\EnterCodeView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ItemDetailSizePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ItemDetailTitlePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login Flow\OTPVerificationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login Flow\UserRegistrationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MyEarningView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PaymentMethodsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\RegisterView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ResetPasswordPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ShippingFromAddressPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\TaxCenterView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\VerifyView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\WithDrawlSummaryView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\WithdrawView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Persistence\RecentViewProduct.cs" />
+    <Compile Remove="Popup\ToolTipPopup.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\MakeAnOfferDetailPage.xaml.cs">
+      <DependentUpon>MakeAnOfferDetailPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Plugin.Media">
+      <HintPath>..\..\..\..\..\Desktop\Debug\netstandard2.0\Plugin.Media.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Media.Plugin\Media.Plugin.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BuySell.CustomControl"
+    x:Class="BuySell.Views.EditBankAccountPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                     <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="0" RowSpacing="0" Margin="0,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Row="0" Grid.Column="0"  Source="Back_Img.png" Aspect="AspectFit" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HeightRequest="25" WidthRequest="25">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label x:Name="lbltitle" Grid.Row="0"  Grid.Column="1" Text="EDIT ACCOUNT" TextColor="Black" VerticalOptions="CenterAndExpand" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                    <Frame Grid.Row="0" Margin="0,0,10,0" BackgroundColor="{Binding ThemeColor}" Grid.Column="2" CornerRadius="5" HasShadow="False" Padding="2">
+                        <Label FontSize="10" Text="Save"  TextColor="White" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
+                        <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SaveAccountDetailCmd}"/>
+                    </Frame.GestureRecognizers>
+                    </Frame>
+                </Grid>
+
+                <!--BoxView-->
+                <BoxView Grid.Row="1"  BackgroundColor="{Binding ThemeColor}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="0,10,0,0"/>
+                <StackLayout Grid.Row="2" Margin="20,20" Spacing="20">
+                    <Label FontSize="18" Text="Account Details" FontAttributes="Bold" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"/>
+                        <control:CustomEntry Placeholder="Account Holder's Name" Text="{Binding BankAccountDetail.AccountHolderName, Mode=TwoWay}" BackgroundColor="White" Style="{StaticResource CustomEntryStyle}"/>
+                        <control:CustomEntry x:Name="RoutingNumber" Placeholder="Bank Routing Number" Text="{Binding BankAccountDetail.RoutingNumber, Mode=TwoWay}" TextChanged="RoutingNumber_TextChanged" Keyboard="Numeric" BackgroundColor="White" Style="{StaticResource CustomEntryStyle}"/>
+                        <Label x:Name="RoutAccNoInvalid" Text="Invalid Routing number" TextColor="Red" FontSize="10" HorizontalOptions="StartAndExpand" IsVisible="False"/>
+                        <control:CustomEntry x:Name="CheckingAccNo" Placeholder="Checking Account Number" Text="{Binding BankAccountDetail.AccountNumber, Mode=TwoWay}" TextChanged="CheckingAccNo_TextChanged" Keyboard="Numeric" BackgroundColor="White" Style="{StaticResource CustomEntryStyle}"/>
+                    <Label x:Name="AccNoInvalid" Text="Invalid account number" TextColor="Red" FontSize="10" HorizontalOptions="StartAndExpand" IsVisible="False"/>
+                        <control:CustomEntry x:Name="ConfmCheckingAccNo" Placeholder="Confirm Checking Account Number" Text="{Binding ConfmCheckingAccNo, Mode=TwoWay}" TextChanged="ConfmCheckingAccNo_TextChanged" Keyboard="Numeric" BackgroundColor="White" Style="{StaticResource CustomEntryStyle}"/>
+                    <Label x:Name="CnfmAccNoInvalid" Text="Invalid confirm account number" TextColor="Red" FontSize="10" HorizontalOptions="StartAndExpand" IsVisible="False"/>
+                </StackLayout>
+                <StackLayout Grid.Row="3" Orientation="Horizontal" Margin="20,0">
+                    <CheckBox Color="{Binding ThemeColor}" VerticalOptions="CenterAndExpand" IsChecked="{Binding BankAccountDetail.IsDefault, Mode=TwoWay}"/>
+                    <Label Text="Make Default Account" VerticalOptions="CenterAndExpand" FontSize="13" FontAttributes="Bold" TextColor="Black"/>
+                </StackLayout>
+            </Grid>
+            <!--CustomBottomNavigation-->
+            <control:CustomBottomNavigation VerticalOptions="End" SelectedTabIndex="5"/>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

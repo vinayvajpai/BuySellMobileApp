@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BuySell.CustomControl"
+    x:Class="BuySell.Views.NotificationsPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <control:CustomTitleControl Grid.Row="0" TitleText="NOTIFICATIONS" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackCommand="{Binding PagePopCommand}"/>
+                <!--Notifications information-->
+                <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout Spacing="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomFrame Margin="20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Margin="20,10,0,0" Text="Important account and other information" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                    <Grid Margin="0,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="0" Text="Push" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="0" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        <BoxView Margin="20,0,0,0" Grid.ColumnSpan="2" Grid.Row="1" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="2" Text="Email" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="2" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                    </Grid>
+                                </StackLayout>
+                            </control:CustomFrame>
+                        </StackLayout>
+
+                        <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomFrame Margin="20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Margin="20,10,0,0" Text="Someone makes an offer on an item in my closet" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                    <Grid Margin="0,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="0" Text="Push" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="0" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        <BoxView Margin="20,0,0,0" Grid.ColumnSpan="2" Grid.Row="1" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="2" Text="Email" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="2" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                    </Grid>
+                                </StackLayout>
+                            </control:CustomFrame>
+                        </StackLayout>
+
+                        <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomFrame Margin="20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Margin="20,10,0,0" Text="An item in my closet sells" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                    <Grid Margin="0,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="0" Text="Push" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="0" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        <BoxView Margin="20,0,0,0" Grid.ColumnSpan="2" Grid.Row="1" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="2" Text="Email" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="2" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                    </Grid>
+                                </StackLayout>
+                            </control:CustomFrame>
+                        </StackLayout>
+
+                        <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomFrame Margin="20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Margin="20,10,0,0" Text="I receive a private message" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                    <Grid Margin="0,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="0" Text="Push" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="0" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        <BoxView Margin="20,0,0,0" Grid.ColumnSpan="2" Grid.Row="1" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="2" Text="Email" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="2" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                    </Grid>
+                                </StackLayout>
+                            </control:CustomFrame>
+                        </StackLayout>
+
+                        <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomFrame Margin="20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Margin="20,10,0,0" Text="Someone likes an item I'm selling" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                    <Grid Margin="0,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="0" Text="Push" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="0" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        <BoxView Margin="20,0,0,0" Grid.ColumnSpan="2" Grid.Row="1" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="2" Text="Email" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="2" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                    </Grid>
+                                </StackLayout>
+                            </control:CustomFrame>
+                        </StackLayout>
+
+                        <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomFrame Margin="20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Margin="20,10,0,0" Text="Someone follows me" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                    <Grid Margin="0,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="0" Text="Push" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="0" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        <BoxView Margin="20,0,0,0" Grid.ColumnSpan="2" Grid.Row="1" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="2" Text="Email" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="2" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                    </Grid>
+                                </StackLayout>
+                            </control:CustomFrame>
+                        </StackLayout>
+
+                        <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomFrame Margin="20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Margin="20,10,0,0" Text="When the price drops on an item in my &quot;Likes&quot; folder" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                    <Grid Margin="0,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="0" Text="Push" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="0" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        <BoxView Margin="20,0,0,0" Grid.ColumnSpan="2" Grid.Row="1" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="2" Text="Email" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="2" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                    </Grid>
+                                </StackLayout>
+                            </control:CustomFrame>
+                        </StackLayout>
+
+                        <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomFrame Margin="20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Margin="20,10,0,0" Text="A seller sends me an offer on an item in my &quot;Likes&quot; folder" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                    <Grid Margin="0,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="0" Text="Push" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="0" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        <BoxView Margin="20,0,0,0" Grid.ColumnSpan="2" Grid.Row="1" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="2" Text="Email" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="2" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                    </Grid>
+                                </StackLayout>
+                            </control:CustomFrame>
+                        </StackLayout>
+
+                        <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomFrame Margin="20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Margin="20,10,0,0" Text="Updates about items in my shopping bag" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                    <Grid Margin="0,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="0" Text="Push" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="0" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        <BoxView Margin="20,0,0,0" Grid.ColumnSpan="2" Grid.Row="1" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="2" Text="Email" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="2" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                    </Grid>
+                                </StackLayout>
+                            </control:CustomFrame>
+                        </StackLayout>
+                        <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomFrame Margin="20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Margin="20,10,0,0" Text="Updates about items I'm &quot;Buying&quot; or &quot;Selling&quot;" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                    <Grid Margin="0,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="0" Text="Push" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="0" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        <BoxView Margin="20,0,0,0" Grid.ColumnSpan="2" Grid.Row="1" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="2" Text="Email" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="2" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                    </Grid>
+                                </StackLayout>
+                            </control:CustomFrame>
+                        </StackLayout>
+                        <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomFrame Margin="20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Margin="20,10,0,0" Text="Marketing - messages about giveaways, selling tips, etc." FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                    <Grid Margin="0,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="1"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="0" Text="Push" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="0" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        <BoxView Margin="20,0,0,0" Grid.ColumnSpan="2" Grid.Row="1" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        <Label Margin="20,10" Grid.Column="0" Grid.Row="2" Text="Email" FontAttributes="Bold" FontSize="15" TextColor="Gray" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                                        <control:CustomSwitch Margin="0,5,20,0" Grid.Column="1" Grid.Row="2" SwitchOffColor="Gray" SwitchOnColor="#C0DAE9" SwitchThumbColor="{Binding ThemeColor}"  VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                    </Grid>
+                                </StackLayout>
+                            </control:CustomFrame>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+                <!--CustomBottomNavigation-->
+                <control:CustomBottomNavigation  Grid.Row="3" VerticalOptions="EndAndExpand" SelectedTabIndex = "5"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

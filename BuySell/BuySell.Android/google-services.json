@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "884288544319",
+    "project_id": "buysellclothing-e7278",
+    "storage_bucket": "buysellclothing-e7278.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:884288544319:android:31025a84c9a41eb948628a",
+        "android_client_info": {
+          "package_name": "com.clothings.buysell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "884288544319-kbntt5qgkovftihll16jtje0866pjlf9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh4BIi1xH1jT_5r34sa8fomLWM3okD79Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "884288544319-kbntt5qgkovftihll16jtje0866pjlf9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "884288544319-3t15emk486bg0qk464idb8ri5fiifh17.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.clothings.buysell"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

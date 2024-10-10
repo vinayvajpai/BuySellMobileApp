@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BuySell.CustomControl" xmlns:FastEntry="clr-namespace:XamarinFastEntrySample.FastEntry;assembly=XamarinFastEntry.Behaviors"
+             x:Class="BuySell.Views.CreditCardListView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+              xmlns:converter="clr-namespace:BuySell.Converter"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:CreditCardNumberValueConverter x:Key="CreditCardNumberValueConverter" />
+            <converter:BooleanInverter x:Key="BooleanInverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowDefinitions="8*,*" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <control:CustomTitleControl x:Name="titleControl" Grid.Row="0" TitleText="PAYMENT METHODS"  BackCommand="{Binding BackCommand}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <!--ListView-->
+                <ListView x:Name="listCard" IsVisible="false"  HasUnevenRows="True"  Grid.Row="1" Margin="10,0"  SeparatorVisibility="None" SelectedItem="{Binding SelectedCreditCardModel}" ItemsSource="{Binding CreditCardAddList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <control:CustomFrame IsClippedToBounds="True" HasShadow="False" Margin="10" Padding="1,1" CornerRadius="10"  BackgroundColor="LightGray">
+                                    <control:CustomFrame IsClippedToBounds="True" HasShadow="False"  Padding="10,5" CornerRadius="10" BackgroundColor="White">
+                                        <Grid BackgroundColor="White" ColumnDefinitions="10*" RowDefinitions="Auto">
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                                                <StackLayout Orientation="Vertical" HorizontalOptions="Start" >
+                                                    <Label VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="{StaticResource TextBasicFontSize}" TextColor="Black">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Card ending in"/>
+                                                                <Span Text="************"/>
+                                                                <Span Text="{Binding Span}"/>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                    <!--<Label Text="Last used for checkout" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="15" TextColor="Green" IsVisible="{Binding IsDefault ,Converter={StaticResource BooleanInverter} }"/>-->
+                                                    <!--<Label x:Name="userName" Text="{Binding Name}" VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="15" TextColor="Gray"/>-->
+                                                    <Label  VerticalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="{StaticResource TextBasicFontSize}" TextColor="Gray">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="Expires "/>
+                                                                <Span Text="{Binding FormattedExpiry}"/>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </StackLayout>
+                                                <StackLayout  Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand">
+                                                    <Image  Source="{Binding CardIcon}" Aspect="AspectFit" VerticalOptions="StartAndExpand" HorizontalOptions="Start"  WidthRequest="60" HeightRequest="30"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <!--<StackLayout Grid.Row="1" Spacing="0" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Orientation="Horizontal">-->
+                                            <!--<control:CustomBorderButton ClickCommand="{Binding BindingContext.EditCommand, Source={x:Reference listCard}}"  CommandParameter="{Binding .}" TitleText="Edit" fontsize="12"  Margin="5,0"    BgColor="{Binding ThemeColor}" TextColor="White" BorderColor="{Binding ThemeColor}"/>
+                                            <control:CustomBorderButton  TitleText="Delete" fontsize="12" ClickCommand="{Binding BindingContext.DeleteCommand, Source={x:Reference listCard}}"  CommandParameter="{Binding .}"  Margin="5,0"   BgColor="{Binding ThemeColor}" TextColor="White" BorderColor="{Binding ThemeColor}"/>-->
+                                            <StackLayout Grid.Row="1" Spacing="10" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+
+                                                <!--<Grid>
+
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="30"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="3*"/>
+                                                            -->
+                                                <!--<ColumnDefinition Width="3*"/>-->
+                                                <!--
+                                                            <ColumnDefinition Width="4*"/>
+                                                        </Grid.ColumnDefinitions>-->
+
+                                                <!--<Frame HasShadow="False" WidthRequest="85" Grid.Column="0" IsClippedToBounds="True" HeightRequest="30" BackgroundColor="{Binding ThemeColor}" HorizontalOptions="StartAndExpand" VerticalOptions="Start" CornerRadius="6" Padding="1">
+                                                            <Label Text="Edit" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
+                                                            <Frame.GestureRecognizers>
+                                                                <TapGestureRecognizer Command="{Binding BindingContext.EditCommand, Source={x:Reference listCard}}"  CommandParameter="{Binding .}"/>
+                                                            </Frame.GestureRecognizers>
+                                                        </Frame>-->
+                                                <Frame Style="{StaticResource ListButtonsStyle}"  BackgroundColor="{Binding ThemeColor}">
+                                                    <Label Text="Delete" TextColor="White" FontSize="{StaticResource TextBasicFontSize}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.DeleteCommand, Source={x:Reference listCard}}"  CommandParameter="{Binding .}"/>
+                                                    </Frame.GestureRecognizers>
+                                                </Frame>
+                                                <Frame x:Name="frmSetDefault" Style="{StaticResource ListButtonsStyle}" BorderColor="{Binding ThemeColor}"  BackgroundColor="{Binding ThemeColor}" IsVisible="{Binding IsPrimary, Converter={StaticResource BooleanInverter} , Mode=TwoWay}">
+                                                    <Label Text="Set As Default" FontSize="{StaticResource TextBasicFontSize}" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.SetAsDefaultCommand, Source={x:Reference listCard}}"  CommandParameter="{Binding .}"/>
+                                                    </Frame.GestureRecognizers>
+                                                </Frame>
+                                                <Frame Style="{StaticResource ListButtonsStyle}" IsVisible="false" BackgroundColor="Transparent" BorderColor="{Binding ThemeColor}">
+                                                    <Label Text="Default Card" TextColor="{Binding ThemeColor}" FontSize="{StaticResource TextBasicFontSize}"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
+                                                    <Frame.Triggers>
+                                                        <DataTrigger TargetType="Frame" Binding="{Binding Source={x:Reference frmSetDefault},Path=IsVisible}" Value="false">
+                                                            <Setter Property="IsVisible" Value="True" />
+                                                        </DataTrigger>
+                                                    </Frame.Triggers>
+                                                </Frame>
+
+                                                <!--</Grid>-->
+                                            </StackLayout>
+                                        </Grid>
+                                        <control:CustomFrame.Triggers>
+                                            <DataTrigger TargetType="Frame" Binding="{Binding Source={x:Reference frmSetDefault},Path=IsVisible}" Value="false">
+                                                <Setter Property="BorderColor" Value="{Binding ThemeColor}" />
+                                            </DataTrigger>
+                                        </control:CustomFrame.Triggers>
+                                    </control:CustomFrame>
+                                </control:CustomFrame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Triggers>
+                        <DataTrigger TargetType="ListView" Binding="{Binding Source=SelectedCreditCardModel,Path=Count}" Value="0">
+                            <Setter Property="IsVisible" Value="false" />
+                        </DataTrigger>
+                    </ListView.Triggers>
+                </ListView>
+                <!--<Label x:Name="lblNoData" Text="No Data Found" Grid.Row="1" IsVisible="false" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Gray" FontSize="14">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Source=SelectedCreditCardModel,Path=Count}" Value="0">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>-->
+                <!--CustomBorderButton-->
+                <control:CustomBorderButton fontsize="18"  Grid.Row="2" TitleText=" + Add Credit or Debit Card"  ClickCommand="{Binding AddNewCreditCardCommand}"  Margin="20,0" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand"  BgColor="{Binding ThemeColor}" TextColor="White" BorderColor="{Binding ThemeColor}"/>
+            </Grid>
+            <!--CustomBottomNavigation-->
+            <control:CustomBottomNavigation Grid.Row="1" VerticalOptions="End"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

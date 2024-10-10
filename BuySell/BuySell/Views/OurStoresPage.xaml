@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BuySell.Views.OurStoresPage"
+    NavigationPage.HasNavigationBar="False"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:control="clr-namespace:BuySell.CustomControl"
+    ios:Page.UseSafeArea="true">
+    <ContentPage.Content>
+        <Grid RowDefinitions="*,Auto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!--Header--><!--
+                <control:CustomHeaderControl x:Name="header" Grid.Row="0" IsShowSearchIcon="False" IsShowAction="False"  VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"  BackCommand="{Binding LogingoutCommand}" NavStack="{Binding navigation}"/>-->
+                <!--Title-->
+                <!--<control:CustomTitleControl Grid.Row="0" TitleText="OUR STORES" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackCommand="{Binding PagePopCommand}"/>-->
+                <Grid Grid.Row="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Grid.Row="0" Source="Back_Img" Margin="25,15,20,5" HeightRequest="25" WidthRequest="25" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+                <Image Grid.Row="1" Source="BuySell_logoclothing" WidthRequest="200" Aspect="AspectFit" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                <!--Selling category-->
+                <ScrollView Grid.Row="2" Margin="0,20,0,20">
+                    <StackLayout Spacing="15" VerticalOptions="StartAndExpand">
+                        <Grid VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" Margin="25,0,25,0" RowSpacing="20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="120"/>
+                                <RowDefinition Height="120"/>
+                                <RowDefinition Height="120"/>
+                                <RowDefinition Height="120"/>
+                            </Grid.RowDefinitions>
+                            <Frame Grid.Row="0" CornerRadius="18" Padding="0" BackgroundColor="#1567A6" HasShadow="False" Margin="0,0,0,0">
+                                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                                    <Image Source="pattern_bg_rnd.png" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <Grid Margin="10,0">
+                                        <!--<Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="7*"/>
+                                        </Grid.ColumnDefinitions>-->
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <!--<Image Grid.Column="0" Source="c.png" Aspect="AspectFit" Margin="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>-->
+                                        <Label Text="Clothing" Grid.Row="0" Margin="0,5,0,0" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" FontAttributes="Bold" FontSize="16"/>
+                                        <!--<Label Grid.Column="1" Text="Any item of clothing you can wear on a daily basis such as a button down shirts, mini skirts, jeans, polo shirt, socks, ties, suits, shorts, swimwear, socks, belts, hats, jackets, etc. Items typically found" FontSize="14"  HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="White"/>-->
+                                        <Label Grid.Row="1" Text="{Binding ClothingDescription}" FontSize="13" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" TextColor="White"/>
+                                    </Grid>
+                                    <!--<Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SelecteCategory_Tapped" CommandParameter="1"/>
+                                </Grid.GestureRecognizers>-->
+                                </Grid>
+                            </Frame>
+                            <Frame Grid.Row="3" CornerRadius="18"  Padding="0" BackgroundColor="#467904" HasShadow="False" Margin="0,0,0,0">
+                                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                                    <Image Source="pattern_bg_rnd.png" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <Grid Margin="10,0">
+                                        <!--<Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="7*"/>
+                                        </Grid.ColumnDefinitions>-->
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <!--<Image Grid.Column="0" Source="v.png" Aspect="AspectFit" Margin="10"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>-->
+                                        <Label Text="Vintage" Grid.Row="0" Margin="0,5,0,0" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" FontAttributes="Bold" FontSize="16"/>
+                                        <!--<Label Grid.Column="1" Text="Any item manufactured in a previous era. Normally before the year  2000. Made in USA and single stitched items are indicators of Vintage items. Many luxury brands from bygone era in" FontSize="14" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="White"/>-->
+                                        <Label Grid.Row="1" Text="{Binding VintageDescription}" FontSize="13" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" TextColor="White"/>
+                                    </Grid>
+                                    <!--<Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SelecteCategory_Tapped" CommandParameter="2"/>
+                                </Grid.GestureRecognizers>-->
+                                </Grid>
+                            </Frame>
+                            <Frame Grid.Row="1" CornerRadius="18"  Padding="0" BackgroundColor="#C52036" HasShadow="False" Margin="0,0,0,0">
+                                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                                    <Image Source="pattern_bg_rnd.png" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <Grid Margin="10,0">
+                                        <!--<Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="7*"/>
+                                        </Grid.ColumnDefinitions>-->
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <!--<Image Grid.Column="0" Source="s.png" Aspect="AspectFit" Margin="10"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>-->
+                                        <Label Text="Sneakers" Grid.Row="0" Margin="0,5,0,0" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" FontAttributes="Bold" FontSize="16"/>
+                                        <!--<Label Grid.Column="1" Text="Multiple footwear styles used primarily for used for sports. casual dress and fashion statements. Athletic shoes are focused on specific athletic pursuits such as biking, track and stick and ball" FontSize="14" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="White"/>-->
+                                        <Label Grid.Row="1" Text="{Binding SneakersDescription}" FontSize="13" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" TextColor="White"/>
+                                    </Grid>
+                                    <!--<Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SelecteCategory_Tapped" CommandParameter="3"/>
+                                </Grid.GestureRecognizers>-->
+                                </Grid>
+                            </Frame>
+                            <Frame Grid.Row="2" CornerRadius="18"  Padding="0" BackgroundColor="#D04107" HasShadow="False" Margin="0,0,0,0">
+                                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                                    <Image Source="pattern_bg_rnd.png" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <Grid Margin="10,0">
+                                        <!--<Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="7*"/>
+                                        </Grid.ColumnDefinitions>-->
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <!--<Image Grid.Column="0" Source="sw.png" Aspect="AspectFit" Margin="10"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>-->
+                                        <Label Text="Streetwear" Grid.Row="0" Margin="0,5,0,0" TextColor="White" HorizontalTextAlignment="Center" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" FontAttributes="Bold" FontSize="16"/>
+                                        <!--<Label Grid.Column="1"  Text="Brands who capture the type of fashion seen on the streets in metropolitan areas. Defined by the original skate and surf crowd, Streetwear in its latest inception has included the rap music" FontSize="14" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="White"/>-->
+                                        <Label Grid.Row="1"  Text="{Binding StreetwearDescription}" FontSize="13" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" TextColor="White"/>
+                                    </Grid>
+                                    <!--<Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SelecteCategory_Tapped" CommandParameter="4"/>
+                                </Grid.GestureRecognizers>-->
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+            <!--CustomBottomNavigation-->
+            <control:CustomBottomNavigation Grid.Row="1" VerticalOptions="End" SelectedTabIndex="3"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

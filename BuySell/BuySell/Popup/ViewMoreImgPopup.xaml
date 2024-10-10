@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BuySell.Views.ViewMoreImgPopup"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 CloseWhenBackgroundIsClicked="False"
+                 xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                 xmlns:mod="clr-namespace:BuySell.Model"
+                 xmlns:zoom="clr-namespace:BuySell.Utility"
+                 NavigationPage.HasNavigationBar="False">
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Frame x:Name="frm" BackgroundColor="{Binding ThemeColor}" Padding="10" Margin="20" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" CornerRadius="15">
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                <StackLayout x:Name="HeaderStackLayout" BackgroundColor="{Binding ThemeColor}" Orientation="Horizontal"  VerticalOptions="Fill" HorizontalOptions="Fill">
+                    <Grid ColumnDefinitions="2*,6*,2*" RowDefinitions="Auto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,0,10,0">
+                        <Label Grid.Column="1" x:Name="lblTitleText" Text="" TextColor="White" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Frame Grid.Column="2" HasShadow="False" WidthRequest="20" IsClippedToBounds="True" HeightRequest="20"   HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="12" Margin="0" Padding="2">
+                            <Image  Source="DeleteCross.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center"  WidthRequest="10" HeightRequest="10"/>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="PopupCancelCommand"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="CancelTGR" Tapped="PopupCancelCommand" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                    <Label Text="*You can reorder images by draging them" VerticalOptions="Center" TextColor="White" FontSize="11" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                    <Button IsVisible="{Binding IsShowDeleteAll}"  HorizontalOptions="EndAndExpand" VerticalOptions="Center" HeightRequest="60" TextColor="White" BackgroundColor="Transparent" FontAttributes="Bold" FontSize="11" Command="{Binding DeleteAllCommand}" Text="Delete All"/>
+                </StackLayout>
+                <!--<Grid>
+                    CarouselView
+                    <Frame Padding="0" HasShadow="False" BorderColor="White" BackgroundColor="{Binding ThemeColor}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" HeightRequest="200">
+                        <CarouselView x:Name="CarouselViewControl" Loop="False" ItemsSource="{Binding imageSources}"  VerticalOptions="Start" HorizontalOptions="FillAndExpand" HorizontalScrollBarVisibility="Never" VerticalScrollBarVisibility="Never" IndicatorView="indicatorView" HeightRequest="200">
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20,5">
+                                        <ff:CachedImage x:Name="proImg" Source="{Binding .}" LoadingPlaceholder="Loading.." Aspect="AspectFill"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                                        <ActivityIndicator Color="White" BindingContext="{x:Reference proImg}"  IsRunning="{Binding IsLoading}"  IsVisible="{Binding IsLoading}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+                    </Frame>
+                    <IndicatorView HorizontalOptions="CenterAndExpand" Margin="0,0,0,10" VerticalOptions="EndAndExpand" x:Name="indicatorView" IndicatorColor="LightGray" SelectedIndicatorColor="{Binding ThemeColor}"/>
+                </Grid>-->
+                <CollectionView x:Name="MyItems" ItemsSource="{Binding Items}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <StackLayout
+                        Padding="5"
+                        x:DataType="mod:ProductSelectImage"
+                        BackgroundColor="Azure">
+                                    <StackLayout.GestureRecognizers>
+                                        <DropGestureRecognizer
+                                AllowDrop="True"
+                                DragLeaveCommand="{Binding BindingContext.ItemDragLeave, Source={x:Reference MyItems}}"
+                                DragLeaveCommandParameter="{Binding}"
+                                DragOverCommand="{Binding BindingContext.ItemDraggedOver, Source={x:Reference MyItems}}"
+                                DragOverCommandParameter="{Binding}"
+                                Drop="DropGestureRecognizer_Drop_Collection"
+                                DropCommand="{Binding BindingContext.ItemDropped, Source={x:Reference MyItems}}"
+                                DropCommandParameter="{Binding}" />
+                                    </StackLayout.GestureRecognizers>
+                                    <Grid
+                            BackgroundColor="LightYellow"
+                            IsVisible="{Binding IsBeingDraggedOver}" />
+                                    <Frame Padding="0" HasShadow="False" BorderColor="White" BackgroundColor="{Binding ThemeColor}" VerticalOptions="Start" HorizontalOptions="FillAndExpand" HeightRequest="200">
+                                        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="5">
+                                            <ff:CachedImage x:Name="proImg" Source="{Binding image}" LoadingPlaceholder="Loading.." Aspect="AspectFit"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                                            <!--<ActivityIndicator Color="White" BindingContext="{x:Reference proImg}"  IsRunning="{Binding IsLoading}"  IsVisible="{Binding IsLoading}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />-->
+                                        </Grid>
+                                        <Frame.GestureRecognizers>
+                                            <DragGestureRecognizer
+                                    CanDrag="True"
+                                    DragStarting="DragGestureRecognizer_DragStarting_Collection"
+                                    DragStartingCommand="{Binding BindingContext.ItemDragged, Source={x:Reference MyItems}}"
+                                    DragStartingCommandParameter="{Binding}" />
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                                </StackLayout>
+                                <Frame HasShadow="False" WidthRequest="20" IsClippedToBounds="True" HeightRequest="20"   HorizontalOptions="EndAndExpand" VerticalOptions="Start" CornerRadius="12" Margin="0,10,10,0" Padding="2">
+                                    <Image  Source="DeleteCross.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center"  WidthRequest="10" HeightRequest="10"/>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer  Command="{Binding BindingContext.DeleteCommand, Source={x:Reference MyItems}}" CommandParameter="{Binding .}"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                                <ImageButton x:Name="Editimg1" Source="Edit" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="End" BackgroundColor="Black" Padding="5" CornerRadius="15" HeightRequest="26" WidthRequest="26" Command="{Binding BindingContext.EditCommand, Source={x:Reference MyItems}}" Margin="0,0,10,10"  CommandParameter="{Binding .}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </Frame>
+
+        <StackLayout x:Name="imageViewContainer" VerticalOptions="FillAndExpand" BackgroundColor="Black"  HorizontalOptions="FillAndExpand">
+            <Grid IsClippedToBounds="True" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Padding="15" Grid.Row="1">
+                    <!--<pinch:PinchZoom>
+                        <Image x:Name="ImageView" Aspect="AspectFit"/>
+                    </pinch:PinchZoom>-->
+                    <zoom:ZoomGestureContainer>
+                        <zoom:ZoomGestureContainer.Content>
+                            <!--<Image x:Name="ImageView"/>-->
+                            <Grid>
+                                <ff:CachedImage x:Name="ImageView"  ErrorPlaceholder="Placeholder.png" Aspect="AspectFit"  RetryCount="3" RetryDelay="0" CacheDuration="0"  DownsampleToViewSize="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                                <ff:CachedImage Source="Loader.gif" BindingContext="{x:Reference ImageView}"  IsVisible="{Binding IsLoading}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <!--<ActivityIndicator Color="{Binding BindingContext.ThemeCol,Source={x:Reference gridItem}}" BindingContext="{x:Reference proImg}"  IsRunning="{Binding IsLoading}"  IsVisible="{Binding IsLoading}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />-->
+                            </Grid>
+                        </zoom:ZoomGestureContainer.Content>
+                    </zoom:ZoomGestureContainer>
+                </Grid>
+                <!--<StackLayout  Grid.Row="1" Padding="0"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="10,0">
+                    <Frame IsClippedToBounds="True"  Padding="0" HasShadow="False" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  BackgroundColor="Transparent">
+                        <pinch:PinchZoom>
+                            <Image Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="ImageView" Aspect="AspectFit"/>
+                        </pinch:PinchZoom>
+                    </Frame>
+                </StackLayout>-->
+                <Grid Grid.Row="0" ColumnDefinitions="2*,6*,2*" Margin="10,10,0,0">
+                    <StackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Margin="5,0,5,10">
+                        <Frame HasShadow="False" WidthRequest="20" IsClippedToBounds="True" HeightRequest="20"  HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="12" Margin="0" Padding="2">
+                            <Image  Source="DeleteCross.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center"  WidthRequest="10" HeightRequest="10"/>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer  Tapped="PopupCancelCommand"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PopupCancelCommand" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                    <Label Grid.Column="1" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="14" HorizontalTextAlignment="Center" Text="Zoom In-Out"/>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</pages:PopupPage>

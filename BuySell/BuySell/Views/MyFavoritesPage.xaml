@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BuySell.Views.MyFavoritesPage"
+            xmlns:control="clr-namespace:BuySell.CustomControl"
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:local="clr-namespace:BuySell.Trigger"
+            ios:Page.UseSafeArea="true"
+            xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+            NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" RowSpacing="0" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <control:CustomTitleControl Grid.Row="0" TitleText="MY FAVORITES" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackCommand="{Binding PagePopCommand}"/>
+
+                <control:CustomFilterView  x:Name="filterView" IsShowFilterCount="False" IsShowCatAll="True"  IsVisible="{Binding IsShowFilter}"  Grid.Row="1"/>
+                <!--BindableLayout-->
+                <StackLayout Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <CollectionView  Margin="0,0,0,0" x:Name="TopTrandingItemsList" Scrolled="TopTrandingItemsList_Scrolled" VerticalScrollBarVisibility="Never" ItemsLayout="VerticalGrid, 2" RemainingItemsThreshold="{Binding ItemTreshold}" RemainingItemsThresholdReachedCommand="{Binding ItemTresholdReachedCommand}"  ItemsSource="{Binding ProductList, Mode=TwoWay}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <control:CustomProductCell BindingContext="{Binding .}" Command="{Binding BindingContext.MyFavoriteItemsCommand,Source={x:Reference TopTrandingItemsList}}" CommandParameter="{Binding .}"  CallbackLikeDislike="imgLikeUnlike_Clicked"/>
+                                <!--<ContentView Padding="5">
+                                    <Grid x:Name="gridItem" IsClippedToBounds="True"  HorizontalOptions="CenterAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="{Binding Row1}"/>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="30"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="{Binding Row1}"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Frame Padding="2" Grid.Row="0" HasShadow="False" HeightRequest="150" BackgroundColor="{Binding ThemeCol}" CornerRadius="6">
+                                            <Frame Margin="0"   Padding="5" HasShadow="False"  BackgroundColor="white" BorderColor="white">
+                                                <Grid>
+                                                    <ff:CachedImage x:Name="proImg"   Source="{Binding ProductImage}" Aspect="AspectFill" RetryCount="3" RetryDelay="0" CacheDuration="0"  DownsampleToViewSize="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                                                    <ActivityIndicator Color="{Binding ThemeCol}" BindingContext="{x:Reference proImg}"  IsRunning="{Binding IsLoading}"  IsVisible="{Binding IsLoading}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                                </Grid>
+                                            </Frame>
+                                        </Frame>
+                                        <Label Margin="0,0,20,0" Grid.Row="1" Text="{Binding ProductName}" FontSize="14" LineBreakMode="TailTruncation" TextColor="Black" FontAttributes="Bold" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" WidthRequest="150"/>
+                                        <Grid Margin="0,0,0,0" Grid.Row="2" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="20"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="1"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="1"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding Price,StringFormat='{$}'}" FontSize="13" Grid.Column="0" FontAttributes="Bold" TextColor="{Binding ThemeCol}" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand"/>
+                                            <Label  Grid.Column="1" BackgroundColor="Gray" VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand"/>
+                                            <Label Text="{Binding Size,StringFormat='Size: {0}'}" FontAttributes="Bold" FontSize="13" Grid.Column="2"  TextColor="#7C7C7C" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand"/>
+                                            
+                                            <Label Grid.Row="0" Grid.Column="3"  BackgroundColor="Gray" VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand"/>
+                                            
+                                            <Image x:Name="imgHeart" Grid.Column="4" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent" Aspect="AspectFit" HeightRequest="20" WidthRequest="20" Source="{Binding ProductRating, Mode=TwoWay}">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="imgLikeUnlike_Clicked"  CommandParameter="{Binding .}" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding BindingContext.MyFavoriteItemsCommand,Source={x:Reference TopTrandingItemsList}}" CommandParameter="{Binding .}"/>
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+                                </ContentView>-->
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <ContentView>
+                                <Label Text="No Data Found" IsVisible="{Binding IsNoData}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Gray" FontSize="14"/>
+                            </ContentView>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </StackLayout>
+                <Grid IsVisible="{Binding IsLoadMore}" Opacity="0.5"  BackgroundColor="{Binding ThemeColor}" VerticalOptions="EndAndExpand" Grid.Row="0" Grid.RowSpan="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.Triggers>
+                        <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                            <Setter Property="HeightRequest"  Value="0"/>
+                        </Trigger>
+                    </Grid.Triggers>
+                    <Label Text="Loading..." TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

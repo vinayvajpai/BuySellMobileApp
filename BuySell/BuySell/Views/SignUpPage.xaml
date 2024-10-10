@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:controls="clr-namespace:BuySell.CustomControl"
+    ios:Page.UseSafeArea="true"
+    NavigationPage.HasNavigationBar="False"
+    x:Class="BuySell.Views.SignUpPage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid Margin="40,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <!--Back-->
+                <Image Grid.Column="0" Source="Back_Img" HorizontalOptions="StartAndExpand" HeightRequest="25" WidthRequest="25">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Back_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <!--BuySell_logo-->
+                <Image Grid.Column="1" Source="BuySell_logoclothing" Aspect="AspectFit" HeightRequest="60" WidthRequest="140" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+            </Grid>
+
+            <ScrollView VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid Margin="40,0,40,0" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"  RowSpacing="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0" Spacing="0">
+                        <Label Text="Join" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="25" TextColor="Black" FontAttributes="Bold"/>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Frame x:Name="frm1" Padding="0" IsClippedToBounds="True" BackgroundColor="WhiteSmoke" HasShadow="False" CornerRadius="50" HeightRequest="100" WidthRequest="100">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Image x:Name="imgAdd1" Source="{Binding ProfilePicture}" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                <Label x:Name="AddPic1Txt" Text="Add Photo" IsVisible="{Binding AddProPic}" FontSize="14" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Black" FontAttributes="Bold"/>
+                                <ImageButton x:Name="Editimg1" Source="Edit" IsVisible="{Binding EditProPic}" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="End" BackgroundColor="Black" Padding="3" CornerRadius="10" HeightRequest="20" WidthRequest="20" Command="{Binding EditImg1Command}" Margin="0,0,20,20"/>
+                                <ActivityIndicator Color="{Binding ThemeColor}" BindingContext="{x:Reference frm1}"  IsRunning="{Binding IsLoading}"  IsVisible="{Binding IsLoading}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                            </Grid>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding UploadImageClicked}"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout Grid.Row="2" Spacing="20" Margin="0,20,0,0">
+                        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <!--CustomEntry-->
+                            <controls:CustomEntry  NoLine="False" PlaceholderColor="Black" FontAttributes="Bold" BackgroundColor="#e5f1f6" Grid.Row="0"  Grid.Column="0" IsCurvedCornersEnabled="True" CornerRadius="5" BorderColor="#157baf" Text="{Binding FirstName}" FontSize="15" Placeholder="First name"  HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand"/>
+                            <controls:CustomEntry  NoLine="False" PlaceholderColor="Black" FontAttributes="Bold" BackgroundColor="#e5f1f6" Grid.Row="0" Grid.Column="1" Text="{Binding LastName}" Placeholder="Last name" IsCurvedCornersEnabled="True"  FontSize="15" CornerRadius="5" BorderColor="#157baf"  HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand"/>
+                        </Grid>
+
+                        <controls:CustomEntry x:Name="emailEntry"  NoLine="False" PlaceholderColor="Black" FontAttributes="Bold" BackgroundColor="#e5f1f6" HeightRequest="50" Text="{Binding Email}" TextChanged="Email_TextChanged" Placeholder="Email" Keyboard="Email" FontSize="15" IsCurvedCornersEnabled="True" CornerRadius="5" BorderColor="#157baf"  HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand"/>
+                        <!--<Grid>
+                            <controls:CustomEntry x:Name="phoneNumberEntry" NoLine="False" PlaceholderColor="Black" FontAttributes="Bold" BackgroundColor="#e5f1f6" HeightRequest="50" Text="{Binding PhoneNumber}" MaxLength="16" TextChanged="PhoneNumber_TextChanged" Placeholder="Phone number" Keyboard="Numeric" FontSize="15" IsCurvedCornersEnabled="True" CornerRadius="5" BorderColor="#157baf"  HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand"/>
+                            <Label VerticalOptions="EndAndExpand" HorizontalOptions="StartAndExpand" Margin="15,5,0,2" Text="*For account verification only." TextColor="Gray" FontSize="12"/>
+                        </Grid>-->
+                        <controls:CustomEntry  NoLine="False" PlaceholderColor="Black" FontAttributes="Bold" BackgroundColor="#e5f1f6" HeightRequest="50" Text="{Binding UserName}" Placeholder="Username" IsCurvedCornersEnabled="True" FontSize="15" CornerRadius="5" BorderColor="#157baf"  HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand"/>
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                            <controls:CustomEntry x:Name="passwordtxt" NoLine="False" PlaceholderColor="Black" FontAttributes="Bold" BackgroundColor="#e5f1f6" TextColor="{Binding PasswordMessage}" HeightRequest="50" Text="{Binding Password}" IsPassword="True" Placeholder="Password" FontSize="15" MaxLength="15" IsCurvedCornersEnabled="True" CornerRadius="5" BorderColor="#157baf"  HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand"/>
+                            <Label x:Name="lblShowPassword" Text="Show" TextColor="#5A666F" VerticalOptions="Center" HorizontalOptions="EndAndExpand" IsVisible="true" FontSize="13"  Margin="0,0,20,0">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ShowPassword_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                        <Label Grid.Row="1" Text="Password must contain atleast one upper case, one lower case, one number and one special character." IsVisible="{Binding IsPassword}" TextColor="Red" FontSize="10"/>
+                        </Grid>
+
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0">
+                            <controls:CustomEntry x:Name="confirmpasswordtxt" NoLine="False" PlaceholderColor="Black" FontAttributes="Bold" TextColor="{Binding ConfirmPasswordMessage}" BackgroundColor="#e5f1f6" HeightRequest="50" Text="{Binding ConfirmPassword}" IsPassword="True" FontSize="15" Placeholder="Confirm password" IsCurvedCornersEnabled="True" CornerRadius="5" BorderColor="#157baf"  HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand"/>
+                            <Label x:Name="lblShowConfirmPassword" Text="Show" TextColor="#5A666F" VerticalOptions="Center" HorizontalOptions="EndAndExpand" IsVisible="true" FontSize="13"  Margin="0,0,20,0">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ShowConfirmPassword_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                            <Label Grid.Row="1" Text="Password is not matching." IsVisible="{Binding IsConfirmPassword}" TextColor="Red" FontSize="10"/>
+                        </Grid>
+
+                        <!--<StackLayout>
+                            <Label Text="So we can better understand your clothing interests, which of the following most accurately describes you?" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" FontSize="12"/>
+                        </StackLayout>-->
+
+                        <!--<Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal">
+                                <CheckBox Color="{Binding ThemeColor}"/>
+                                <Label Text="Female" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                <CheckBox Color="{Binding ThemeColor}"/>
+                                <Label Text="Intersex" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                        </Grid>
+
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal">
+                                <CheckBox Color="{Binding ThemeColor}"/>
+                                <Label Text="Male" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Orientation="Horizontal">
+                                <CheckBox Color="{Binding ThemeColor}"/>
+                                <Label Text="I prefer not to say" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                        </Grid>
+
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal">
+                                <CheckBox Color="{Binding ThemeColor}"/>
+                                <Label Text="Non-binary" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Margin="8,0,0,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <controls:CustomEntry  NoLine="False" FontAttributes="Bold" BackgroundColor="#e5f1f6" Text="" FontSize="12" PlaceholderColor="Black" Placeholder="Let me type" IsCurvedCornersEnabled="True" CornerRadius="5" BorderColor="#157baf"  HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand"/>
+                            </StackLayout>
+                        </Grid>
+
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox Color="{Binding ThemeColor}"/>
+                            <Label Text="Transgender" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </StackLayout>-->
+
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding IsChecked}" Color="{Binding ThemeColor}"/>
+                            <Label TextColor="Black" FontSize="14"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="By registering and logging in, you agree to our "/>
+                                        <Span Text="Terms" TextDecorations="Underline"/>
+                                        <Span Text=" and "/>
+                                        <Span Text="Privacy Policy." TextDecorations="Underline"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                        <controls:CustomBorderButton TitleText="Join" ClickCommand="{Binding SignUpCommand}" TextColor="White" BgColor="#157baf" Grid.Row="4" BorderColor="#157baf"/>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:control="clr-namespace:BuySell.CustomControl"
+    CloseWhenBackgroundIsClicked="True"
+    xmlns:effects="clr-namespace:BuySell.Effects"
+    x:Class="BuySell.Popup.CustomToolTipPopup"
+    Opacity="0.3">
+    
+    <pages:PopupPage.Content>
+        <StackLayout>
+            <BoxView HorizontalOptions="EndAndExpand" Margin="0,20,10,0" WidthRequest="25" HeightRequest="25" VerticalOptions="StartAndExpand"
+                effects:TooltipEffect.Position="Bottom"
+                effects:TooltipEffect.BackgroundColor="{Binding ThemeColor}"
+                effects:TooltipEffect.Text="Tap to shop other stores" 
+                effects:TooltipEffect.HasTooltip="True"
+                effects:TooltipEffect.IsShowTooltip="True"/>
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="ClosePopup_Tapped"/>
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+    </pages:PopupPage.Content>
+</pages:PopupPage>
+

@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BuySell.CustomControl"
+    x:Class="BuySell.Views.AddCardPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:FastEntry="clr-namespace:XamarinFastEntrySample.FastEntry;assembly=XamarinFastEntry.Behaviors" 
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit" xmlns:local="clr-namespace:BuySell.Validators"
+    ios:Page.UseSafeArea="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        
+    <ResourceDictionary>
+            <local:CreditCardValidator x:Key="CreditCardValidator" />
+    </ResourceDictionary>
+        
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid Grid.Row="0" Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0" Grid.Column="0"  Source="Back_Img.png" Aspect="AspectFit" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HeightRequest="25" WidthRequest="25">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label  Grid.Row="0"  Grid.Column="1" Text="{Binding PageTitle}" TextColor="Black" VerticalOptions="CenterAndExpand" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                <Frame x:Name="SaveButton" Grid.Row="0" Grid.Column="2" Margin="0,0,10,0" BackgroundColor="{Binding ThemeColor}" CornerRadius="5" HasShadow="False" Padding="2">
+                    <Label FontSize="10" Text="Save"  TextColor="White" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SaveButton_Tapped"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <!--BoxView-->
+                <BoxView Grid.Row="1" Grid.ColumnSpan="3" Margin="0,10,0,0" BackgroundColor="{Binding ThemeColor}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="1"/>
+            </Grid>
+
+                <!--Title-->
+            <ScrollView Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout Margin="20,10"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="Card Details" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand"/>
+                        <control:CustomEntry x:Name="CreditCardNo" Placeholder="Card Number" MaxLength="19" Text="{Binding addCardModel.Number,Mode=TwoWay}" TextChanged="CreditCardNo_TextChanged" Completed="CreditCardNo_Completed" Keyboard="Numeric"  Style="{StaticResource CustomEntryStyle}">
+                            <!--<control:CustomEntry.Behaviors>
+                                <FastEntry:XamarinFastEntryBehaviour Mask="#### #### #### ####" MaxLength="19"/>
+                            </control:CustomEntry.Behaviors>-->
+                            <Entry.Behaviors>
+                                <xct:MaskedBehavior Mask="#### #### #### ####" UnMaskedCharacter="#" />
+                            </Entry.Behaviors>
+                        </control:CustomEntry>
+                        <Label x:Name="CardInvalid" Text="Invalid credit card" TextColor="Red" FontSize="10" IsVisible="false"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" VerticalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <StackLayout Grid.Column="0" VerticalOptions="FillAndExpand">
+                                <control:CustomEntry x:Name="txtExp"  MaxLength="5" Keyboard="Numeric" Placeholder="MM/YY" Text="{Binding addCardModel.Expire,Mode=TwoWay}" TextChanged="txtExp_TextChanged" Completed="txtExp_Completed" Style="{StaticResource CustomEntryStyle}">
+                                <!--<control:CustomEntry.Behaviors>
+                                    <FastEntry:XamarinFastEntryBehaviour Mask="##/##" MaxLength="5"/>
+                                </control:CustomEntry.Behaviors>-->
+                                <Entry.Behaviors>
+                                    <xct:MaskedBehavior Mask="##/##" UnMaskedCharacter="#"/>
+                                </Entry.Behaviors>
+                            </control:CustomEntry>
+                            <Label x:Name="txtExpInvalid" Text="Invalid Expiry date" TextColor="Red" FontSize="10" IsVisible="false"/>
+                            </StackLayout>
+
+                            <StackLayout  Grid.Column="1" VerticalOptions="FillAndExpand">
+
+                                <control:CustomEntry x:Name="CVVTxt" Keyboard="Numeric" MaxLength="4" Placeholder="CVV" Text="{Binding addCardModel.Cvc,Mode=TwoWay}" TextChanged="CVVTxt_TextChanged" Completed="CVVTxt_Completed" Style="{StaticResource CustomEntryStyle}" >
+                                <!--<control:CustomEntry.Behaviors>
+                                    <FastEntry:XamarinFastEntryBehaviour Mask="###" MaxLength="4"/>
+                                </control:CustomEntry.Behaviors>-->
+                                <Entry.Behaviors>
+                                    <xct:MaskedBehavior Mask="####" UnMaskedCharacter="#"/>
+                                </Entry.Behaviors>
+                            </control:CustomEntry>
+                                <Label x:Name="CvvInvalid" Text="Invalid CVV" TextColor="Red" FontSize="10" IsVisible="False"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+
+                    <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="Phone Number" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand"/>
+                        <control:CustomEntry x:Name="PhoneNumber" Placeholder="Associated with your account" Keyboard="Numeric" Text="{Binding addCardModel.PhoneNo,Mode=TwoWay}"  TextChanged="PhoneNumber_TextChanged" Completed="PhoneNumber_Completed" Style="{StaticResource CustomEntryStyle}">
+                            <!--<control:CustomEntry.Behaviors>
+                                <FastEntry:XamarinFastEntryBehaviour Mask="###-###-####" MaxLength="13"/>
+                            </control:CustomEntry.Behaviors>-->
+                            <Entry.Behaviors>
+                                <xct:MaskedBehavior Mask="###-###-####" UnMaskedCharacter="#" />
+                            </Entry.Behaviors>
+                        </control:CustomEntry>
+                        <Label x:Name="PhoneNumberInvalid" Text="Invalid phone number" TextColor="Red" FontSize="10" IsVisible="False"/>
+                    </StackLayout>
+
+                    <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="Name On Card" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand"/>
+                        <control:CustomEntry x:Name="NameOnCard" Placeholder="Associated with your account" Keyboard="Text" Text="{Binding addCardModel.Name,Mode=TwoWay}" TextChanged="NameOnCard_TextChanged" Completed="NameOnCard_Completed" Style="{StaticResource CustomEntryStyle}"/>
+                        
+                        <Label x:Name="NameOnCardInvalid" Text="Invalid name on card" TextColor="Red" FontSize="10" IsVisible="False"/>
+                    </StackLayout>
+
+
+                    <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="Billing Address" TextColor="Gray" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand"/>
+                        <control:CustomEntry x:Name="BillingAddress" Placeholder="Street Address" Text="{Binding addCardModel.AddressLine1,Mode=TwoWay}" MaxLength="200"  TextChanged="BillingAddress_TextChanged" Completed="BillingAddress_Completed" Style="{StaticResource CustomEntryStyle}"/>
+                        <Label x:Name="StreetAddInvalid" Text="Invalid street address" TextColor="Red" FontSize="10" IsVisible="False"/>
+                    </StackLayout>
+
+                    <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <control:CustomEntry x:Name="AptSuiteTxt" Placeholder="Apt, suite, etc." Text="{Binding addCardModel.AddressLine2,Mode=TwoWay}" HeightRequest="50" TextChanged="AptSuiteTxt_TextChanged" Completed="AptSuiteTxt_Completed" Style="{StaticResource CustomEntryStyle}"/>
+                        <Label x:Name="AptSuiteInvalid" Text="Invalid Apt, suite" TextColor="Red" FontSize="10" IsVisible="False"/>
+                    </StackLayout>
+
+                    <StackLayout Margin="20,10" Grid.Row="6" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <control:CustomEntry x:Name="CityTxt" Placeholder="City"  Text="{Binding addCardModel.City,Mode=TwoWay}" TextChanged="CityTxt_TextChanged" Completed="CityTxt_Completed" MaxLength="50" Style="{StaticResource CustomEntryStyle}"/>
+                        <Label x:Name="CityInvalid" Text="Invalid city name" TextColor="Red" FontSize="10" IsVisible="False"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="10" RowDefinitions="Auto,Auto"  VerticalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <!--<control:CustomEntry Grid.Column="0" Placeholder="State" Text="{Binding addCardModel.State,Mode=TwoWay}" BorderColor="Gray" MaxLength="50" CornerRadius="5"/>-->
+                            <Frame Padding ="0" HasShadow="False" HeightRequest="50" CornerRadius="5" BorderColor="Gray" Margin="0,0,20,0" Grid.Column="0" Grid.Row="0" >
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                    <!--<control:CustomEntry x:Name="CountryPickerText" IsReadOnly="True" InputTransparent="True" Text="{Binding addCardModel.State, Mode=TwoWay}" Placeholder="Select State" BorderColor="White" Margin="2,0,0,0" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" FontAttributes="None">
+                                            <control:CustomEntry.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding SelectStateCommand}"/>
+                                            </control:CustomEntry.GestureRecognizers>
+                                        </control:CustomEntry>-->
+                                    <control:CustomEntry x:Name="CountryPickerText" IsReadOnly="True" InputTransparent="True"  Text="{Binding addCardModel.State, Mode=TwoWay}" TextChanged="CountryPickerText_TextChanged" HeightRequest="45" BorderColor="White" Placeholder="Select State" Margin="2,0,0,0" TextColor="Black" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="{StaticResource TextBasicFontSize}">
+                                        <control:CustomEntry.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SelectStateCommand}" />
+                                        </control:CustomEntry.GestureRecognizers>
+                                    </control:CustomEntry>
+                                    <Image Source="Down_Img" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="20" HeightRequest="20" Margin="0,0,10,0"/>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SelectStateCommand}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectStateCommand}" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                            <control:CustomEntry x:Name="ZipTxt" Grid.Column="1" Grid.Row="0" HeightRequest="50" Placeholder="Zip" Text="{Binding addCardModel.ZipCode,Mode=TwoWay}" TextChanged="ZipTxt_TextChanged" Completed="ZipTxt_Completed" Keyboard="Numeric" MaxLength="6" Style="{StaticResource CustomEntryStyle}" />
+                            <Label x:Name="CountryInvlaid" Grid.Column="0" Grid.Row="1" Text="Invalid state" TextColor="Red" FontSize="10" IsVisible="False"/>
+                            <Label x:Name="ZipInvalid" Grid.Column="1" Grid.Row="1" Text="Invalid zip code" TextColor="Red" FontSize="10" IsVisible="False"/>
+                        </Grid>
+                        
+                    </StackLayout>
+                        <StackLayout Orientation="Horizontal" Margin="10,10">
+                            <CheckBox Color="{Binding ThemeColor}" HorizontalOptions="Start" IsChecked="{Binding  IsShippingAddressToo , Mode=TwoWay}" HeightRequest="15" WidthRequest="30"/>
+                            <Label Text="Use as shipping address"  TextColor="Gray" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                        </StackLayout>
+                </StackLayout>
+            </ScrollView>
+            <!--CustomBottomNavigation-->
+                <control:CustomBottomNavigation  VerticalOptions="EndAndExpand" SelectedTabIndex="5"/>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

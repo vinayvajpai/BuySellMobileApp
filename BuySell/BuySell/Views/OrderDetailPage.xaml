@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:BuySell.CustomControl"
+             x:Class="BuySell.View.OrderDetailPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             xmlns:control="clr-namespace:BuySell.CustomControl"
+             xmlns:converter="clr-namespace:BuySell.Converter"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             NavigationPage.HasNavigationBar="False"
+             Title="OrderDetailPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:CreditCardNumberValueConverter x:Key="CreditCardNumberValueConverter" />
+            <converter:StringValidationConverter x:Key="StringValidator" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" RowSpacing="0" VerticalOptions="FillAndExpand" Margin="0,0">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--Header-->
+            <control:CustomHeaderControl x:Name="header" Grid.Row="0" IsShowAction="True" IsShowSearchFrm="False" IsShowSearchIcon="True" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" BackCommand="{Binding BackCommand}"/>
+            <!--Title-->
+            <control:CustomTitleControl x:Name="titleView" Grid.Row="1" TitleText="ORDER DETAILS" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackCommand="{Binding BackCommand}"/>
+            <ScrollView Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0,5,0,20">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1"/>
+                        <RowDefinition Height="38"/>
+                        <RowDefinition Height="1"/>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Margin="0,5,0,0" BindableLayout.ItemsSource="{Binding listProdataModel}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Grid.Row="0" Margin="20,0"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="8*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Image Grid.Column="0" Grid.RowSpan="4" Source="{Binding ProdataModel.ProductImage}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HeightRequest="100"/>-->
+                                    <!--<Frame Grid.Column="0" Grid.RowSpan="4" Padding="5" HasShadow="False" BackgroundColor="Transparent" BorderColor="{Binding ProdataModel.ThemeCol}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <ff:CachedImage x:Name="ProductImage" Source="{Binding ProductImage}" Aspect="AspectFill" />
+                                    </Frame>-->
+                                    <Frame Grid.RowSpan="4" Grid.Column="0" Grid.Row="0" Padding="5" HasShadow="False"  VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" BorderColor="{Binding ThemeCol}">
+                                        <ff:CachedImage x:Name="ProductImage" Source="{Binding ProductImage}" RetryCount="3" RetryDelay="0" CacheDuration="0"  Aspect="AspectFill"/>
+                                    </Frame>
+                                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding ProductName}" LineBreakMode="TailTruncation" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold" TextColor="Black" FontSize="14"/>
+                                    <Label Grid.Column="1" Grid.Row="1"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Price: "  FontAttributes="Bold" TextColor="{Binding ProdataModel.ThemeCol}" FontSize="14"/>
+                                                <Span Text="{Binding Price}"  FontAttributes="Bold" TextColor="Black" FontSize="12"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Column="1" Grid.Row="2" Text="{Binding Size,StringFormat='Size: {0}'}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Size: "  FontSize="14" FontAttributes="Bold" TextColor="{Binding ThemeCol}"/>
+                                                <Span Text="{Binding Size}"  FontSize="12" FontAttributes="Bold" TextColor="Black"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <!--<Label Grid.Column="1" Grid.Row="3" Text="{Binding ProdataModel.Brand,StringFormat='Brand: {0}'}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" FontAttributes="Bold" TextColor="Black" FontSize="12"/>-->
+                                    <Label Grid.Column="1" Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Brand: " FontAttributes="Bold" TextColor="{Binding ThemeCol}" FontSize="14"/>
+                                                <Span Text="{Binding Brand}" FontAttributes="Bold" TextColor="Black" FontSize="12"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                    <BoxView Grid.Row="1" HeightRequest="1" BackgroundColor="WhiteSmoke" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+                    <Grid Grid.Row="2"  Margin="0,10" VerticalOptions="Start">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="7*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label  Grid.Column="0" Grid.Row="0" Text="Payment and Shipping" FontAttributes="Bold" FontSize="12" TextColor="Black" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Margin="20,0,0,0"/>
+                        <Label x:Name="lblStatus"  Grid.Column="1" Grid.Row="0" Text="Show Less" HorizontalOptions="EndAndExpand" FontSize="12" VerticalOptions="FillAndExpand"/>
+                        <Image x:Name="imgArrow" Source="UpArrow.png" Grid.Column="2" Grid.Row="0" Aspect="AspectFill" HorizontalOptions="EndAndExpand"  VerticalOptions="CenterAndExpand"  HeightRequest="20" WidthRequest="20" Margin="0,0,20,0"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                    <!--BoxView-->
+                    <BoxView Grid.Row="3" HeightRequest="1" BackgroundColor="WhiteSmoke" VerticalOptions="Start" HorizontalOptions="FillAndExpand"/>
+
+                    <StackLayout Grid.Row="4" x:Name="containView" IsVisible="true">
+                        <Grid RowSpacing="10" Margin="0,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label  Grid.Column="0" Grid.Row="0" Text="Price" FontSize="12" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" Margin="20,0,0,0"/>
+                            <Label  Grid.Column="0" Grid.Row="1" Text="Shipping" HorizontalOptions="StartAndExpand" FontSize="12" VerticalOptions="FillAndExpand" Margin="20,0,0,0"/>
+                            <Label  Grid.Column="0" Grid.Row="2" Text="Tax" HorizontalOptions="StartAndExpand" FontSize="12" VerticalOptions="FillAndExpand"  Margin="20,0,0,0"/>
+
+                            <Label  Grid.Column="2" Grid.Row="0" Text="{Binding TotalPrice}" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="0,0,20,0"/>
+                            <Label  Grid.Column="2" Grid.Row="1" Text="{Binding ShippingPrice}" HorizontalOptions="EndAndExpand" FontSize="12" VerticalOptions="Center" Margin="0,0,20,0"/>
+                            <Label  Grid.Column="2" Grid.Row="2" Text="{Binding TaxPrice, StringFormat='{0:$0.##}'}" HorizontalOptions="EndAndExpand" FontSize="12"  VerticalOptions="Center"  Margin="0,0,20,0"/>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand"/>
+                        <Grid RowSpacing="0" Margin="0,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label  Grid.Column="0" Grid.Row="0" Text="Total" FontAttributes="Bold" TextColor="Black" FontSize="12" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" Margin="20,0,0,0"/>
+                            <Label  Grid.Column="2" Grid.Row="0" Text="{Binding GrandTotalPrice}" FontAttributes="Bold" TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="0,0,20,0"/>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand"/>
+                        <!--<Grid RowSpacing="0" Margin="0,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label  Grid.Column="0" Grid.Row="0" Text="Charged to your card ****8846" FontSize="12" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" Margin="20,0,0,0"/>
+                            <Label  Grid.Column="2" Grid.Row="0" Text="{Binding TotalPrice}" FontAttributes="Bold" TextColor="Black" FontSize="12" HorizontalOptions="EndAndExpand" VerticalOptions="Center" Margin="0,0,20,0"/>
+                        </Grid>-->
+                        <!--<StackLayout Margin="20,5">
+                            <controls:CustomBorderButton TitleText="Edit or Add" TextColor="{Binding ThemeColor}" BorderColor="{Binding ThemeColor}"/>
+                        </StackLayout>-->
+                        <!--<BoxView HeightRequest="1" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand"/>-->
+                        <Label Text="Payment" TextColor="Black" FontAttributes="Bold" FontSize="14" VerticalOptions="Center" HorizontalOptions="Start"  Margin="20,0,0,0"/>
+                        <Grid ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="6*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <ff:CachedImage ErrorPlaceholder="defaultcard.png"  Source="{Binding AddCardModel.CardIcon}" Aspect="AspectFit" Grid.Column="0" Grid.Row="0" HeightRequest="50" WidthRequest="50" Margin="20,10,0,10" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand">
+                                <ff:CachedImage.Triggers>
+                                    <DataTrigger TargetType="ff:CachedImage" Binding="{Binding Source={x:Reference lblCard},Path=Text}" Value="">
+                                        <Setter Property="IsVisible" Value="false" />
+                                    </DataTrigger>
+                                </ff:CachedImage.Triggers>
+                            </ff:CachedImage>
+                            <Label  Grid.Column="1" Grid.Row="0" FontSize="14"  VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <!--<Span x:Name="lblCardPrefix" Text="************"/>-->
+                                        <Span x:Name="lblCard" Text="{Binding AddCardModel.Span,StringFormat=' ************{0}'}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label  Text="No Card Available" Margin="20,0,0,0" Grid.ColumnSpan="2" HorizontalTextAlignment="Start" IsVisible="false" Grid.Column="0" Grid.Row="0" FontSize="14"  VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference lblCard},Path=Text}" Value="">
+                                        <Setter Property="IsVisible" Value="True" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <controls:CustomBorderButton Grid.Column="2" Grid.Row="0" ClickCommand="{Binding AddCardCommand}" Margin="0,0,15,0" TitleText="Edit Card" TextColor="{Binding ThemeColor}" BorderColor="{Binding ThemeColor}" WidthRequest="90" fontsize="9" height="30" VerticalOptions="Center" HorizontalOptions="End">
+                                <controls:CustomBorderButton.Triggers>
+                                    <DataTrigger TargetType="controls:CustomBorderButton" Binding="{Binding Source={x:Reference lblCard},Path=Text}" Value="">
+                                        <Setter Property="TitleText" Value="Add Card" />
+                                        <!-- multiple Setters elements are allowed -->
+                                    </DataTrigger>
+                                </controls:CustomBorderButton.Triggers>
+                            </controls:CustomBorderButton>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="8*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0" Margin="20,0,0,0" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" Spacing="0">
+                                <Label Text="Shipping" TextColor="Black" FontAttributes="Bold" FontSize="14" LineHeight="1.3"/>
+                                <Label x:Name="lblAddress" Text="{Binding AddressModel.FullName}"  FontSize="14"/>
+                                <Label x:Name="lblAddressLine1" Text="{Binding AddressModel.AddressLine1}" FontSize="14"/>
+                                <Label x:Name="lblAddressLine2" Text="{Binding AddressModel.AddressLine2}" FontSize="14" IsVisible="True">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference lblAddressLine2},Path=Text.Length}" Value ="0">
+                                            <Setter Property="IsVisible" Value="False"/>
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Label FontSize="14">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0}, {1} {2}">
+                                            <Binding Path="AddressModel.City" />
+                                            <Binding Path="AddressModel.State" />
+                                            <Binding Path="AddressModel.ZipCode" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                 <!--<Label   Text="{Binding AddressModel.PhoneNo,StringFormat='Phone#: {0}'}"  FontSize="14"/>-->
+                                <StackLayout.Triggers>
+                                    <DataTrigger TargetType="StackLayout" Binding="{Binding Source={x:Reference lblAddressLine1},Path=Text}" Value="">
+                                        <Setter Property="IsVisible" Value="false" />
+                                    </DataTrigger>
+                                </StackLayout.Triggers>
+                            </StackLayout>
+                             <Label Grid.Column="0" Text="No Shipping Address" Margin="20,0,0,0"  HorizontalTextAlignment="Start" IsVisible="false"  Grid.Row="0" FontSize="14"  VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference lblAddressLine1},Path=Text , Converter={StaticResource StringValidator}}" Value="false">
+                                        <Setter Property="IsVisible" Value="True" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <!--<controls:CustomBorderButton Grid.Column="1" Margin="0,0,15,0" TitleText="Edit"  TextColor="{Binding ThemeColor}" BorderColor="{Binding ThemeColor}" WidthRequest="80" fontsize="9" height="30" VerticalOptions="Center" HorizontalOptions="End"/>-->
+                            <controls:CustomBorderButton Grid.Column="1" Grid.Row="0" Margin="0,0,15,0" TitleText="Edit Address" ClickCommand="{Binding AddAddressCommand}" TextColor="{Binding ThemeColor}" BorderColor="{Binding ThemeColor}" WidthRequest="90" fontsize="9" height="30" VerticalOptions="Center" HorizontalOptions="End">
+                                <controls:CustomBorderButton.Triggers>
+                                    <DataTrigger TargetType="controls:CustomBorderButton" Binding="{Binding Source={x:Reference lblAddressLine1},Path=Text , Converter={StaticResource StringValidator}}" Value="false">
+                                        <Setter Property="TitleText" Value="Add Address" />
+                                    </DataTrigger>
+                                </controls:CustomBorderButton.Triggers>
+                            </controls:CustomBorderButton>
+                        </Grid>
+                        <BoxView HeightRequest="1" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand"/>
+                        <!--<Label Text="Delivery Instructions" FontAttributes="Bold" TextColor="Black" Margin="20,10,0,0"/>
+                        <controls:CustomFrame BackgroundColor="#f2f2f2" Padding="0" HorizontalOptions="FillAndExpand" HasShadow="False" BorderColor="LightGray" CornerRadius="5" HeightRequest="90" Margin="20,10">
+                            <control:CustomBorderlessEditor Placeholder="Type here......." FontSize="15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5"/>
+                        </controls:CustomFrame>-->
+                    </StackLayout>
+                    <Button Grid.Row="5" Text="Place Order" Margin="20,10" Padding="15" CornerRadius="3" VerticalOptions="FillAndExpand" BackgroundColor="{Binding ThemeColor}" Command="{Binding PlaceOrderCommand}" TextColor="White" HorizontalOptions="FillAndExpand" IsEnabled="{Binding IsPlaceOrderEnabled}" Opacity="{Binding PlaceOrderBtnOpacity}"/>
+                    <StackLayout Grid.Row="6" Margin="20,5" VerticalOptions="FillAndExpand">
+                        <controls:CustomBorderButton TitleText="Cancel" TextColor="{Binding ThemeColor}" fontsize="16" BorderColor="{Binding ThemeColor}" ClickCommand="{Binding CancleCommand}"/>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+            <!--CustomBottomNavigation-->
+            <control:CustomBottomNavigation VerticalOptions="EndAndExpand" Grid.Row="3"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+ 

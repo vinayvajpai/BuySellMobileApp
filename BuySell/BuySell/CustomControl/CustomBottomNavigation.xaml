@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BuySell.CustomControl.CustomBottomNavigation"
+    xmlns:effects="clr-namespace:BuySell.Utility"
+    xmlns:vm="clr-namespace:BuySell.ViewModel">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ImageFrameStyle" TargetType="Image">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HeightRequest" Value="35" />
+                <Setter Property="WidthRequest" Value="35" />
+            </Style>
+
+            <Style x:Key="TextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+            </Style>
+
+            <Style x:Key="GridStyle" TargetType="Grid">
+                <Setter Property="Margin" Value="0,10"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.BindingContext>
+        <vm:CustomBottomNavigationViewModel/>
+    </ContentView.BindingContext>
+    <ContentView.Content>
+        <StackLayout>
+            <!--  BackgroundColor="#2E3191"  -->
+            <Frame
+                x:Name="frm"
+                Margin="0,0"
+                Padding="0"
+                BackgroundColor="{Binding ThemeColor}"
+                CornerRadius="0"
+                HorizontalOptions="FillAndExpand">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--Tab 1-->
+                    <Grid x:Name="Buy" RowSpacing="0" Grid.Row="0" Grid.Column="0"  Style="{StaticResource GridStyle}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" x:Name="imgBuyInActive" effects:TintImageEffect.TintColor="{Binding HomeColor}" Source="BuyInActive" Style="{StaticResource ImageFrameStyle}" IsVisible="{Binding BuyInActive,Mode=TwoWay}" />
+                        <Image Grid.Row="0" x:Name="imgBuyActive" effects:TintImageEffect.TintColor="{Binding HomeColor}" Source="BuyActive" Style="{StaticResource ImageFrameStyle}" IsVisible="{Binding BuyActive,Mode=TwoWay}"/>
+                        <Label Grid.Row="1" Text="Buy" TextColor="White" Style="{StaticResource TextStyle}"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="TapBuy" Command="{Binding TabSelectedCommand}" CommandParameter="1" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                    <!--Tab 2-->
+                    <Grid x:Name="Alerts" Grid.Row="0" Grid.Column="1" Style="{StaticResource GridStyle}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" x:Name="imgAlertsInActive" effects:TintImageEffect.TintColor="{Binding WallColor}" Source="AlertInActive" Style="{StaticResource ImageFrameStyle}" IsVisible="{Binding AlertsInActive,Mode=TwoWay}" />
+                        <Image Grid.Row="0" x:Name="imgAlertsActive" effects:TintImageEffect.TintColor="{Binding WallColor}" Source="AlertActive" Style="{StaticResource ImageFrameStyle}" IsVisible="{Binding AlertsActive,Mode=TwoWay}"/>
+                        <Label Grid.Row="1" Text="Alerts" TextColor="White" Style="{StaticResource TextStyle}"/>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TabSelectedCommand}" CommandParameter="2" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                    <!--Tab 3-->
+                    <Grid x:Name="Sell" Grid.Row="0" Grid.Column="2" Style="{StaticResource GridStyle}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image  Grid.Row="0" x:Name="imgSellInActive" effects:TintImageEffect.TintColor="{Binding GiftColor}" Source="SellInActive" Style="{StaticResource ImageFrameStyle}" IsVisible="{Binding SellInActive,Mode=TwoWay}" />
+                        <Image Grid.Row="0" x:Name="imgSellActive" effects:TintImageEffect.TintColor="{Binding GiftColor}" Source="SellActive" Style="{StaticResource ImageFrameStyle}" IsVisible="{Binding SellActive,Mode=TwoWay}"/>
+                        <Label Grid.Row="1" Text="Sell" TextColor="White" Style="{StaticResource TextStyle}"/>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TabSelectedCommand}" CommandParameter="3" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                    <!--Tab 4-->
+                    <Grid x:Name="Bags" Grid.Row="0" Grid.Column="3"  Style="{StaticResource GridStyle}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image x:Name="imgBagsInactive" effects:TintImageEffect.TintColor="{Binding LocationColor}" Source="BagInActive" Style="{StaticResource ImageFrameStyle}" IsVisible="{Binding BagsInActive,Mode=TwoWay}" />
+                        <Image x:Name="imgBagsActive" effects:TintImageEffect.TintColor="{Binding LocationColor}" Source="BagActive" Style="{StaticResource ImageFrameStyle}" IsVisible="{Binding BagsActive,Mode=TwoWay}" />
+                        <Label Grid.Row="1" Text="Bag" TextColor="White" Style="{StaticResource TextStyle}"/>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TabSelectedCommand}" CommandParameter="4" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+
+                    <!--Tab 5-->
+                    <Grid x:Name="Account" Grid.Row="0" Grid.Column="4" Style="{StaticResource GridStyle}" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image x:Name="imgAccountInActive" effects:TintImageEffect.TintColor="{Binding MenuColor}" Source="AccountInActive" Style="{StaticResource ImageFrameStyle}" IsVisible="{Binding AccountInActive,Mode=TwoWay}" />
+                        <Image x:Name="imgAccountActive" effects:TintImageEffect.TintColor="{Binding MenuColor}" Source="AccountActive" Style="{StaticResource ImageFrameStyle}" IsVisible="{Binding AccountActive,Mode=TwoWay}"/>
+                        <Label Grid.Row="1" Text="Account" TextColor="White" Style="{StaticResource TextStyle}"/>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TabSelectedCommand}" CommandParameter="5" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

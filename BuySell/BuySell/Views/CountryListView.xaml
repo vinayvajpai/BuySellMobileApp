@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BuySell.Views.CountryListView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             NavigationPage.HasNavigationBar="false" NavigationPage.HasBackButton="false">
+    <ContentPage.Content>
+        <Grid Margin="0,10" RowDefinitions="Auto,10*">
+            <Grid Grid.Row="0"  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Padding="0" RowSpacing="0" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0" Grid.Column="0"  Source="Back_Img.png" Aspect="AspectFit" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HeightRequest="25" WidthRequest="25">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label x:Name="lblTitleText" Grid.Row="0"  Grid.Column="1" Text="State" TextColor="Black" VerticalOptions="CenterAndExpand" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+            </Grid>
+
+            <!--New dynamic list created for country -->
+            <ListView  Grid.Row="1"  ItemSelected="ListView_ItemSelected" HasUnevenRows="True"  VerticalOptions="FillAndExpand" SeparatorVisibility="None" ItemsSource="{Binding stateList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                            <Label Text="{Binding .}" Margin="20,10" FontSize="16"  TextColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                <BoxView VerticalOptions="End" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" HeightRequest="1"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--<StackLayout Orientation="Vertical" Grid.Row="1" IsVisible="{Binding shippingPrizeListVisible}" Margin="20,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Frame Margin="0,10" CornerRadius="2" Padding="5" HeightRequest="50"  BackgroundColor="WhiteSmoke" HasShadow="False">
+                    <Label Text="Alabama" Margin="5" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    </Label>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SelectProperty_Tapped" CommandParameter="Alabama"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame Margin="0,10" CornerRadius="2" Padding="5" HeightRequest="50"  BackgroundColor="WhiteSmoke" HasShadow="False">
+                    <Label Text="Alaska" Margin="5" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+  
+                    </Label>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SelectProperty_Tapped" CommandParameter="Alaska"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame Margin="0,10" CornerRadius="2" Padding="5" HeightRequest="50"  BackgroundColor="WhiteSmoke" HasShadow="False">
+                    <Label Text="Arizona"  Margin="5" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    </Label>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SelectProperty_Tapped" CommandParameter="Arizona"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame Margin="0,10" CornerRadius="2" Padding="5" HeightRequest="50"  BackgroundColor="WhiteSmoke" HasShadow="False">
+                    <Label Text="California"  Margin="5" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    </Label>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SelectProperty_Tapped" CommandParameter="California"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+
+                <Frame Margin="0,10" CornerRadius="2" Padding="5" HeightRequest="50"  BackgroundColor="WhiteSmoke" HasShadow="False">
+                    <Label Text="Georgia"  Margin="5" FontSize="15" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    </Label>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SelectProperty_Tapped" CommandParameter="Georgia"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </StackLayout>-->
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

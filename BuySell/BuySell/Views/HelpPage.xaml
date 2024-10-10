@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BuySell.Views.HelpPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:control="clr-namespace:BuySell.CustomControl"
+    ios:Page.UseSafeArea="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                     <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <control:CustomTitleControl Grid.Row="0" TitleText="HELP" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackCommand="{Binding PagePopCommand}"/>
+                <StackLayout Grid.Row="1" Margin="20,10" Spacing="20">
+                    <Frame HasShadow="False" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="10" Padding="15">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="FAQ" FontAttributes="Bold" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Image Source="NextArrow" HeightRequest="20" WidthRequest="20" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="FAQ_Tapped"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                     <Frame HasShadow="False" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="10" Padding="15">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Privacy Policy" FontAttributes="Bold" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Image Source="NextArrow" HeightRequest="20" WidthRequest="20" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </StackLayout>
+                         <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PravacyPolicy_Tapped"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                     <Frame HasShadow="False" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="10" Padding="15">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Terms &amp; Conditions" FontAttributes="Bold" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Image Source="NextArrow" HeightRequest="20" WidthRequest="20" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </StackLayout>
+                         <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TermsCondition_Tapped"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                     <Frame HasShadow="False" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="10" Padding="15">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Contact Support" FontAttributes="Bold" FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                            <Image Source="NextArrow" HeightRequest="20" WidthRequest="20" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                        </StackLayout>
+                         <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ContactSupport_Tapped"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </StackLayout>
+                <!--CustomBottomNavigation-->
+            <control:CustomBottomNavigation Grid.Row="2" VerticalOptions="End" SelectedTabIndex="5"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

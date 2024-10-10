@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:controls="clr-namespace:BuySell.CustomControl"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+    ios:Page.UseSafeArea="true"
+    xmlns:converter="clr-namespace:BuySell.Converter"
+    NavigationPage.HasNavigationBar="False"
+    x:Class="BuySell.Views.BuyingSellingViews.OrderSummaryView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:StringToDecimalConverter x:Key="StringToDecimalConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <controls:CustomTitleControl TitleText="ORDER SUMMARY" HorizontalOptions="FillAndExpand" VerticalOptions="Start" BackCommand="{Binding PagePopCommand}"/>
+            <ScrollView  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <StackLayout   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout Margin="0,5,0,0" BindableLayout.ItemsSource="{Binding BuyingProduct.OrderItems}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="20,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="5.5*"/>
+                                        <ColumnDefinition Width="20"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Frame Grid.Column="0" Margin="0,0,10,0" Grid.RowSpan="4" Padding="5" HasShadow="False" BackgroundColor="Transparent" BorderColor="{Binding BuyingProduct.OrderItems[0].Product.ThemeCol}" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                                        <ff:CachedImage Source="{Binding Product.ProductImage}" Aspect="AspectFill" HeightRequest="80" WidthRequest="80"/>
+                                    </Frame>
+                                    <Label LineBreakMode="TailTruncation" Grid.Column="1" Grid.Row="0" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold" TextColor="Black" FontSize="14">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <!--<Span Text=" Product Name : " FontSize="13" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold"/>-->
+                                                <Span Text="{Binding Product.ProductName}" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding Product.ProdDetails}" TextColor="Black" FontSize="13" FontAttributes="Bold" LineBreakMode="TailTruncation" MaxLines="2"/>
+                                    <Label Grid.Column="1" Grid.Row="2">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Seller: " FontSize="13" FontAttributes="Bold" TextColor="{Binding SelectedOrder.ThemeCol}"/>
+                                                <Span  Text="{Binding Product.UserName,StringFormat='@{0}'}" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Image Grid.Row="0" Source="NextArrow" Grid.Column="2" Grid.RowSpan="4"   HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="SelectItem_Tapped" CommandParameter="{Binding .}" />
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                    <BoxView Grid.Row="1" HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="LightGray"/>
+                    <Grid Margin="20,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="6*"/>
+
+                        </Grid.ColumnDefinitions>
+                        <Label Text="ORDER DATE" Grid.Row="0" Grid.Column="0" FontSize="16" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="ORDER NUMBER" Grid.Row="0" Grid.Column="1" FontSize="16" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
+
+                        <Label Text="{Binding BuyingProduct.CreatedDate ,StringFormat='{}{0:MMMM d, yyyy}'}" Grid.Row="1" Grid.Column="0" FontSize="16" TextColor="Black" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label Text="{Binding BuyingProduct.OrderId}" Grid.Row="1" Grid.Column="1" FontSize="16" TextColor="Black" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
+                    </Grid>
+
+                    <BoxView  HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="LightGray"/>
+                    <Grid Margin="20,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <!--<RowDefinition Height="Auto"/>-->
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Grid.Row="0" Grid.Column="0" Spacing="0">
+                            <Label Text="Delivery" FontSize="16" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold"/>
+                            <Label Text="Address" FontSize="16" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="0" Grid.Column="1" VerticalOptions="StartAndExpand" Spacing="0">
+                            <Label Text="{Binding FormattedAdd.Name}" FontSize="16" TextColor="Black" FontAttributes="Bold"/>
+                            <Label Text="{Binding FormattedAdd.AddressLine1}" FontSize="16" TextColor="Black" FontAttributes="Bold"/>
+                            <Label Text="{Binding FormattedAdd.AddressLine2}" FontSize="16" TextColor="Black" FontAttributes="Bold"/>
+                        </StackLayout>
+                        <!--<Image Source="NextArrow.png" Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="20"/>-->
+                    </Grid>
+                    <BoxView  HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="LightGray"/>
+                    <Grid Margin="20,10,20,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="4*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Grid.Row="0" Grid.Column="0" Spacing="0">
+                            <Label Text="Payment" FontSize="16" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold"/>
+                            <Label Text="Method" FontSize="16" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold"/>
+                        </StackLayout>
+
+                        <StackLayout  Grid.Row="0" Grid.Column="2" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand">
+                            <Label Text="{Binding BuyingProduct.PaymentDetail.CCLast4,StringFormat=' ********{0}'}"  Margin="0,0,0,0" FontSize="16" TextColor="Black" FontAttributes="Bold"/>
+                            <!--<Label HorizontalOptions="FillAndExpand" Text="{Binding BuyingProduct.PaymentDetail.FormattedExpiry,StringFormat='Exp: {0}'}"   Margin="5,0,0,0" FontSize="16" TextColor="Black" FontAttributes="Bold"/>-->
+                        </StackLayout>
+
+                        <Image Grid.Row="0" Grid.Column="1" VerticalOptions="FillAndExpand" Source="defaultcard" Aspect="AspectFit"  HorizontalOptions="FillAndExpand"  WidthRequest="60" HeightRequest="30"/>
+                        <!--<controls:CustomFrame CornerRadius="4" BackgroundColor="#1567A6" Padding="0,10" Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand">
+                            <Label Text="VISA" TextColor="White" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>
+                        </controls:CustomFrame>-->
+                        <!--<Image Source="NextArrow.png" Grid.Row="0" Grid.Column="3" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="20"/>-->
+                        <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="-20,0" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" BackgroundColor="LightGray" />
+                    </Grid>
+                    <!--<Grid Margin="20,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Subtotal" Grid.Row="0" Grid.Column="0" FontSize="16" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold"/>
+                        <Label Text="Tax" Grid.Row="1" Grid.Column="0"  FontSize="16" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold"/>
+                        <Label Text="Shipping" Grid.Row="2" Grid.Column="0" FontSize="16" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold"/>
+                        <Label Text="You Pay" Grid.Row="3" Grid.Column="0" FontSize="16" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold"/>
+                        <Label Text="{Binding SelectedOrder.Price}" Grid.Row="0" Grid.Column="1" FontSize="16" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="{Binding BuyingProduct.OrderItems[0].Tax ,StringFormat='${0}'}" Grid.Row="1" Grid.Column="1"  FontSize="16" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="{Binding SelectedOrder.ShippingPrice}" Grid.Row="2" Grid.Column="1"  FontSize="16" TextColor="Black" FontAttributes="Bold"/>
+                        <Label Text="{Binding BuyingProduct.OrderItems[0].TotalPrice}" Grid.Row="3" Grid.Column="1"  FontSize="16" TextColor="Black" FontAttributes="Bold"/>
+                        <controls:CustomFrame x:Name="orderstatusFrm" CornerRadius="5" BackgroundColor="{Binding ThemeColor}" Padding="10,5" Grid.Row="0" Grid.RowSpan="4" Grid.Column="2" VerticalOptions="EndAndExpand">
+                            <StackLayout HorizontalOptions="CenterAndExpand">
+                                <Label Text="Status" Grid.Row="1" Grid.Column="1"  FontSize="15" TextColor="White" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>
+                                <BoxView  HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="White" />
+                                <Label x:Name="orderStatus" Text="Pending Shipment" Grid.Row="1" Grid.Column="1" FontAttributes="Bold" FontSize="13" TextColor="White" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                        </controls:CustomFrame>
+                    </Grid>-->
+                    <Grid Margin="20,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Subtotal" Grid.Row="0" Grid.Column="0" FontSize="16" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold"/>
+                        <Label Text="Tax" Grid.Row="1" Grid.Column="0"  FontSize="16" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold"/>
+                        <Label Text="Shipping" Grid.Row="2" Grid.Column="0" FontSize="16" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold"/>
+                        <Label Text="You Pay" Grid.Row="3" Grid.Column="0" FontSize="16" TextColor="{Binding SelectedOrder.ThemeCol}" FontAttributes="Bold"/>
+
+                        <Label Text="{Binding TotalItemPrice,Converter={x:StaticResource StringToDecimalConverter}, StringFormat='{}{0:$#,0.00}'}" Grid.Row="0" Grid.Column="1" FontSize="16" TextColor="Black" FontAttributes="Bold" HorizontalOptions="EndAndExpand" Margin="0,0,5,0"/>
+                        <Label Text="{Binding TaxAmount,StringFormat='{}{0:$#,0.00}' , Converter={x:StaticResource StringToDecimalConverter}}" Grid.Row="1" Grid.Column="1"  FontSize="16" TextColor="Black" FontAttributes="Bold"  HorizontalOptions="EndAndExpand" Margin="0,0,5,0"/>
+                        <Label Text="{Binding TotalShippingPrice,StringFormat='{}{0:$#,0.00}' , Converter={x:StaticResource StringToDecimalConverter}}" Grid.Row="2" Grid.Column="1"  FontSize="16" TextColor="Black" FontAttributes="Bold"  HorizontalOptions="EndAndExpand" Margin="0,0,5,0"/>
+                        <Label Text="{Binding TotalPrice,StringFormat='{}{0:$#,0.00}' , Converter={x:StaticResource StringToDecimalConverter}}" Grid.Row="3" Grid.Column="1"  FontSize="16" TextColor="Black" FontAttributes="Bold"  HorizontalOptions="EndAndExpand" Margin="0,0,5,0"/>
+
+                        <controls:CustomFrame x:Name="orderstatusFrm" HasShadow="False" CornerRadius="5" BackgroundColor="{Binding StatusColor,Mode=TwoWay}" Padding="10,5" Grid.Row="0" Grid.RowSpan="4" Grid.Column="2" VerticalOptions="CenterAndExpand">
+                            <StackLayout HorizontalOptions="CenterAndExpand">
+                                <Label Text="Status" Grid.Row="1" Grid.Column="1"  FontSize="15" TextColor="White" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>
+                                <BoxView  HeightRequest="1" HorizontalOptions="FillAndExpand" BackgroundColor="White" />
+                                <Label  x:Name="orderStatus" Text="{Binding Status, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" FontAttributes="Bold" FontSize="13" TextColor="White" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
+                        </controls:CustomFrame>
+                    </Grid>
+                    <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="End" HeightRequest="1" BackgroundColor="LightGray"/>
+                    <StackLayout x:Name="actionStk" VerticalOptions="End" Margin="10,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal" IsVisible="False">
+                        <controls:CustomBorderButton HorizontalOptions="FillAndExpand" TitleText="ACCEPT" fontsize="16"  TextColor="White"  BorderColor="{Binding SelectedOrder.ThemeCol}" BgColor="{Binding SelectedOrder.ThemeCol}" ClickCommand="{Binding AcceptOfferCmd}"/>
+                        <controls:CustomBorderButton ClickCommand="{Binding DisputeCommand}" HorizontalOptions="FillAndExpand" TitleText="DISPUTE" fontsize="16"  TextColor="White"  BorderColor="{Binding SelectedOrder.ThemeCol}" BgColor="{Binding SelectedOrder.ThemeCol}"/>
+                    </StackLayout>
+                    <StackLayout Margin="0,30,0,0"  HorizontalOptions="CenterAndExpand" x:Name="cancelStk" IsVisible="False">
+                        <Label HorizontalOptions="CenterAndExpand" TextColor="{Binding SelectedOrder.ThemeCol}" Text="Cancel Order"/>
+                        <BoxView HorizontalOptions="FillAndExpand" HeightRequest="1" BackgroundColor="{Binding SelectedOrder.ThemeCol}"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Cancel_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <!--<Label Text="Need Help ?" Grid.Row="3" Grid.Column="1"  TextDecorations="Underline" HorizontalOptions="CenterAndExpand" Margin="0,10" FontSize="16" TextColor="Gray" FontAttributes="Bold"/>-->
+                </StackLayout>
+            </ScrollView>
+            <Picker x:Name="cancelResonPicker"  Unfocused="cancelResonPicker_Unfocused" ItemsSource="{Binding CancelResons}" IsVisible="false" SelectedIndexChanged="cancelResonPicker_SelectedIndexChanged"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:BuySell.CustomControl"
+    x:Class="BuySell.Views.TopTrendingViewAllPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:local="clr-namespace:BuySell.Trigger"
+    ios:Page.UseSafeArea="true"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" RowSpacing="0" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <control:CustomTitleControl Grid.Row="0" TitleText="NEW LISTINGS" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackCommand="{Binding PagePopCommand}"/>
+
+                <control:CustomFilterView  x:Name="filterView" IsShowFilterCount="False"  IsVisible="{Binding IsShowFilter}"  Grid.Row="1"/>
+                <!--BindableLayout-->
+                <StackLayout Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <CollectionView Margin="0,0,0,0" x:Name="TopTrandingItemsList" VerticalScrollBarVisibility="Never" ItemsLayout="VerticalGrid, 2" RemainingItemsThreshold="{Binding ItemTreshold}" RemainingItemsThresholdReachedCommand="{Binding ItemTresholdReachedCommand}"   ItemsSource="{Binding ProductList, Mode=TwoWay}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <control:CustomProductCell BindingContext="{Binding .}" Command="{Binding BindingContext.TopTrandingItemsCommand,Source={x:Reference TopTrandingItemsList}}" CommandParameter="{Binding .}"  CallbackLikeDislike="imgLikeUnlike_Clicked"/>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                        <CollectionView.EmptyView>
+                            <ContentView>
+                                <Label Text="No Data Found" IsVisible="{Binding IsNoData}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Gray" FontSize="14"/>
+                            </ContentView>
+                        </CollectionView.EmptyView>
+                    </CollectionView>
+                </StackLayout>
+                <Grid IsVisible="{Binding IsLoadMore}" Opacity="0.5"  BackgroundColor="{Binding ThemeColor}" VerticalOptions="EndAndExpand" Grid.Row="0" Grid.RowSpan="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.Triggers>
+                        <Trigger TargetType="Grid"
+                                 Property="IsVisible"
+                                 Value="False">
+                            <Setter Property="HeightRequest"
+                                    Value="0"/>
+                        </Trigger>
+                    </Grid.Triggers>
+                    <Label Text="Loading..."
+                           TextColor="White"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"
+                           FontSize="Medium"/>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

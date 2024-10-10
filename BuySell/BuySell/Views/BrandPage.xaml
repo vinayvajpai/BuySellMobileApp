@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:customcontrol="clr-namespace:BuySell.CustomControl"
+             x:Class="BuySell.Views.BrandPage"
+             xmlns:control="clr-namespace:BuySell.CustomControl"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--<customcontrol:CustomTitleControl x:Name="titleView" Grid.Row="0" TitleText="Brand" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackCommand="{Binding BackCommand}"/>-->
+            <Grid Grid.Row="0" Margin="0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="1"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0" Grid.Column="0"  Source="Back_Img.png" Aspect="AspectFit" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="25" WidthRequest="25">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label  Grid.Row="0"  Grid.Column="1" Text="Brand" TextColor="Black" VerticalOptions="CenterAndExpand" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                <Frame Grid.Row="0" Margin="0,0,10,0" BorderColor="{Binding ThemeColor}" BackgroundColor="{Binding ThemeColor}" Grid.Column="2" CornerRadius="5" HasShadow="False" Padding="2">
+                    <Label FontSize="9" Text="Done" FontAttributes="Bold" TextColor="White" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SearchDoneCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <BoxView Grid.Row="1" BackgroundColor="{Binding ThemeColor}" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" VerticalOptions="End"/>
+            </Grid>
+            <control:CustomFrame x:Name="searchFrm" Grid.Row="1" HasShadow="False" HeightRequest="50" Margin="10,0,10,0" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="#EBEBEB" Padding="2" CornerRadius="5">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <control:CustomEntry x:Name="searchTxt" Margin="10,0,0,0" Grid.Column="0" Placeholder="Type brand name..." ReturnType="Default" Text="{Binding SearchText}"  FontSize="15"  IsCurvedCornersEnabled="False" NoLine="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                    <Image x:Name="searchIcon" Source="SearchGlass" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="EndAndExpand" HeightRequest="30" WidthRequest="25" Margin="0,0,10,0" Aspect="AspectFit">
+                        <!--<Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SearchDoneCommand}"/>
+                        </Image.GestureRecognizers>-->
+                    </Image>
+                </Grid>
+            </control:CustomFrame>
+            <ListView x:Name="brandListView"  Grid.Row="2" Margin="20,0" SeparatorVisibility="None" BackgroundColor="Transparent" ItemsSource="{Binding BrandList}" ItemSelected="brandListView_ItemSelected" Footer="">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding BrandName}" HorizontalOptions="FillAndExpand" Margin="20,0" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

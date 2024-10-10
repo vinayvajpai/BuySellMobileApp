@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BuySell.CustomControl"
+    x:Class="BuySell.Views.BankAccountPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:BuySell.Converter"
+    ios:Page.UseSafeArea="true"
+    xmlns:converter="clr-namespace:BuySell.Converter"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanInverter x:Key="BooleanInverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowDefinitions="8*,*" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <control:CustomTitleControl Grid.Row="0" TitleText="BANK ACCOUNT" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackCommand="{Binding PagePopCommand}"/>
+                <ListView x:Name="BankAccountsList" IsVisible="false"  Grid.Row="1" HasUnevenRows="True" SeparatorVisibility="None"  SelectedItem="{Binding SelectedBankModel}" Margin="15,10"  ItemsSource="{Binding BankAccounts}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid ColumnDefinitions="Auto,*,Auto">
+                                    <control:CustomFrame Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" Margin="0,0,0,10"  BackgroundColor="Transparent" BorderColor="LightGray"  CornerRadius="5" HasShadow="False" Padding="8">
+                                        <Grid RowDefinitions="Auto,Auto" RowSpacing="20">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="4*"/>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Column="0" Text="{Binding AccountHolderName}" FontAttributes="Bold" FontSize="{StaticResource TextBasicFontSize}" TextColor="Black" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"/>
+                                            <Label Grid.Column="1" Text="{Binding AccountNumber}" FontAttributes="Bold" FontSize="{StaticResource TextBasicFontSize}" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                                            <Image Grid.Column="2" Grid.RowSpan="2" Source="NextArrow" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Aspect="AspectFit" HeightRequest="20" WidthRequest="20"/>
+                                            <StackLayout Grid.Row="1" Grid.ColumnSpan="2" Spacing="10" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                                <!--<StackLayout Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="3" Spacing="10" VerticalOptions="Center" HorizontalOptions="StartAndExpand" Orientation="Horizontal">-->
+                                                <!--<Grid HorizontalOptions="FillAndExpand">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="30"/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>-->
+
+                                                <Frame Style="{x:StaticResource ListButtonsStyle}"  BackgroundColor="{Binding ThemeColor}" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                                    <Label Text="Edit" TextColor="White" FontSize="{StaticResource TextBasicFontSize}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.EditCommand, Source={x:Reference BankAccountsList}}"  CommandParameter="{Binding .}"/>
+                                                    </Frame.GestureRecognizers>
+                                                </Frame>
+
+                                                <Frame Style="{x:StaticResource ListButtonsStyle}"  BackgroundColor="{Binding ThemeColor}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" >
+                                                    <Label Text="Delete" TextColor="White" FontSize="{StaticResource TextBasicFontSize}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.DeleteCommand, Source={x:Reference BankAccountsList}}"  CommandParameter="{Binding .}"/>
+                                                    </Frame.GestureRecognizers>
+                                                </Frame>
+                                                <Frame x:Name="frmSetDefault" Style="{x:StaticResource ListButtonsStyle}" BorderColor="{Binding ThemeColor}" BackgroundColor="{Binding ThemeColor}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="5,2" IsVisible="{Binding IsDefault, Converter={StaticResource BooleanInverter}}">
+                                                    <Label Text="Set As Default" FontSize="{StaticResource TextBasicFontSize}" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
+                                                    <Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.SetAsDefaultCommand, Source={x:Reference BankAccountsList}}"  CommandParameter="{Binding .}"/>
+                                                    </Frame.GestureRecognizers>
+                                                </Frame>
+                                                <Frame Style="{x:StaticResource ListButtonsStyle}" IsVisible="False" BackgroundColor="Transparent" BorderColor="{Binding ThemeColor}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Padding="5,2" >
+                                                    <Label Text="Default Account" TextColor="{Binding ThemeColor}" FontSize="{StaticResource TextBasicFontSize}"  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
+                                                    <Frame.Triggers>
+                                                        <DataTrigger TargetType="Frame" Binding="{Binding Source={x:Reference frmSetDefault},Path=IsVisible}" Value="false">
+                                                            <Setter Property="IsVisible" Value="True" />
+                                                        </DataTrigger>
+                                                    </Frame.Triggers>
+                                                </Frame>
+                                                <!--</Grid>-->
+                                            </StackLayout>
+                                            <!--</StackLayout>-->
+                                        </Grid>
+                                        <control:CustomFrame.Triggers>
+                                            <DataTrigger TargetType="Frame" Binding="{Binding Source={x:Reference frmSetDefault},Path=IsVisible}" Value="false">
+                                                <Setter Property="BorderColor" Value="{Binding ThemeColor}" />
+                                            </DataTrigger>
+                                        </control:CustomFrame.Triggers>
+                                    </control:CustomFrame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Triggers>
+                        <DataTrigger TargetType="ListView" Binding="{Binding Source=SelectedBankModel,Path=Count}" Value="0">
+                            <Setter Property="IsVisible" Value="false" />
+                        </DataTrigger>
+                    </ListView.Triggers>
+                </ListView>
+                <control:CustomBorderButton Grid.Row="2" Margin="20,10" ClickCommand="{Binding AddAccountCommand}" TitleText="Add Account"  BgColor="{Binding ThemeColor}"  fontsize="18" HorizontalOptions="FillAndExpand" TextColor="White" BorderColor="Black"/>
+            </Grid>
+            <!--CustomBottomNavigation-->
+            <control:CustomBottomNavigation Grid.Row="1"  VerticalOptions="End" SelectedTabIndex="5"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

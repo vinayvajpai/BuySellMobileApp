@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BuySell.View.HomePage"
+             xmlns:controls="clr-namespace:BuySell.CustomControl"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="20" VerticalOptions="CenterAndExpand">
+                <!--BuySell_logo-->
+                <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Spacing="0" Margin="0,0,0,0">
+                    <Image Source="BuySell_logoclothing" HeightRequest="60" WidthRequest="150" Aspect="AspectFit" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <!--Frames for items-->
+                <Grid VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" Margin="25,0,25,0" RowSpacing="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <Frame Grid.Row="0" CornerRadius="18" Padding="0" BackgroundColor="#1567A6" HasShadow="False" Margin="0,0,0,0">
+                        <Grid   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                            <Image Source="pattern_bg_rnd.png" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                            <Grid  Margin="20,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2.5*"/>
+                                    <ColumnDefinition Width="6.5*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Image Grid.Column="0" Source="c.png" Aspect="AspectFit" Margin="10"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  />
+                                <Label Grid.Column="1" Text="Clothing" FontSize="27" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextColor="White"/>
+                            </Grid>
+                            <!--<Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SelecteCategory_Tapped" CommandParameter="1"/>
+                            </Grid.GestureRecognizers>-->
+                        </Grid>
+                    </Frame>
+                    <Frame Grid.Row="3" CornerRadius="18"  Padding="0" BackgroundColor="#467904" HasShadow="False" Margin="0,0,0,0">
+                        <Grid   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                            <Image Source="pattern_bg_rnd.png" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                            <Grid Margin="20,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2.5*"/>
+                                    <ColumnDefinition Width="6.5*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Image Grid.Column="0" Source="v.png" Aspect="AspectFit" Margin="10"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  />
+                                <Label Grid.Column="1" Text="Vintage" FontSize="27" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextColor="White"/>
+                            </Grid>
+                            <!--<Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SelecteCategory_Tapped" CommandParameter="2"/>
+                            </Grid.GestureRecognizers>-->
+                        </Grid>
+                    </Frame>
+                    <Frame Grid.Row="1" CornerRadius="18"  Padding="0" BackgroundColor="#C52036" HasShadow="False" Margin="0,0,0,0">
+                        <Grid   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                            <Image Source="pattern_bg_rnd.png" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                            <Grid  Margin="20,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2.5*"/>
+                                    <ColumnDefinition Width="6.5*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Image Grid.Column="0" Source="s.png" Aspect="AspectFit" Margin="10"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                                <Label Grid.Column="1" Text="Sneakers" FontSize="27" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextColor="White"/>
+                            </Grid>
+                            <!--<Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SelecteCategory_Tapped" CommandParameter="3"/>
+                            </Grid.GestureRecognizers>-->
+                        </Grid>
+                    </Frame>
+                    <Frame Grid.Row="2" CornerRadius="18"  Padding="0" BackgroundColor="#D04107" HasShadow="False" Margin="0,0,0,0">
+                        <Grid   VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+                            <Image Source="pattern_bg_rnd.png" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                            <Grid  Margin="20,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2.5*"/>
+                                    <ColumnDefinition Width="6.5*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Image Grid.Column="0" Source="sw.png" Aspect="AspectFit" Margin="10"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                                <Label Grid.Column="1"  Text="Streetwear" FontSize="27" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="Center" TextColor="White"/>
+                            </Grid>
+                            <!--<Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SelecteCategory_Tapped" CommandParameter="4"/>
+                            </Grid.GestureRecognizers>-->
+                        </Grid>
+                    </Frame>
+                </Grid>
+                <!--CustomBorderButton for Join With E-mail-->
+                <controls:CustomBorderButton Margin="30,0" TitleText="Join" ClickCommand="{Binding SignUpCommand}" fontsize="17" VerticalOptions="StartAndExpand" TextColor="White" BgColor="#157baf" BorderColor="#157baf"/>
+                <!--Login Here-->
+                <Label  HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Already have an account?" FontAttributes="Bold" FontSize="16"/>
+                            <Span Text=" Login Here" TextColor="#157baf" FontAttributes="Bold" FontSize="16"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Login_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <!--Skip-->
+                <Label  HorizontalTextAlignment="Center" Margin="0,0,0,30"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Skip" FontAttributes="Bold" FontSize="16" TextColor="Gray" TextDecorations="Underline"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Skip_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

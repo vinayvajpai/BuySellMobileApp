@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:effects="clr-namespace:BuySell.Utility"
+    xmlns:control="clr-namespace:BuySell.CustomControl"
+    x:Class="BuySell.CustomControl.CustomCategorySubHeader"
+    x:Name="SubTabView">
+    <ContentView.Content>
+        <StackLayout Grid.Row="1" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Orientation="Vertical">
+            <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Clothing Tab-->
+                <StackLayout Grid.Row="0" Grid.Column="0" Spacing="0">
+                    <Frame  x:Name="frmHanger" Padding="1" HasShadow="False" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="50" WidthRequest="50" CornerRadius="26" >
+                        <Image x:Name="imgHanger" Source="ClothingHanger" Aspect="AspectFit" HeightRequest="50" WidthRequest="50" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                    </Frame>
+                     <Label  Text="Clothing" TextColor="Black" FontSize="10" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference SubTabView}, Path=SelectCommand}"  CommandParameter="1"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <Label Grid.Row="0" Grid.Column="1" BackgroundColor="{Binding ThemeColor}" VerticalOptions="CenterAndExpand" HeightRequest="50" HorizontalOptions="FillAndExpand"/>
+
+                <StackLayout Grid.Row="0" Grid.Column="6" Spacing="0">
+                    <Frame  x:Name="frmTops" Padding="5" VerticalOptions="Center" HorizontalOptions="Center" HasShadow="False" CornerRadius="24" HeightRequest="40" WidthRequest="40">
+                        <Image  x:Name="imgTops" Source="VintageTops" Aspect="AspectFit" HeightRequest="40" WidthRequest="40" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                    </Frame>
+                     <Label  Text="Vintage" FontSize="10" TextColor= "Black" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                     <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference SubTabView}, Path=SelectCommand}" CommandParameter="4"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <Label Grid.Row="0" Grid.Column="3" BackgroundColor="{Binding ThemeColor}" VerticalOptions="CenterAndExpand" HeightRequest="50" HorizontalOptions="FillAndExpand"/>
+
+                <StackLayout Grid.Row="0" Grid.Column="2" Spacing="0">
+                    <Frame  x:Name="frmSneaker" VerticalOptions="Center" HorizontalOptions="Center" Padding="5" HasShadow="False" CornerRadius="24" HeightRequest="40" WidthRequest="40">
+                        <Image  x:Name="imgSneaker" Source="Sneakers" Aspect="AspectFit" HeightRequest="40" WidthRequest="40" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                    </Frame>
+                     <Label  Text="Sneakers" FontSize="10" TextColor="Black" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                     <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference SubTabView}, Path=SelectCommand}" CommandParameter="2"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <Label Grid.Row="0" Grid.Column="5" BackgroundColor="{Binding ThemeColor}" VerticalOptions="CenterAndExpand" HeightRequest="50" HorizontalOptions="FillAndExpand"/>
+
+                <StackLayout Grid.Row="0" Grid.Column="4" Spacing="0">
+                    <Frame  x:Name="frmStreet" VerticalOptions="Center" HorizontalOptions="Center" Padding="5" HasShadow="False" CornerRadius="24" HeightRequest="40" WidthRequest="40">
+                        <Image  x:Name="imgStreet" Source="Streetwear" Aspect="AspectFit" HeightRequest="40" WidthRequest="40" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                    </Frame>
+                     <Label  Text="Streetwear" FontSize="10" TextColor="Black" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+                     <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference SubTabView}, Path=SelectCommand}" CommandParameter="3"/>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </Grid>
+            <Label HeightRequest="1" BackgroundColor="{Binding ThemeColor}" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

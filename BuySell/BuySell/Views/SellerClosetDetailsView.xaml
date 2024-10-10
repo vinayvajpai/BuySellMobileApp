@@ -1,0 +1,724 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BuySell.Views.SellerClosetDetailsView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             xmlns:control="clr-namespace:BuySell.CustomControl"
+             ios:Page.UseSafeArea="true"  xmlns:effects="clr-namespace:BuySell.Utility"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <!--<control:CustomTitleControl x:Name="HeaderTitletxt" TitleText="Seller Closet" HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="Start" BackCommand="{Binding PagePopCommand}"/>-->
+            <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="Start" Padding="0" RowSpacing="0" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0" Grid.Column="0"  Source="Back_Img.png" Aspect="AspectFit" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HeightRequest="25" WidthRequest="25">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label x:Name="lblTitletxt" Grid.Row="0" Grid.Column="1" Text="Seller Closet" TextColor="Black" VerticalOptions="CenterAndExpand" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"  FontSize="14"/>
+                <Frame Grid.Row="0" Margin="0,0,10,0" BackgroundColor="{Binding ThemeColor, Mode=TwoWay}" Grid.Column="2" CornerRadius="5" HasShadow="False" Padding="5" WidthRequest="50" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Label FontSize="10" Text="Delete" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DeleteProdCommand}"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </Grid>
+            <Grid HorizontalOptions="FillAndExpand"   VerticalOptions="Start" RowSpacing="0" Margin="0,0,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="1"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Edit Product" Style="{StaticResource Key=FilterTextStyle}" Grid.Row="0" Grid.Column="0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SelectSellingFilter_Tapped" CommandParameter="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="Offers " Style="{StaticResource Key=FilterTextStyle}" Grid.Row="0" Grid.Column="1">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SelectSellingFilter_Tapped" CommandParameter="2"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <BoxView x:Name="sep1" HorizontalOptions="FillAndExpand" VerticalOptions="End" BackgroundColor="{Binding ThemeColor}" Grid.Column="0" Grid.Row="1" />
+                <BoxView x:Name="sep2" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Column="1" Grid.Row="1" />
+                <BoxView HorizontalOptions="FillAndExpand" BackgroundColor="{Binding ThemeColor}" Grid.Row="2" Grid.ColumnSpan="2"/>
+            </Grid>
+
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <!--Edit-->
+                    <StackLayout  x:Name="EditSection" Grid.Row="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,20">
+                        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20,20,20,0" RowSpacing="20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Frame Grid.Row="0" HasShadow="False" Padding="8" HorizontalOptions="FillAndExpand" BackgroundColor="WhiteSmoke" CornerRadius="16">
+                                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                    <Grid VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="7*"/>
+                                            <ColumnDefinition Width="3*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Column="0" Grid.Row="0" VerticalOptions="StartAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Store" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                                    <Span Text=" *" TextColor="{Binding ThemeColor}" FontAttributes="bold" FontSize="20"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Grid.Column="0" Grid.Row="1" HorizontalOptions="Start" VerticalOptions="Start" FontAttributes="Bold">
+                                            <!--<Label.Text>
+                                        &lt;span style="font-size:14px"&gt;Select the Store you&#39;d like to sell your item in* &lt;img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAGGElEQVR4nO2bXYhVVRTHf/eaUuk4OWppzlUnNLWxMmMGAwMdg54MekxNUQoqegvKj4IipSl6EYoYHDGNHnroISoqpbGkT6PAGjMjm8yvHL81Kcfs9rDOnr3Oudd7zz1n7+NA84fN3ffcvddae539sdba68Ig/t/IZcxvFHAz0AgMDwrA+aAcBPYCp7MSyLcCZgFtwHygFbg+Zr9e4GtgO9AF7PIinScUgDXAT0DRUdkDrEZmjlO4nAHTgZXAImBo5LeTwGfAbmSK7wfOYaf6dUAdMAmYBjQDc4GGCJ2LwJvAC8DPDmVPhdHABuAS4be2D3gWuAPIJ6CbB2YDzwG/RmhfAjooVVDmWAocJyzcB8A83M6uHLKPfBjh1QssccgnNkYAb0SE2QHcmQHvFmQ5ad6bsSeKd0wGflTMjwPLyPZIzQHLkb3FyNENTPTN+BbggGK6E2jyzbQCCoRnw2HgNl/MZgInFLMO4CpfzGrAUKCT8Ixsds2kAPyumLS7ZpASOeTEMfIdRI5UJxhBeM0/74qwB6zDyvkDjjZGvdt3uCDoETnCy2FTWoJLFbHPGRhrvhqGAl9h5V6clNBorJFzAndHzGxgPfAdcAz4C1mzXYgpHddhqoRJ2COyl4QW4wasFpc5EGoM8LaieblyHniS9HbFCkXztVo7T8fa9jscCDMecV5q8QA3puSZQ5ZtEfgHmFpL59eVIGnN2zylpmsROAS8hWxaXcCFMm0eS8m7lQQKLQB9WMcmLfRGajy5JyjdUAvAp5G2vaQ/yrYGtPqIGU9YowSYl5I5iLmsB/VMhbZ1SKxAt78/Jf82RWtlnA4mkrOP9Gt/DPCvEuAscHWVPk8TVsDLKWXIAT0Brd3RH6OBillIRAasAZQGYxHnyeA94O8qfb6PfB+XUoYiEkUCceZm6h+jCmhT9XdSMgaJ5U1CosF3A0/F6BOdIdUUFgd6LAsqNXwXa/gkCWO5wHrCS2CVA5pDgFMBvYov9micRh4xGiuoKa78e/Nyj+iH+i2Pwpqh3Y6Y1ooXkQixwceU7glJYcY0Dqgv12AObk3fWrGQ8Ju/iPgNrrBc0W41D/UMGK/qvzlkHAc3UmqpvYQ4TK6gx9Q/Vq2AOlU/65BxNeSRqO5Y9exb5D7AJfSY+sd6OQX86Zh5JawC7onwXoSYri5xTtVHmopWQFqjJwnuQmJ5Go+Q4bWXVoB+63XRhh5wDbCFsFO0BWu1uYYeU/9syJd7SDYKWAFMUd97gMc98hup6v37gVbAYVWf7FEQg/si39cSfgmuocfUP1atgL2qPg3/iMbtP/HMT4+pf4/RCjiNmMLg4WalDKJOj++0GDOmI8AZ8zDq8OwMPueW+c03fJ5CQ5AxgR0jUBqW2o6YpA1IbMClJRbFo0gYDCQSfMojr9lYH6OrUsPbsfaya0vsSkJfmVVd3nuChj1kn0bnAzlsik1JSKwcVmO1Nd+fXDQCNwWlCX97zgLseOJEpEJh8Y88CXUDYde3CNzride2gP4FYELcTpuwgrV4EKqRUgUs9MBHxzg6a+k4BblOKiK3Oq73giwUkAe+IOHVGEgugBFuuVPRslHAw4r2K0kINCBXU0XkqtlZygmSdfI+sj63IddXLq3PJmxw9SgS70yEJVgtfklpCuxAxDDC13EPpCW4mfBGMpBtgxzhDTztFTsgt7Pdiug6F0Q9oR0r5y7gWleEG5GoqiG+noE1E6JpcgfwkDXaTDgxupOBsScMIzztjwEzfDGbQThh8hvElL1SmIg9603Wya2+mRaQJETD9CQS38tySeSBhwjfI+7Cwz9KLofhhKddEUlIaq3UyRHmIEey5r0RhxteLViMNZZM2YrkGbicEXnEqzOOjSlHcXDOp0UDkodnfAdTepC84hYkJFUrhgR91xI+gYxt/yrhm+REcPmWpiJJSA9SejqcRpyqbiQiux8JTJrgZH1QJiP/K2xGMkqi19h9SOpOO/CLQ9mdYgKiiN2UOjxJSzcSzIjtz8eF7517JrJ225ANMm7C0x/IHye7kCSJWKGsJMjamqtHpvgE5PptRPD8HHI3eQhZImfK9h7EIJzjP6C8/1zqVayyAAAAAElFTkSuQmCC" style="height:15px; width:15px" /&gt;&lt;/span&gt;
+                                    </Label.Text>-->
+                                            <!--<Label.Text>
+                                        &lt;span style="font-size:14px"&gt;Select the Store you&#39;d like to sell your item in* ⓘ&lt;/span&gt;
+                                        Select the Store you&#39;d like to sell your item in* ⓘ
+                                    </Label.Text>-->
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Select where you&#39;d like to sell your item " FontSize="12" TextColor="Black" FontAttributes="Bold"/>
+                                                    <Span Text="ⓘ" TextColor="Black" FontAttributes="bold" FontSize="14"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding NeedHelpCommand}"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <!--<Image Source="NeedHelp" VerticalOptions="End" HorizontalOptions="End" Aspect="AspectFit" HeightRequest="15" WidthRequest="15">
+                                        <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding NeedHelpCommand}"/>
+                                    </Image.GestureRecognizers>
+                                        </Image>-->
+
+                                        <!--<Label Grid.Column="1" Text="*Required" TextColor="{Binding ThemeColor}" FontSize="9" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>-->
+                                        <!--<BoxView Grid.Column="1" BackgroundColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" WidthRequest="70" HeightRequest="1"/>-->
+                                    </Grid>
+                                    <control:CustomCategorySubHeader IsVisible="true" Margin="0,10" x:Name="subCatHead" SelectCommand="{Binding SelectedTabCommand}"/>
+                                </StackLayout>
+                            </Frame>
+
+                            <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Label Margin="10,0" VerticalOptions="StartAndExpand">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Photos" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                            <Span Text=" *" TextColor="{Binding ThemeColor}" FontAttributes="bold" FontSize="20"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Text="+ Add up to 12 photos" Margin="10,0" HorizontalOptions="Start" FontSize="12" FontAttributes="Bold" TextColor="Gray"/>
+                                <Grid x:Name="ImageContGrid"  ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3.3*"/>
+                                        <ColumnDefinition Width="3.3*"/>
+                                        <ColumnDefinition Width="3.3*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Frame x:Name="frm1" IsVisible="{Binding IsFrm1, Mode=TwoWay}" Grid.Column="0" Padding="0" IsClippedToBounds="True" BackgroundColor="WhiteSmoke" HasShadow="False" CornerRadius="10" HeightRequest="150" >
+                                        <StackLayout>
+                                            <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <Image x:Name="imgAdd1" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding ViewMoreImgCommand}"/>
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                                <Label x:Name="AddPic1Txt" Text="Add Photos"  FontSize="16" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" TextColor="Black" FontAttributes="Bold"/>
+                                                <ImageButton x:Name="Editimg1" Source="Edit" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="End" BackgroundColor="Black" Padding="5" CornerRadius="15" HeightRequest="28" WidthRequest="28" Command="{Binding ViewMoreImgCommand}" Margin="0,0,10,10"/>
+                                                <Grid.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding UploadImageClicked}"/>
+                                                </Grid.GestureRecognizers>
+                                            </Grid>
+                                            <!--<Frame HasShadow="False" BackgroundColor="red" IsVisible="{Binding IsEditFrm1, Mode=TwoWay}" Padding="0" HeightRequest="20" WidthRequest="20" Margin="0,0,10,10" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" CornerRadius="10">
+                                        <Image Source="Add" Aspect="AspectFit" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    </Frame>-->
+                                        </StackLayout>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding UploadImageClicked}"/>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+
+                                    <Frame x:Name="frm2" IsVisible="{Binding IsFrm2, Mode=TwoWay}" Grid.Column="1" Padding="0" BackgroundColor="WhiteSmoke" IsClippedToBounds="True"  HasShadow="False" CornerRadius="10" HeightRequest="60">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Image x:Name="imgAdd2" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding ViewMoreImgCommand}"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Grid x:Name="AddPic2Txt" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <Image  Source="Add"   Aspect="AspectFit"   HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            </Grid>
+                                            <ImageButton x:Name="Editimg2" Source="Edit" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="End" BackgroundColor="Black" Padding="5" CornerRadius="15" HeightRequest="28" WidthRequest="28" Command="{Binding ViewMoreImgCommand}" Margin="0,0,10,10"/>
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding UploadImageClicked}"/>
+                                            </Grid.GestureRecognizers>
+                                        </Grid>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding UploadImageClicked}"/>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+
+                                    <Frame x:Name="frm3" IsVisible="{Binding IsFrm3, Mode=TwoWay}" Grid.Column="2" Padding="0" IsClippedToBounds="True" BackgroundColor="WhiteSmoke" HasShadow="False" CornerRadius="10" HeightRequest="60">
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Image  x:Name="imgAdd3" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding ViewMoreImgCommand}"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Image x:Name="AddPic3Txt" Source="Add" Aspect="AspectFit" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                        </StackLayout>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding UploadImageClicked}"/>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+
+                                    <StackLayout Grid.Column="2">
+                                        <Frame x:Name="frm4" Padding="10" IsVisible="{Binding IsFrm4, Mode=TwoWay}" IsClippedToBounds="True" BackgroundColor="WhiteSmoke" HasShadow="False" CornerRadius="10" HeightRequest="60">
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                                <!--<Image x:Name="imgAddIcon2" Source="Add" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="25" WidthRequest="25" effects:TintImageEffect.TintColor="{Binding ThemeColor}"/>-->
+                                                <Label Text="View 3+ photos" FontSize="16" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="{Binding ThemeColor}" FontAttributes="Bold">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding ViewMoreImgCommand}"/>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </StackLayout>
+                                        </Frame>
+                                        <Frame x:Name="frm5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10" IsVisible="{Binding IsFrm5, Mode=TwoWay}" IsClippedToBounds="True" BackgroundColor="WhiteSmoke" HasShadow="False" CornerRadius="10" HeightRequest="60">
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Image x:Name="imgAdd4" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                <Image x:Name="imgAddIcon1" Source="Add" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="25" WidthRequest="25" effects:TintImageEffect.TintColor="{Binding ThemeColor}"/>
+                                                <!--<Label Text="Add more" FontSize="16" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Gray" FontAttributes="Bold"/>-->
+                                            </StackLayout>
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding UploadImageClicked}"/>
+                                            </Frame.GestureRecognizers>
+                                        </Frame>
+                                    </StackLayout>
+                                </Grid>
+                                <!--<Label Text="*Required" TextColor="Black" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" FontAttributes="Bold" FontSize="16"/>-->
+                            </StackLayout>
+
+                            <Frame  Grid.Row="2" CornerRadius="16" Padding="10" HasShadow="False" BackgroundColor="WhiteSmoke">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <StackLayout x:Name="stk" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Label VerticalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Add photo of tag" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                                    <Span Text=" *" TextColor="{Binding ThemeColor}" FontAttributes="bold" FontSize="20"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand">
+                                            <Frame HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" HasShadow="False" Padding="0" HeightRequest="40" WidthRequest="40" CornerRadius="10" IsClippedToBounds="True">
+                                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                                    <Image x:Name="imgTag" Source="Gallery" Aspect="AspectFill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                                    <ImageButton x:Name="Editimg3" Source="Edit" IsVisible="false" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="End" BackgroundColor="Black" CornerRadius="9" HeightRequest="18" WidthRequest="18" Command="{Binding EditTagCommand}" Margin="0,0,5,5"/>
+                                                </Grid>
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding UploadTagImageClicked}"/>
+                                                </Frame.GestureRecognizers>
+                                            </Frame>
+                                            <!--<Frame IsVisible="{Binding IsFrmImgTag, Mode=TwoWay}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HasShadow="False" Padding="2" HeightRequest="20" WidthRequest="20" CornerRadius="10" IsClippedToBounds="True">
+                                                <Image x:Name="imgTag1" Source="Add" Aspect="AspectFit" HeightRequest="10" WidthRequest="10"/>
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding UploadTagImageClicked}"/>
+                                                </Frame.GestureRecognizers>
+                                            </Frame>-->
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Image Source="Info" Aspect="AspectFit" HorizontalOptions="End" VerticalOptions="CenterAndExpand" HeightRequest="20" WidthRequest="20" effects:TintImageEffect.TintColor="{Binding ThemeColor}">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding InfoCommand}"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame Grid.Row="3" Padding="20,10,0,10" CornerRadius="16" BackgroundColor="WhiteSmoke" HasShadow="false">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Headline" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                                    <Span Text=" *" TextColor="{Binding ThemeColor}" FontAttributes="bold" FontSize="20"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Image Source="InfoHeadline"  IsVisible="{Binding InfoHeadlineIsVisible, Mode=TwoWay}" HeightRequest="18" WidthRequest="18"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                        <control:CustomEntry x:Name="HeadlinePickerText" Text="{Binding addItemDetailsModel.HeadLine,Mode=TwoWay}" TextChanged="HeadlinePickerText_TextChanged" MaxLength="200" Placeholder="A Short Title For Your Listing" TextColor="Gray" HeightRequest="45" Margin="0,0,10,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                        <!--<StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SelectPropertiesValues_Tapped" CommandParameter="1"/>
+                                </StackLayout.GestureRecognizers>-->
+                                        <!--<Label x:Name="HeadlinePickerText" Text="{Binding addItemDetailsModel.HeadLine}" TextColor="Gray" HorizontalOptions="StartAndExpand" FontSize="16" FontAttributes="Bold"/>-->
+                                        <!--<Image Source="Down_Img" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" WidthRequest="20" HeightRequest="20" Margin="0,0,10,0"/>
+                                </Image>-->
+                                    </StackLayout>
+                                    <!--<BoxView BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="0,0,0,0"/>-->
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="lblHeadlineText" Grid.Column="0" Text="Your headline is too long" IsVisible="{Binding HeadlineTxtIsVisible, Mode=TwoWay}" TextColor="red" VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand" FontSize="12"/>
+                                        <Label Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="EndAndExpand" Margin="0,0,10,0">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span x:Name="lblHLCharCount" Text="0" TextColor="{Binding ThemeColor, Mode=TwoWay}" FontSize="12"/>
+                                                    <Span x:Name="lblHLTLCharCount" Text="/50" TextColor="{Binding ThemeColor, Mode=TwoWay}" FontSize="12"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Grid>
+                                    <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Description" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                                    <Span Text=" *" TextColor="{Binding ThemeColor}" FontAttributes="bold" FontSize="20"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Image Source="InfoHeadline"  IsVisible="{Binding InfoDescriptionIsVisible, Mode=TwoWay}" HeightRequest="18" WidthRequest="18"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <!--<Label x:Name="DescriptionPickerText" Text="{Binding addItemDetailsModel.Description}" TextColor="Gray" HorizontalOptions="StartAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                <Image Source="Down_Img" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" WidthRequest="20" HeightRequest="20" Margin="0,0,10,0"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SelectPropertiesValues_Tapped" CommandParameter="2"/>
+                                </StackLayout.GestureRecognizers>-->
+                                        <!--<control:CustomEntry x:Name="DescriptionPickerText" Text="{Binding addItemDetailsModel.Description, Mode=TwoWay}" Placeholder="More details about your item" TextColor="Gray" HeightRequest="45" Margin="0,0,10,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" FontSize="16" FontAttributes="Bold">
+                                    <control:CustomEntry.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SelectPropertiesValues_Tapped" CommandParameter="2"/>
+                                </control:CustomEntry.GestureRecognizers>
+                                </control:CustomEntry>-->
+                                        <!--<Frame Padding="10" HasShadow="False" Margin="0,0,10,0" HeightRequest="100" BorderColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <control:CustomBorderlessEditor x:Name="DescriptionPickerText" Text="{Binding addItemDetailsModel.Description, Mode=TwoWay}" Placeholder="More details about your item" MaxLength="200" TextColor="Gray" Margin="0,0,10,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                </Frame>-->
+                                        <Frame Padding="10" HasShadow="False" Margin="0,0,10,0" IsClippedToBounds="True" HeightRequest="100" BorderColor="Gray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Editor x:Name="DescriptionPickerText" Text="{Binding addItemDetailsModel.Description, Mode=TwoWay}" MaxLength="100" TextChanged="DescriptionPickerText_TextChanged" IsSpellCheckEnabled="True" IsTextPredictionEnabled="True" Placeholder="More details about your item" TextColor="Gray" Margin="0,0,10,-20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                        </Frame>
+                                    </StackLayout>
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="5*"/>
+                                            <ColumnDefinition Width="5*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="lblDescriptionText" Grid.Column="0" Text="Your Description is too long" IsVisible="{Binding DescriptionTxtIsVisible, Mode=TwoWay}" TextColor="red" VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand" FontSize="12"/>
+                                        <Label Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="EndAndExpand" Margin="0,0,10,0">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span x:Name="lblDescriptionCharCount" Text="0" TextColor="{Binding ThemeColor, Mode=TwoWay}" FontSize="12"/>
+                                                    <Span x:Name="lblDescriptionTLCharCount" Text="/100" TextColor="{Binding ThemeColor, Mode=TwoWay}" FontSize="12"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Grid>
+                                    <!--<BoxView Grid.Row="2"  BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="0,0,0,0"/>-->
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Category" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                                <Span Text=" *" TextColor="{Binding ThemeColor}" FontAttributes="bold" FontSize="20"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="CategoryPickerText"  Text="{Binding addItemDetailsModel.Category, Mode=TwoWay}" TextColor="Gray" HorizontalOptions="StartAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                        <Image Source="Down_Img" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" WidthRequest="20" HeightRequest="20" Margin="0,0,10,0"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SelectPropertiesValuesCommand}" CommandParameter="3"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame Grid.Row="4" Padding="20,10,0,10" CornerRadius="16" BackgroundColor="WhiteSmoke" HasShadow="False">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Text="Quantity" TextColor="Black" FontAttributes="Bold" FontSize="16">
+                                    </Label>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="QuantityPickerText2" Text="{Binding addItemDetailsModel.Quantity, Mode=TwoWay}" TextColor="Gray" HorizontalOptions="StartAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                        <Image  Source="Down_Img" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" HeightRequest="20" WidthRequest="20" Margin="0,0,10,0"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SelectPropertiesValuesCommand}" CommandParameter="6"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <BoxView Grid.Row="2"  BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="0,0,0,0"/>
+                                    <Label IsVisible="{Binding IsShowOneQuantity}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Size" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                                <Span Text=" *" TextColor="{Binding ThemeColor}" FontAttributes="bold" FontSize="20"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <StackLayout IsVisible="{Binding IsShowOneQuantity}" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="SizePickerText2" Text="{Binding addItemDetailsModel.Size, Mode=TwoWay}" TextColor="Gray" HorizontalOptions="StartAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                        <Image Source="Down_Img" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" HeightRequest="20" WidthRequest="20"  Margin="0,0,10,0"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SelectPropertiesValuesCommand}" CommandParameter="7"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <StackLayout IsVisible="{Binding IsShowCustomSize}">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Size" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                                    <Span Text=" *" TextColor="{Binding ThemeColor}" FontAttributes="bold" FontSize="20"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Grid>
+                                            <control:CustomEntry x:Name="sizePickerText" Placeholder="Please enter custom size" Text="{Binding addItemDetailsModel.Size, Mode=TwoWay}"   TextColor="Gray" HeightRequest="45" Margin="0,0,10,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" FontSize="16" FontAttributes="Bold">
+                                                <control:CustomEntry.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding SelectPropertiesValuesCommand}" CommandParameter="8"/>
+                                                </control:CustomEntry.GestureRecognizers>
+                                            </control:CustomEntry>
+                                            <Image Source="Down_Img" Margin="0,0,15,0" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="20" WidthRequest="20">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding SelectPropertiesValuesCommand}" CommandParameter="7"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+                                    </StackLayout>
+
+
+                                    <StackLayout x:Name="quantityList" IsVisible="{Binding IsShowMultQuantity}" BindableLayout.ItemsSource="{Binding QuantityModelList}">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="4*"/>
+                                                        <ColumnDefinition Width="4*"/>
+                                                        <ColumnDefinition Width="2*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackLayout Grid.Column="0" HorizontalOptions="FillAndExpand">
+                                                        <Label>
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span Text="Size" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                                                    <Span Text=" *" TextColor="{Binding ThemeColor}" FontAttributes="bold" FontSize="20"/>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+                                                        <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                            <Label x:Name="SizePickerText2" Text="{Binding Size, Mode=TwoWay}" TextColor="Gray" HorizontalOptions="StartAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                                            <control:CustomEntry x:Name="CustomSizePickerText2" Text="{Binding Size, Mode=TwoWay}" IsVisible="false" HeightRequest="40" TextColor="Gray" HorizontalOptions="StartAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                                            <Image Source="Down_Img" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" HeightRequest="20" WidthRequest="20"  Margin="0,0,10,0"/>
+                                                            <StackLayout.GestureRecognizers>
+                                                                <TapGestureRecognizer  Command="{Binding SelectMoreSizeCommand}" CommandParameter="{Binding QIndex}"/>
+                                                            </StackLayout.GestureRecognizers>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                    <StackLayout Grid.Column="1" HorizontalOptions="FillAndExpand">
+                                                        <Label HorizontalOptions="StartAndExpand">
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span Text="Quantity" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                                                    <Span Text=" *" TextColor="{Binding ThemeColor}" FontAttributes="bold" FontSize="20"/>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+                                                        <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                            <Label  Text="{Binding Quantity}" TextColor="Gray" HorizontalOptions="StartAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                                            <Image Source="Down_Img" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" HeightRequest="20" WidthRequest="20" Margin="0,0,10,0"/>
+                                                            <StackLayout.GestureRecognizers>
+                                                                <TapGestureRecognizer Command="{Binding SelectMoreQuantityCommand}" CommandParameter="{Binding QIndex}"/>
+                                                            </StackLayout.GestureRecognizers>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                    <!--<Image Grid.Column="2" IsVisible="{Binding IsShowMultQuantity}" Padding="5" HorizontalOptions="EndAndExpand" Margin="0,10,20,10" HasShadow="False" BorderColor="{Binding ThemeColor}"/>-->
+                                                    <ImageButton Grid.Column="2" Source="DeleteCross" Padding="5" HeightRequest="25" BackgroundColor="Transparent" Command="{Binding BindingContext.DeleteCommand,Source={x:Reference quantityList}}" CommandParameter="{Binding .}"  WidthRequest="25" VerticalOptions="CenterAndExpand" Margin="0,0,10,0"  HorizontalOptions="EndAndExpand"/>
+
+                                                </Grid>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" IsVisible="{Binding AddMoreIsVisible}">
+                                        <Frame IsVisible="{Binding IsShowMultQuantity}" Padding="5"  HorizontalOptions="CenterAndExpand" Margin="0,10,20,10" WidthRequest="100" HasShadow="False" BorderColor="{Binding ThemeColor}">
+                                            <Label Text="Add More" FontSize="13" TextColor="{Binding ThemeColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding AddMoreCommand}"/>
+                                            </Frame.GestureRecognizers>
+                                        </Frame>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame Grid.Row="5" Padding="20,10,0,10" CornerRadius="16" BackgroundColor="WhiteSmoke" HasShadow="False">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Text="Brand" TextColor="Black" FontAttributes="Bold" FontSize="16">
+                                    </Label>
+                                    <Grid HorizontalOptions="FillAndExpand">
+                                        <!--<Label x:Name="BrandPickerText" Text="{Binding addItemDetailsModel.Brand}" TextColor="Gray" HorizontalOptions="StartAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                <Image Source="Down_Img" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" WidthRequest="20" HeightRequest="20" Margin="0,0,10,0"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SelectPropertiesValues_Tapped" CommandParameter="8"/>
+                                </StackLayout.GestureRecognizers>-->
+                                        <control:CustomEntry x:Name="BrandPickerText" Text="{Binding addItemDetailsModel.Brand, Mode=TwoWay}" Focused="BrandPickerText_Focused" MaxLength="50" TextColor="Gray" HeightRequest="45" Margin="0,0,10,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" FontSize="16" FontAttributes="Bold">
+                                            <!--<control:CustomEntry.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding SelectPropertiesValuesCommand}" CommandParameter="8"/>
+                                            </control:CustomEntry.GestureRecognizers>-->
+                                        </control:CustomEntry>
+                                        <Image Source="Down_Img" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="20" HeightRequest="20" Margin="0,0,20,0">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BrandDropDownCommand}"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </Grid>
+                                    <!--<ListView x:Name="brandListView" IsVisible="{Binding IsBrandListShow}" Margin="20,0" HeightRequest="200" ItemSelected="brandListView_ItemSelected" SeparatorVisibility="None" BackgroundColor="Transparent" ItemsSource="{Binding BrandList, Mode=TwoWay}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <Label Text="{Binding .}" HorizontalOptions="FillAndExpand" Margin="20,0" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>-->
+
+                                    <!--<BoxView Grid.Row="2"  BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="0,0,0,0"/>-->
+
+                                    <Label Text="Color" TextColor="Black" FontAttributes="Bold" FontSize="16"/>
+                                    <StackLayout Spacing="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="ColorPickerText" Text="{Binding addItemDetailsModel.ProdColor}" TextColor="Gray" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                        <Frame x:Name="frmColorPicker" IsVisible="True" Padding="18" BackgroundColor="{Binding addItemDetailsModel.ProdColorValue, Mode=TwoWay}" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="18" Margin="0,0,10,0" HasShadow="False" BorderColor="{Binding ThemeColor}"/>
+                                        <Frame x:Name="frmColorPicker1" Padding="0" IsVisible="{Binding RainbowImgShow}" HeightRequest="40" WidthRequest="40" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="20" Margin="0,0,10,0" HasShadow="False" BorderColor="{Binding ThemeColor}">
+                                            <Image x:Name="imgColorPicker1" Source="RainBowColImg" HeightRequest="25" WidthRequest="25" Aspect="Fill"/>
+                                        </Frame>
+                                        <Frame x:Name="frmColorPicker2" Padding="0" IsVisible="{Binding CamoImgShow}" HeightRequest="40" WidthRequest="40" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="20" Margin="0,0,10,0" HasShadow="False" BorderColor="{Binding ThemeColor}">
+                                            <Image x:Name="imgColorPicker2" Source="CamoColImg" HeightRequest="25" WidthRequest="25" Aspect="AspectFill"/>
+                                        </Frame>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SelectPropertiesValuesCommand}" CommandParameter="9"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+
+                                    <BoxView Grid.Row="2"  BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="0,0,0,0"/>
+
+                                    <Label Text="Condition" TextColor="Black" FontAttributes="Bold" FontSize="16">
+                                    </Label>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="ConditionPickerText" Text="{Binding addItemDetailsModel.Condition, Mode=TwoWay}" TextColor="Gray" HorizontalOptions="StartAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                        <Image Source="Down_Img" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" WidthRequest="20" HeightRequest="20" Margin="0,0,10,0"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SelectPropertiesValuesCommand}" CommandParameter="10"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+
+                                    <BoxView Grid.Row="2"  BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="0,0,0,0"/>
+
+                                    <Label Text="Availability" TextColor="Black" FontAttributes="Bold" FontSize="16">
+                                    </Label>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="AvailabilityPickerText" Text="{Binding addItemDetailsModel.Availability, Mode=TwoWay}" TextColor="Gray" HorizontalOptions="StartAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                        <Image Source="Down_Img" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" WidthRequest="20" HeightRequest="20" Margin="0,0,10,0"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SelectPropertiesValuesCommand}" CommandParameter="11"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame Grid.Row="6" Padding="20,10,0,10" CornerRadius="16" BackgroundColor="WhiteSmoke" HasShadow="false">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Text="Listing Price" TextColor="Black" FontAttributes="Bold" FontSize="16">
+                                    </Label>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <!--<Label x:Name="ListingPricePickerText" Text="{Binding addItemDetailsModel.Price}" TextColor="Gray" HorizontalOptions="StartAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                <Image Source="Down_Img" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" WidthRequest="20" HeightRequest="20" Margin="0,0,10,0"/>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SelectPropertiesValues_Tapped" CommandParameter="12"/>
+                                </StackLayout.GestureRecognizers>-->
+                                        <control:CustomEntry x:Name="ListingPricePickerText" MaxLength="7" Text="{Binding addItemDetailsModel.Price, Mode=TwoWay}" TextColor="Gray" HeightRequest="45" Margin="0,0,10,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" FontSize="16" FontAttributes="Bold" Keyboard="Numeric">
+                                            <control:CustomEntry.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding SelectPropertiesValuesCommand}" CommandParameter="12"/>
+                                            </control:CustomEntry.GestureRecognizers>
+                                        </control:CustomEntry>
+                                    </StackLayout>
+
+                                    <!--<BoxView  BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="0,0,0,0"/>-->
+
+                                    <Label Text="Shipping Price" TextColor="Black" FontAttributes="Bold" FontSize="16">
+                                    </Label>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="ShippingPricePickerText" Text="{Binding addItemDetailsModel.ShipPrice, Mode=TwoWay}" TextColor="Gray" HorizontalOptions="StartAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                        <Image Source="Down_Img" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand" WidthRequest="20" HeightRequest="20" Margin="0,0,10,0"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SelectPropertiesValuesCommand}" CommandParameter="13"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <!--<Label Text="Buyer pays nothing deducted from earing" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" TextColor="Gray" FontAttributes="bold" FontSize="14"/>-->
+                                    <BoxView Grid.Row="2"  BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="1" Margin="0,0,0,0"/>
+                                    <Label Text="Your Earnings" TextColor="Black" FontAttributes="Bold" FontSize="16">
+                                    </Label>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label x:Name="YourEarningsPickerText" Text="{Binding addItemDetailsModel.Earning, Mode=TwoWay}" TextColor="Gray" HorizontalOptions="StartAndExpand" FontSize="16" FontAttributes="Bold"/>
+                                        <!--<StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SelectPropertiesValues_Tapped" CommandParameter="14"/>
+                                </StackLayout.GestureRecognizers>-->
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+
+                            <Grid Grid.Row="7" Margin="20,0" ColumnSpacing="10" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="{Binding ThemeColor}" HeightRequest="40" CornerRadius="5" HasShadow="False" Padding="2">
+                                    <Label FontSize="16" Text="Copy Listing" FontAttributes="Bold" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding CopyCommand}"/>
+                                    </Frame.GestureRecognizers>
+
+                                </Frame>
+                                <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="{Binding ThemeColor}" BorderColor="{Binding ThemeColor}" HeightRequest="40" CornerRadius="5" HasShadow="False" Padding="2">
+                                    <Label FontSize="16" Text="Save Listing" FontAttributes="Bold" TextColor="White" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SaveCommand}"/> 
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </Grid>
+                        </Grid>
+                    </StackLayout>
+
+
+                    <!--Offers-->
+                    <StackLayout x:Name="OffersSection" Grid.Row="0" IsVisible="false"  BindableLayout.ItemsSource="{Binding ViewOffersList, Mode=TwoWay}" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="20,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2.5*"/>
+                                        <ColumnDefinition Width="6*"/>
+                                        <ColumnDefinition Width="1.5*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Frame Grid.Column="0" Grid.Row="0" HeightRequest="10" BorderColor="{Binding ThemeColor}" HasShadow="False" BackgroundColor="Transparent" Padding="3">
+                                        <Image Source="{Binding Image}" Aspect="AspectFill"/>
+                                    </Frame>
+                                    <StackLayout Grid.Column="1" Grid.Row="0" Spacing="10" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                        </Grid>
+                                        <Label Grid.Row="0" Text="{Binding Description}" FontSize="12" TextColor="Black" FontAttributes="Bold"/>
+                                        <StackLayout Grid.Row="1" Spacing="0" Orientation="Horizontal">
+                                            <Label FontSize="12" TextColor="Black" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <!--<Span Text="$"/>-->
+                                                        <Span Text="{Binding DollerValue}"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label TextColor="Gray" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text=" | " FontSize="12" />
+                                                        <!--<Span Text=" Size : " FontAttributes="Bold"/>-->
+                                                        <Span Text="{Binding Size}" FontSize="12" TextColor="Black" FontAttributes="Bold"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label>
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text=" | " FontSize="12"/>
+                                                        <Span Text="{Binding Brand}" FontSize="12" TextColor="Black" FontAttributes="Bold"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                        <Label Grid.Row="2">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Seller : " FontSize="12" FontAttributes="Bold"/>
+                                                    <Span Text="{Binding Seller}" FontSize="12" TextColor="Black" FontAttributes="Bold"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="2" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                                        <Frame HasShadow="False" BorderColor="Black" BackgroundColor="Yellow" Padding="0" HeightRequest="40" WidthRequest="40" CornerRadius="20">
+                                            <Label HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <!--<Span Text="$" FontAttributes="Bold" TextColor="Black" FontSize="13"/>-->
+                                                        <Span Text="{Binding OfferValue}" TextColor="Black" FontAttributes="Bold" FontSize="10"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </Frame>
+                                        <Image Source="{Binding NextImage}" Aspect="AspectFit" HeightRequest="18" WidthRequest="18" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Row="1" Grid.ColumnSpan="3" Margin="20,20" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                        <Grid RowSpacing="10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="3*"/>
+                                                <ColumnDefinition Width="3*"/>
+                                                <ColumnDefinition Width="3*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="1"/>
+                                            </Grid.RowDefinitions>
+                                            <control:CustomBorderButton Grid.Column="0" Grid.Row="0" TitleText="Accept"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" TextColor="Black" BorderColor="#52C070"/>
+                                            <control:CustomBorderButton Grid.Column="1" Grid.Row="0" TitleText="Counter"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" TextColor="Black" BorderColor="{Binding ThemeColor}"/>
+                                            <control:CustomBorderButton Grid.Column="2" Grid.Row="0" TitleText="Decline"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" TextColor="Black" BorderColor="#F33C3C"/>
+                                            <BoxView Grid.Row="1" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" BackgroundColor="LightGray"/>
+                                        </Grid>
+                                    </StackLayout>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.TopTrandingCommand,Source={x:Reference OffersSection}}" CommandParameter="{Binding .}"/>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+            <!--CustomBottomNavigation-->
+            <control:CustomBottomNavigation VerticalOptions="EndAndExpand" SelectedTabIndex="5"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BuySell.Views.EnterCodeView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" NavigationPage.HasNavigationBar="False" NavigationPage.HasBackButton="False"
+             xmlns:FastEntry="clr-namespace:XamarinFastEntrySample.FastEntry;assembly=XamarinFastEntry.Behaviors"
+             xmlns:control="clr-namespace:BuySell.CustomControl">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <Grid Grid.Row="0" Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Row="0" Grid.Column="0"  Source="Back_Img.png" Aspect="AspectFit" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HeightRequest="25" WidthRequest="25">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label  Grid.Row="0"  Grid.Column="1" Text="ENTER CODE " TextColor="Black" VerticalOptions="CenterAndExpand" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" FontSize="14"/>
+                    <BoxView Grid.Row="1" Grid.ColumnSpan="3" Margin="0,10,0,0" BackgroundColor="{Binding ThemeColor}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="1"/>
+                </Grid>
+
+                
+                <ScrollView Margin="20,10" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid RowDefinitions="122,*,*">
+                        <Grid RowDefinitions="*" ColumnSpacing="20" ColumnDefinitions="2*,2*,2*,2*" Grid.Row="0" Margin="0,30,0,0">
+                            <Frame CornerRadius="5" Padding="0" Grid.Column="0" HasShadow="False" BorderColor="Gray">
+                                <control:CustomEntry Placeholder="1" Text="" HorizontalOptions="Center" BorderColor="transparent" MaxLength="1" CornerRadius="5"  />
+                            </Frame>
+                            <Frame CornerRadius="5" Padding="0" Grid.Column="1" HasShadow="False" BorderColor="Gray">
+                                <control:CustomEntry Placeholder="1" Text="" HorizontalOptions="Center" BorderColor="transparent" MaxLength="1" CornerRadius="5" />
+                            </Frame>
+                            <Frame CornerRadius="5" Padding="0" Grid.Column="2" HasShadow="False" BorderColor="Gray">
+                                <control:CustomEntry Placeholder="1" Text="" HorizontalOptions="Center" BorderColor="transparent" MaxLength="1" CornerRadius="5" />
+                            </Frame>
+                            <Frame CornerRadius="5" Padding="0" Grid.Column="3" HasShadow="False" BorderColor="Gray">
+                                <control:CustomEntry Placeholder="1" Text="" HorizontalOptions="Center" BorderColor="transparent" MaxLength="1" CornerRadius="5" />
+                            </Frame>
+                        </Grid>
+                                <!--<StackLayout Orientation="Horizontal" Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                            <Frame CornerRadius="5" Padding="0" Margin="10,0" WidthRequest="50">
+                                <control:CustomEntry Placeholder="1" Text="" BorderColor="Gray" MaxLength="200" CornerRadius="5"/>
+                            </Frame>
+                            <Frame CornerRadius="5" Padding="0" Margin="10,0" WidthRequest="50">
+                                <control:CustomEntry Placeholder="1" Text="" HeightRequest="50" BorderColor="Gray" MaxLength="200" CornerRadius="5"/>
+                            </Frame>
+                            <Frame CornerRadius="5" Padding="0" Margin="10,0" WidthRequest="50">
+                                <control:CustomEntry Placeholder="1" Text="" HeightRequest="50" BorderColor="Gray" MaxLength="200" CornerRadius="5"/>
+                            </Frame>
+                            <Frame CornerRadius="5" Padding="0" Margin="10,0" WidthRequest="50">
+                                <control:CustomEntry Placeholder="1" Text="" HeightRequest="50" BorderColor="Gray" MaxLength="200" CornerRadius="5"/>
+                            </Frame>
+                        </StackLayout>-->
+                        <!--<control:CustomEntry  Grid.Row="2" Placeholder="XXXXXX7996" Text="" HeightRequest="50" BorderColor="Gray" MaxLength="200" CornerRadius="5" VerticalOptions="EndAndExpand"/>
+                        <Label Grid.Row="3"  Text="Edit number" TextColor="#157baf" FontSize="11" TextDecorations="Underline" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>-->
+                        <control:CustomBorderButton Grid.Row="1" TitleText="Continue" Margin="0,200,0,0" fontsize="12" ClickCommand="{Binding EnterCodeCommand}" CommandParameter="{Binding .}" BgColor="{Binding ThemeColor}" TextColor="White" BorderColor="{Binding ThemeColor}" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                        <Label  Grid.Row="2" Margin="0,30,0,0" Text="By requesting a text you confirm that this is your number and consent to recieve an automated text. Message or data rates may apply" TextColor="Gray" FontSize="14" TextDecorations="None" FontAttributes="Bold" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                </ScrollView>
+            </Grid>
+            <!--CustomBottomNavigation--><!--
+            <control:CustomBottomNavigation  VerticalOptions="EndAndExpand" SelectedTabIndex="5"/>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BuySell.Views.OfferPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:control="clr-namespace:BuySell.CustomControl"
+    ios:Page.UseSafeArea="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <control:CustomTitleControl Grid.Row="0" TitleText="OFFERS" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" RowSpacing="0" Margin="0,0,0,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="2"/>
+                        <RowDefinition Height="1"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Buying" Style="{StaticResource Key=FilterTextStyle}" Grid.Row="0" Grid.Column="0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectSellingFilter_Tapped" CommandParameter="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="Selling" Style="{StaticResource Key=FilterTextStyle}" Grid.Row="0" Grid.Column="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectSellingFilter_Tapped" CommandParameter="2"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView x:Name="sep1" HorizontalOptions="FillAndExpand" VerticalOptions="End" BackgroundColor="#1567A6"  Grid.Column="0" Grid.Row="1" />
+                    <BoxView x:Name="sep2" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Column="1" Grid.Row="1" />
+                    <BoxView HorizontalOptions="FillAndExpand" BackgroundColor="{Binding ThemeColor}" Grid.Row="2" Grid.ColumnSpan="2"/>
+                </Grid>
+            </Grid>
+            <!--ListView-->
+            <ListView Grid.Row="2" HasUnevenRows="True" SeparatorVisibility="None" ItemsSource="{Binding OfferList, Mode=TwoWay}" ItemSelected="Item_Tapped" BindingContext="{Binding .}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Frame Grid.Column="0" Grid.Row="0" HeightRequest="50" BorderColor="{Binding ThemeColor}" HasShadow="False" BackgroundColor="Transparent" Padding="3">
+                                    <Image Source="{Binding Image}" Aspect="AspectFill"/>
+                                </Frame>
+                                <StackLayout Grid.Column="1" Grid.Row="0" Spacing="10" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                    </Grid>
+                                    <Label Grid.Row="0" Text="{Binding Description}" FontSize="18" TextColor="Black" FontAttributes="Bold"/>
+                                    <StackLayout Grid.Row="1" Spacing="0" Orientation="Horizontal">
+                                        <Label FontSize="15" TextColor="Black" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="$"/>
+                                                    <Span Text="{Binding DollerValue}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label FontSize="15" TextColor="Gray" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text=" | "/>
+                                                    <Span Text=" Size : " FontAttributes="Bold"/>
+                                                    <Span Text="{Binding Size}" TextColor="Black" FontAttributes="Bold"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text=" | "/>
+                                                    <Span Text="Gap" TextColor="#4A9AC7" FontAttributes="Bold"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                    <Label Grid.Row="2">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Seller : " FontAttributes="Bold"/>
+                                                <Span Text="{Binding Seller}" TextColor="Black" FontAttributes="Bold"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                                <StackLayout Grid.Column="2" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                    <Frame Padding="5" CornerRadius="5" BackgroundColor="Red">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="$" FontAttributes="Bold" TextColor="White"/>
+                                                    <Span Text="{Binding OfferValue}" TextColor="White" FontAttributes="Bold"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Frame>
+                                    <ImageButton x:Name="nextImage" Source="{Binding NextImage}" BackgroundColor="Transparent" Aspect="AspectFit" HeightRequest="15" WidthRequest="15" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="0,5,0,0" Clicked="ViewOffersView_Tapped" BindingContext="{Binding .}">
+                                        <!--<ImageButton.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ViewOffer_Tapped}" CommandParameter="{Binding .}" />
+                                        </ImageButton.GestureRecognizers>-->
+                                    </ImageButton>
+                                </StackLayout>
+                                <BoxView HorizontalOptions="FillAndExpand" BackgroundColor="Gray" Grid.Row="1" Grid.ColumnSpan="3" HeightRequest="1" VerticalOptions="Start"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--CustomBottomNavigation-->
+            <control:CustomBottomNavigation VerticalOptions="EndAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BuySell.Views.MakeAnOfferPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:control="clr-namespace:BuySell.CustomControl"
+    ios:Page.UseSafeArea="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout  VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid ColumnSpacing="0" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <!--Title-->
+                <Label Grid.Column="0" Text="Back" TextColor="{Binding ThemeColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Tapped_Back"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Grid.Column="1" Text="MAKE AN OFFER" FontSize="14" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>
+                <Label Grid.Column="2" Text="Cancel" TextColor="{Binding ThemeColor}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Tapped_Cancel"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+           <ScrollView>
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="0,100,0,0">
+                <Label Text="List Price" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="15"/>
+                    <control:CustomEntry   NoLine="True" IsCurvedCornersEnabled="False" Text="{Binding ListPrice}" Keyboard="Numeric" TextChanged="ListPrice_TextChanged" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+
+                <Label Text="Offer Price" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="15" Margin="0,10,0,0"/>
+                <control:CustomEntry NoLine="True" IsCurvedCornersEnabled="False" MaxLength="5" Text="{Binding OfferPrice}" TextChanged="OfferPrice_TextChanged" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  HorizontalTextAlignment="Center" FontAttributes="Bold" Keyboard="Numeric"/>
+           
+
+            <Label Text="All offers are binding and expire in 24 hours." HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="15" Margin="0,50,0,0"/>
+            <Label Text="You will be automatically charged if the seller accepts your offer." HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="15" Margin="0,10,0,0"/>
+
+            <Label Text="Questions?" Margin="0,20,10,0" TextDecorations="Underline" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="Black" FontSize="15">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Questions_Tapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+                 </StackLayout>
+                </ScrollView>
+            <!--CustomBorderButton-->
+            <control:CustomBorderButton TitleText="Make Offer" Margin="20" ClickCommand="{Binding MakeAnOfferDetail}" TextColor="White"  BgColor="{Binding ThemeColor}" BorderColor="{Binding ThemeColor}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

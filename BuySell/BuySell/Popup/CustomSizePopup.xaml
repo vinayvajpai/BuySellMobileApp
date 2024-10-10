@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BuySell.Popup.CustomSizePopup"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:custom1="clr-namespace:BuySell.CustomControl"
+    CloseWhenBackgroundIsClicked="False"
+    NavigationPage.HasNavigationBar="False">
+    <!--Page Backgorund-->
+    <!--<Frame x:Name="customSizePopupFrame" VerticalOptions="CenterAndExpand" BackgroundColor="{Binding ThemeColor}" HorizontalOptions="FillAndExpand" Margin="20,0" CornerRadius="15" Padding="20,10">-->
+    <Frame x:Name="customSizePopupFrame" VerticalOptions="CenterAndExpand"  HorizontalOptions="FillAndExpand" Margin="20,0" CornerRadius="15" Padding="20,10">
+        <!--Popup Views-->
+        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Spacing="10">
+            <!--title label-->
+            <Label x:Name="heading" Text="Custom Size" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="White" FontAttributes="Bold" FontSize="20"/>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" >
+                <Frame VerticalOptions="CenterAndExpand" HasShadow="False" HorizontalOptions="FillAndExpand" Margin="0,10" CornerRadius="15" Padding="2"/>
+            </StackLayout>
+            <!--add category entry field-->
+            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"  HasShadow="False" CornerRadius="10" Padding="0">
+                <!--<custom1:CustomEntry x:Name="customText" IsCurvedCornersEnabled="True" CornerRadius="10" BorderColor="{Binding ThemeColor}" NoLine="True" Placeholder="Please Enter Size" HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>-->
+                <custom1:CustomEntry x:Name="customText" IsCurvedCornersEnabled="True" CornerRadius="10"  NoLine="True" Placeholder="Please Enter Size" HeightRequest="50" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            </Frame>
+            <!--ok and cancel buttons-->
+            <Grid HeightRequest="45" ColumnSpacing="20" HorizontalOptions="FillAndExpand" Margin="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Frame IsVisible="true" HasShadow="False" Grid.Column="0"  Grid.ColumnSpan="1"  HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="5" Padding="5">
+                    <!--<Label x:Name="btnCancel" Text="Cancel" Opacity="0.5" TextColor="{Binding ThemeColor}" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="16"/>-->
+                    <Label x:Name="btnCancel" Text="Cancel" Opacity="0.5"  FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="16"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CancelButtonPressed"/>
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <Frame IsVisible="true" HasShadow="False" Grid.Column="1" Grid.ColumnSpan="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" CornerRadius="5" Padding="5">
+                    <!--<Label x:Name="btnOk" Text="Ok" Opacity="0.5" TextColor="{Binding ThemeColor}" FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="16"/>-->
+                    <Label x:Name="btnOk" Text="Ok" Opacity="0.5"  FontAttributes="Bold" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="16"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OkButtonPressed" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </Grid>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

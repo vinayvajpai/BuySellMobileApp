@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:BuySell.CustomControl"
+    x:Class="BuySell.Views.PaymentMethodsPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <control:CustomTitleControl Grid.Row="0" TitleText="PAYMENT METHODS" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackCommand="{Binding PagePopCommand}"/>
+                <ScrollView Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Frame HasShadow="False" Padding="0" BorderColor="LightGray" CornerRadius="5" Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="8*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <StackLayout Grid.Column="0" Grid.Row="0" Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Label Text="Visa ending in 2685" TextColor="Black" FontAttributes="Bold"/>
+                                        <Label Text="Last used for checkout" TextColor="green" FontAttributes="Bold"/>
+                                        <Label Text="Verena Frydberg" TextColor="Gray" FontAttributes="Bold"/>
+                                        <Label Text="Expires 05/23" TextColor="Gray" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                    <Frame Grid.Column="1" Grid.Row="0" Margin="0,10,10,0" BorderColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HasShadow="False" Padding="10">
+                                        <Label Text="VISA" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    </Frame>
+                                    <BoxView Grid.ColumnSpan="2" Grid.Row="1" Margin="0,10,0,0"  HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                                </Grid>
+                                <StackLayout Margin="20,10"  Spacing="20" Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                    <Frame HasShadow="False" Padding="10" WidthRequest="60" CornerRadius="3" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="{Binding ThemeColor}">
+                                        <Label Text="Edit" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="EditCard_Tapped"/>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                                    <Frame HasShadow="False" Padding="10" CornerRadius="3" WidthRequest="60" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="{Binding ThemeColor}">
+                                        <Label Text="Delete" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    </Frame>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame HasShadow="False" Padding="0" BorderColor="LightGray" CornerRadius="5" Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="8*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <StackLayout Grid.Column="0" Grid.Row="0" Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Label Text="Visa ending in 8646" TextColor="Black" FontAttributes="Bold"/>
+                                        <Label Text="Verena Frydberg" TextColor="Gray" FontAttributes="Bold"/>
+                                        <Label Text="Expired!" TextColor="red" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                    <Frame Grid.Column="1" Grid.Row="0" Margin="0,10,10,0" BorderColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HasShadow="False" Padding="10">
+                                        <Label Text="VISA" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    </Frame>
+                                    <BoxView Grid.ColumnSpan="2" Grid.Row="1" Margin="0,10,0,0"  HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                                </Grid>
+                                <StackLayout Margin="20,10"  Spacing="20" Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                    <Frame HasShadow="False" Padding="10" CornerRadius="3" WidthRequest="60" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="{Binding ThemeColor}">
+                                        <Label Text="Edit" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                         <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="EditCard_Tapped"/>
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                                    <Frame HasShadow="False" Padding="10" CornerRadius="3" WidthRequest="60" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="{Binding ThemeColor}">
+                                        <Label Text="Delete" TextColor="White" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    </Frame>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame HasShadow="False" Padding="0" BorderColor="LightGray" CornerRadius="5" Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="7*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Frame Grid.Column="0" Grid.Row="0" Margin="20" BorderColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" HasShadow="False" Padding="2">
+                                        <Image Source="ApplePay" HeightRequest="40" WidthRequest="40" Aspect="AspectFit" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                    </Frame>
+                                    <StackLayout Grid.Column="1" Grid.Row="0" Margin="0,20" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                                        <Label Text="Apple Pay" TextColor="Gray" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                    <BoxView Grid.ColumnSpan="2" Grid.Row="1" Margin="0,10,0,0"  HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                                </Grid>
+                                <StackLayout Margin="20,20" Spacing="10" Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                        </Frame>
+                        <!--CustomBorderButton-->
+                        <control:CustomBorderButton Margin="20,20" TitleText="+ Add Credit or Debit Card" ClickCommand="{Binding AddCardCommand}" TextColor="White" BgColor="{Binding ThemeColor}" BorderColor="{Binding ThemeColor}"/>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+            <!--CustomBottomNavigation-->
+            <control:CustomBottomNavigation Grid.Row="2" VerticalOptions="EndAndExpand" SelectedTabIndex="5"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

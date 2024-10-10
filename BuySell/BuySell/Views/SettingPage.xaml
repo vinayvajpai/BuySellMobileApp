@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BuySell.CustomControl"
+    x:Class="BuySell.Views.SettingPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <control:CustomTitleControl Grid.Row="0" TitleText="SETTINGS" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackCommand="{Binding PagePopCommand}"/>
+                <!--Setting information-->
+                <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomFrame Margin="20,20,20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="9*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Column="0" Grid.Row="0" Text="Payment Methods" FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                                            <Label Grid.Column="0" Grid.Row="1" Text="Credit or Debit Card" FontAttributes="Bold" FontSize="13" TextColor="Gray"/>
+                                            <Image Grid.Column="1" Grid.RowSpan="2" Source="NextArrow" HeightRequest="20" WidthRequest="20" VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        </Grid>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="PaymentMethods_Tapped"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <BoxView Margin="20,0,0,0" Grid.Row="1" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                                    <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="9*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Column="0" Grid.Row="0" Text="Shipping Addresses" FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                                            <Label x:Name="lblAdd" Grid.Column="0" Grid.Row="1" Text="New York, NY" FontAttributes="Bold" FontSize="13" TextColor="Gray"/>
+                                            <Image Grid.Column="1" Grid.RowSpan="2" Source="NextArrow" HeightRequest="20" WidthRequest="20" VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        </Grid>
+                                        <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="ShoppingAddress_Tapped"/>
+                                            </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <BoxView HeightRequest="1" Margin="20,0,0,0" BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                                    
+                                    
+                                    <!--<StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="9*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Column="0" Grid.Row="0" Text="Shipping From" FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                                            <Label x:Name="lblAddfrom" Grid.Column="0" Grid.Row="1" Text="New York, NY" FontAttributes="Bold" FontSize="13" TextColor="Gray"/>
+                                            <Image Grid.Column="1" Grid.RowSpan="2" Source="NextArrow" HeightRequest="20" WidthRequest="20" VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        </Grid>
+                                        <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="ShoppingFromAddress_Tapped"/>
+                                            </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <BoxView HeightRequest="1" Margin="20,0,0,0" BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>-->
+
+
+                                    <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="9*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Column="0" Grid.Row="0" Text="Bank Account" FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                                            <Label Grid.Column="0" Grid.Row="1" Text="For sellers cashout only" FontAttributes="Bold" FontSize="13" TextColor="Gray"/>
+                                            <Image Grid.Column="1" Grid.RowSpan="2" Source="NextArrow" HeightRequest="20" WidthRequest="20" VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        </Grid>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="BankAccount_Tapped"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <BoxView HeightRequest="1" Margin="20,0,0,0" BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                                    <!--<StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="9*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Column="0" Grid.Row="0" Text="Notifications" FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                                            <Label Grid.Column="0" Grid.Row="1" Text="Set communication preferences" FontAttributes="Bold" FontSize="13" TextColor="Gray"/>
+                                            <Image Grid.Column="1" Grid.RowSpan="2" Source="NextArrow" HeightRequest="20" WidthRequest="20" VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                        </Grid>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Notifications_Tapped"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>-->
+                                </StackLayout>
+                            </control:CustomFrame>
+
+                            <!--<control:CustomFrame Margin="20,10,20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout Margin="20,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="9*"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Column="0" Grid.Row="0" Text="Tax Center" FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                                        <Label Grid.Column="0" Grid.Row="1" Text="For sellers" FontAttributes="Bold" FontSize="13" TextColor="Gray"/>
+                                        <Image Grid.Column="1" Grid.RowSpan="2" Source="NextArrow" HeightRequest="20" WidthRequest="20" VerticalOptions="FillAndExpand" HorizontalOptions="End"/>
+                                    </Grid>
+                                    --><!--<StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="Notifications_Tapped"/>
+                                            </StackLayout.GestureRecognizers>--><!--
+                                </StackLayout>
+                            </control:CustomFrame>-->
+
+                            <control:CustomFrame Margin="20,10" HasShadow="False" Padding="15" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <Label Text="Delete Account" Margin="5,0" FontAttributes="Bold" FontSize="17" TextColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                            </control:CustomFrame>
+
+                            <!--<StackLayout Margin="0,20" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                                <Label Text="Invite Friends" TextColor="{Binding ThemeColor}" FontAttributes="Bold" TextDecorations="Underline" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Label Text="Find People" TextColor="{Binding ThemeColor}" FontAttributes="Bold" TextDecorations="Underline" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                            </StackLayout>-->
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+                <!--CustomBottomNavigation-->
+                <control:CustomBottomNavigation  Grid.Row="2" VerticalOptions="EndAndExpand" SelectedTabIndex = "5"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:controls="clr-namespace:BuySell.CustomControl"
+             x:Class="BuySell.CustomControl.CustomBorderButton"
+             x:Name="CustomButtonView">
+  <ContentView.Content>
+        <StackLayout>
+            <StackLayout>
+                <controls:CustomFrame x:Name="frm"  BackgroundColor="#AABBC4" BorderColor="Transparent" IsClippedToBounds="True" Padding="2" HorizontalOptions="FillAndExpand" CornerRadius="5">
+                    <controls:CustomFrame x:Name="frmInside" IsClippedToBounds="True" Padding="0" BackgroundColor="White" HorizontalOptions="FillAndExpand" CornerRadius="5">
+                        <Button x:Name="btn" BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" Command="{Binding Source={x:Reference CustomButtonView}, Path=ClickCommand}"  FontSize="12" FontAttributes="Bold" TextColor="#4d8302" Margin="0"/>
+                    </controls:CustomFrame>
+                    <controls:CustomFrame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference CustomButtonView}, Path=ClickCommand}"/>
+                    </controls:CustomFrame.GestureRecognizers>
+                </controls:CustomFrame>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

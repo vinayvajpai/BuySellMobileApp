@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BuySell.CustomControl"
+    x:Class="BuySell.Views.SearchPage"
+    NavigationPage.HasNavigationBar="False"
+    xmlns:effects="clr-namespace:BuySell.Utility"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid ColumnSpacing="5" Grid.Row="0" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--Back-->
+                <StackLayout Grid.Column="0" Margin="10,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <Image Grid.Row="0" Grid.Column="0"  Source="Back_Img.png" Aspect="AspectFit" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HeightRequest="25" WidthRequest="25">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Back_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <!--CustomFrame-->
+                <control:CustomFrame HasShadow="False" Grid.Column="1" Grid.Row="0" HeightRequest="40" Margin="20" VerticalOptions="Center" HorizontalOptions="FillAndExpand" BackgroundColor="#EBEBEB" Padding="2" CornerRadius="5">
+                    <Grid Margin="0" ColumnDefinitions="10*,Auto" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                        <control:CustomEntry Grid.Column="0" Placeholder="Please enter search text here.." FontSize="14" ReturnType="Search" Completed="SerachResult_Tapped"   IsCurvedCornersEnabled="False" NoLine="True" Margin="15,0,0,0" BorderWidth="0" x:Name="searchtext" Text="{Binding SearchItem}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" TextColor="Black" BackgroundColor="Transparent"/>
+                        <Image Grid.Column="1" Source="SearchGlass" VerticalOptions="CenterAndExpand"  HorizontalOptions="EndAndExpand" HeightRequest="20" WidthRequest="20" Aspect="Fill" Margin="0,0,10,0">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SerachResult_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </control:CustomFrame>
+            </Grid>
+            <!--BoxView-->
+            <BoxView Grid.Row="1" HeightRequest="1" BackgroundColor="Gray"/>
+            <StackLayout IsVisible="false" Grid.Row="2">
+                <Label  Margin="20" Text="Recent Searches" TextColor="Red" FontSize="18" FontAttributes="Bold"  HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
+                <StackLayout  Margin="25,0,25,0"  BindableLayout.ItemsSource="{Binding SearchList}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="{Binding StarImage}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" effects:TintImageEffect.TintColor="{Binding ThemeColor}" HeightRequest="15" WidthRequest="15"/>
+                                <Label Grid.Column="1" Text="{Binding Description}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Image Grid.Column="2" Source="{Binding NextImage}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit" HeightRequest="18" WidthRequest="18"/>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+                <Label  Margin="20" Text="Popular searches" FontSize="18" FontAttributes="Bold" HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
+                <!--BindableLayout-->
+                <StackLayout  Margin="25,0,25,0"  BindableLayout.ItemsSource="{Binding SearchList}" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" Source="{Binding StarImage}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" HeightRequest="15" WidthRequest="15"/>
+                                <Label Grid.Column="1" Text="{Binding Description}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                                <Image Grid.Column="2" Source="{Binding NextImage}" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit" HeightRequest="18" WidthRequest="18"/>
+                            </Grid>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </StackLayout>
+            <!--CustomBottomNavigation-->
+            <control:CustomBottomNavigation Grid.Row="6" HorizontalOptions="End" VerticalOptions="End"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

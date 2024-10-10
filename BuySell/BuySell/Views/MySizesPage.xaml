@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BuySell.Views.MySizesPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:control="clr-namespace:BuySell.CustomControl"
+    ios:Page.UseSafeArea="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!--<control:CustomTitleControl Grid.Row="0" TitleText="MY SIZES" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>-->
+                <!--Title-->
+                <Grid Grid.Row="0" Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Row="0" Grid.Column="0"  Source="Back_Img.png" Aspect="AspectFit" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HeightRequest="25" WidthRequest="25">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label  Grid.Row="0"  Grid.Column="1" Text="MY SIZES" TextColor="Black" VerticalOptions="CenterAndExpand" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                    <Frame Grid.Row="0" Grid.Column="2" Margin="0,0,10,0" BackgroundColor="{Binding ThemeColor}" CornerRadius="5" HasShadow="False" Padding="2">
+                        <Label FontSize="10" Text="Save"  TextColor="White" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Save_Clicked"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                    <!--BoxView-->
+                    <BoxView Grid.Row="1" Grid.ColumnSpan="3" Margin="0,10,0,0" BackgroundColor="{Binding ThemeColor}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="1"/>
+                </Grid>
+                <Grid Grid.Row="1" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" RowSpacing="0" Margin="0,0,0,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="2"/>
+                        <RowDefinition Height="1"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Women" Style="{StaticResource Key=FilterTextStyle}" Grid.Row="0" Grid.Column="0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectGenderFilter_Tapped" CommandParameter="1"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Label Text="Men" Style="{StaticResource Key=FilterTextStyle}" Grid.Row="0" Grid.Column="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="SelectGenderFilter_Tapped" CommandParameter="2"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView x:Name="sep1" HorizontalOptions="FillAndExpand" VerticalOptions="End" BackgroundColor="{Binding ThemeColor}"  Grid.Column="0" Grid.Row="1" />
+                    <BoxView x:Name="sep2" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Column="1" Grid.Row="1" />
+                    <BoxView HorizontalOptions="FillAndExpand" BackgroundColor="{Binding ThemeColor}" Grid.Row="2" Grid.ColumnSpan="2"/>
+                </Grid>
+                <!--Size List-->
+                <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomFrame Margin="20,10,20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <StackLayout Margin="20,5,0,10" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="Dresses" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                            <Label Text="{Binding mySizesModel.Dresses}" Grid.Column="0" Grid.Row="1" FontAttributes="Bold" FontSize="15" TextColor="Gray"/>
+                                            <Image Source="NextArrow" Grid.Column="1" Grid.RowSpan="2" HeightRequest="20" WidthRequest="20" Margin="0,0,20,0" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                                        </Grid>
+                                        <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SelectPropertiesValues_Tapped" CommandParameter="1"/>
+                                </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <BoxView Margin="20,0,0,0" Grid.Row="1" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                                    <StackLayout Margin="20,0,0,10" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="Tops" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                            <Label Text="{Binding mySizesModel.Tops}" Grid.Column="0" Grid.Row="1" FontAttributes="Bold" FontSize="15" TextColor="Gray"/>
+                                            <Image Source="NextArrow" Grid.Column="1" Grid.RowSpan="2" HeightRequest="20" WidthRequest="20" Margin="0,0,20,0" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                                        </Grid>
+                                        <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SelectPropertiesValues_Tapped" CommandParameter="2"/>
+                                </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <BoxView Margin="20,0,0,0" Grid.Row="1" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                                    <StackLayout Margin="20,0,0,10" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="Bottoms" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                            <Label Text="{Binding mySizesModel.Bottoms}" Grid.Column="0" Grid.Row="1" FontAttributes="Bold" FontSize="15" TextColor="Gray"/>
+                                            <Image Source="NextArrow" Grid.Column="1" Grid.RowSpan="2" HeightRequest="20" WidthRequest="20" Margin="0,0,20,0" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                                        </Grid>
+                                        <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SelectPropertiesValues_Tapped" CommandParameter="3"/>
+                                </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <BoxView Margin="20,0,0,0" Grid.Row="1" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                                    <StackLayout Margin="20,0,0,10" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="Jeans" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                            <Label Text="{Binding mySizesModel.Jeans}"  Grid.Column="0" Grid.Row="1" FontAttributes="Bold" FontSize="15" TextColor="Gray"/>
+                                            <Image Source="NextArrow" Grid.Column="1" Grid.RowSpan="2" HeightRequest="20" WidthRequest="20" Margin="0,0,20,0" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                                        </Grid>
+                                        <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SelectPropertiesValues_Tapped" CommandParameter="4"/>
+                                </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                    <BoxView Margin="20,0,0,0" Grid.Row="1" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                                    <StackLayout Margin="20,0,0,10" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="Shoes" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                            <Label Text="{Binding mySizesModel.Shoes}" Grid.Column="0" Grid.Row="1" FontAttributes="Bold" FontSize="15" TextColor="Gray"/>
+                                            <Image Source="NextArrow" Grid.Column="1" Grid.RowSpan="2" HeightRequest="20" WidthRequest="20" Margin="0,0,20,0" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                                        </Grid>
+                                        <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SelectPropertiesValues_Tapped" CommandParameter="5"/>
+                                </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </StackLayout>
+                            </control:CustomFrame>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+                <!--CustomBottomNavigation-->
+                <control:CustomBottomNavigation  Grid.Row="3" VerticalOptions="EndAndExpand" SelectedTabIndex="5"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

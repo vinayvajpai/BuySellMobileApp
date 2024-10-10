@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BuySell.CustomControl.CustomTabPopup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:control="clr-namespace:BuySell.CustomControl"
+    CloseWhenBackgroundIsClicked="True"
+        xmlns:effects="clr-namespace:BuySell.Utility" xmlns:d="http://xamarin.com/schemas/2014/forms/design">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation DurationIn="500" DurationOut="500" EasingIn="SinOut" EasingOut="SinIn"
+                                   HasBackgroundAnimation="False" PositionIn="Top" PositionOut="Top"
+                                   ScaleIn="1.2" ScaleOut="0.8" />
+    </pages:PopupPage.Animation>
+
+
+    <Grid BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Frame Grid.Row="1"
+                Margin="20,0"
+                Padding="0"
+                BackgroundColor="White"
+                CornerRadius="10"
+                HorizontalOptions="FillAndExpand">
+            <Grid RowSpacing="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.5*" />
+                    <ColumnDefinition Width="2.5*" />
+                    <ColumnDefinition Width="2.5*" />
+                    <ColumnDefinition Width="2.5*" />
+                </Grid.ColumnDefinitions>
+
+                <!--Tab 1-->
+                <Grid x:Name="Clothing" RowSpacing="0" Grid.Row="0" Grid.Column="0"  Style="{StaticResource GridStyle}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" x:Name="imgClothingInActive"  Source="ClothingHanger" Style="{StaticResource ImageFrameStyle}"  />
+                    <control:CustomFrame Grid.Row="0" x:Name="imgClothingActive" Padding="2" Margin="5,0,5,0" VerticalOptions="Center" HorizontalOptions="End"  HeightRequest="35" WidthRequest="35" CornerRadius="20">
+                        <StackLayout VerticalOptions="CenterAndExpand" Padding="4" Spacing="0">
+                            <Image x:Name="imgClothInActive" Source="ClothingHangerW" VerticalOptions="CenterAndExpand"  HorizontalOptions="Center" Aspect="AspectFit"/>
+                        </StackLayout>
+                    </control:CustomFrame>
+                    <Label Grid.Row="1" Text="Clothing" TextColor="Black" Style="{StaticResource TextStyle}" Margin="0,5,0,0"/>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SelectedCat_tap" CommandParameter="Clothing"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+                <!--Tab 2-->
+                <Grid x:Name="Vintage" Grid.Row="0" Grid.Column="3" Style="{StaticResource GridStyle}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" x:Name="imgVintageInActive" Source="VintageTops" Style="{StaticResource ImageFrameStyle}"/>
+
+                    <control:CustomFrame Grid.Row="0" x:Name="imgVintageActive" Padding="2" Margin="5,0,5,0" VerticalOptions="Center" HorizontalOptions="End"  HeightRequest="35" WidthRequest="35" CornerRadius="20">
+                        <StackLayout VerticalOptions="CenterAndExpand" Padding="4" Spacing="0">
+                            <Image x:Name="imgVinActive" Source="VintageTopsW" VerticalOptions="CenterAndExpand"  HorizontalOptions="Center" HeightRequest="35" WidthRequest="35" Aspect="AspectFit"/>
+                        </StackLayout>
+                    </control:CustomFrame>
+
+                    <Label Grid.Row="1" Text="Vintage" TextColor="Black" Style="{StaticResource TextStyle}"/>
+                     <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SelectedCat_tap" CommandParameter="Vintage"/>
+                    </Grid.GestureRecognizers>
+
+                </Grid>
+
+                <!--Tab 3-->
+                <Grid x:Name="Sneakers" Grid.Row="0" Grid.Column="1" Style="{StaticResource GridStyle}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image  Grid.Row="0" x:Name="imgSneakersInActive"  Source="Sneakers" Style="{StaticResource ImageFrameStyle}"  />
+                    <control:CustomFrame Grid.Row="0" x:Name="imgSneakersActive" Padding="2" Margin="5,0,5,0" VerticalOptions="Center" HorizontalOptions="End"  HeightRequest="35" WidthRequest="35" CornerRadius="20">
+                        <StackLayout VerticalOptions="CenterAndExpand" Padding="4" Spacing="0">
+                            <Image x:Name="imgSneakInActive" Source="SneakersW" VerticalOptions="CenterAndExpand"  HorizontalOptions="Center" Aspect="AspectFit"/>
+                        </StackLayout>
+                    </control:CustomFrame>
+                    <Label Grid.Row="1" Text="Sneakers" TextColor="Black" Style="{StaticResource TextStyle}"/>
+
+                     <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SelectedCat_tap" CommandParameter="Sneakers"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+
+                <!--Tab 4-->
+                <Grid x:Name="Streetwear" Grid.Row="0" Grid.Column="2"  Style="{StaticResource GridStyle}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image x:Name="imgStreetwearInActive" Source="Streetwear" Style="{StaticResource ImageFrameStyle}"  />
+                    <control:CustomFrame Grid.Row="0" x:Name="imgStreetwearActive" Padding="2" Margin="5,0,5,0" VerticalOptions="Center" HorizontalOptions="Center"  HeightRequest="35" WidthRequest="35" CornerRadius="20">
+                        <StackLayout VerticalOptions="CenterAndExpand" Padding="4" Spacing="0">
+                            <Image x:Name="imgStreerInActive" Source="StreetwearW" VerticalOptions="CenterAndExpand"  HorizontalOptions="Center" Aspect="AspectFit"/>
+                        </StackLayout>
+                    </control:CustomFrame>
+                    <Label Grid.Row="1" Text="Streetwear" HorizontalOptions="Center" TextColor="Black" Style="{StaticResource TextStyle}"/>
+                     <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SelectedCat_tap" CommandParameter="Streetwear"/>
+                    </Grid.GestureRecognizers>
+                </Grid>
+            </Grid>
+        </Frame>
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+        </Grid.GestureRecognizers>
+    </Grid>
+</pages:PopupPage>

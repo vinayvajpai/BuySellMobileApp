@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:BuySell.CustomControl"
+    x:Class="BuySell.Views.OrderConfirmPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <!--<control:CustomHeaderControl x:Name="header" Grid.Row="0"  VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"  BackCommand="{Binding LoginBackCommand}"/>-->
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+            <!--CustomHeaderControl-->
+            <control:CustomHeaderControl x:Name="header" Grid.Row="0" IsShowSearchIcon="False"  VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"  BackCommand="{Binding LoginBackCommand}"/>
+            <ScrollView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image x:Name="imgOrderConfrm" Grid.Row="2" Source="OrderConfrm_Clothing" HeightRequest="270" WidthRequest="270" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFit"/>
+                    <Label Grid.Row="2" Text="Order Confirmed" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="0,150,0,0" FontAttributes="Bold" FontSize="20" TextColor="Black"/>
+                    <Label Grid.Row="3" Text="Thank you!" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                    <Label Grid.Row="4" Text="A confirmation E-mail has been" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                    <Label Grid.Row="5" Text="sent to the E-mail address" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                    <Label Grid.Row="6" Text=" associated with your account." HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                    <BoxView Grid.Row="7" HeightRequest="1" BackgroundColor="{Binding ThemeColor}" Margin="20"/>
+                    <StackLayout Grid.Row="8" Orientation="Horizontal" Spacing="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <!--<Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>-->
+                        <Label Text="Order ID" FontSize="17" FontAttributes="Bold" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" TextColor="Black"/>
+                        <Label x:Name="lblOrderId" Text="12345678" FontSize="17" FontAttributes="Bold" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" TextColor="Black"/>
+                        <!--<Label Grid.Column="0" Grid.Row="1" Text="Order Date" FontSize="17" FontAttributes="Bold" HorizontalOptions="End" TextColor="Black"/>
+                        <Label x:Name="lblDate" Grid.Column="1" Grid.Row="1" Text="Dec 17,2021,12:32" FontSize="17" FontAttributes="Bold" HorizontalOptions="Start"/>
+                        <Label Grid.Column="0" Grid.Row="2" Text="Payment Type" FontSize="17" FontAttributes="Bold" HorizontalOptions="End" TextColor="Black"/>
+                        <Label Grid.Column="1" Grid.Row="2" Text="Card" FontSize="17" FontAttributes="Bold" HorizontalOptions="Start"/>
+                        <Label Grid.Column="0" Grid.Row="3" Text="Cardholder Name" FontSize="17" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="End" HorizontalOptions="End"/>
+                        <Label x:Name="lblCCName" Grid.Column="1" Grid.Row="3" Text="Mathew ja hall" FontSize="17" FontAttributes="Bold" HorizontalOptions="Start"/>-->
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+            <StackLayout  VerticalOptions="EndAndExpand">
+                <!--CustomBorderButton-->
+                <control:CustomBorderButton TitleText="Done" Margin="20" ClickCommand="{Binding DoneCommand}" TextColor="White" BgColor="{Binding ThemeColor}" BorderColor="{Binding ThemeColor}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

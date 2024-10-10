@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BuySell.Views.SavedAccountsPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:control="clr-namespace:BuySell.CustomControl"
+    ios:Page.UseSafeArea="true"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <control:CustomTitleControl Grid.Row="0" TitleText="SAVED ACCOUNTS" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <!--Accounts information-->
+                <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <control:CustomFrame Margin="20,20,20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <StackLayout Margin="20,5,0,10" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Label Text="BOA Accounts" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="Bank name" Margin="0,8,0,5" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" FontSize="15" TextColor="Gray"/>
+                                            <Label Text="Bank of America" Grid.Column="1" Grid.Row="0" Margin="0,0,20,0" FontAttributes="Bold" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                                        </Grid>
+                                    </StackLayout>
+                                    <BoxView Margin="20,0,0,0" Grid.Row="1" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                                    <StackLayout Margin="20,0,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="Account No" Margin="0,8,0,5" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" FontSize="15" TextColor="Gray"/>
+                                            <Label Text="********1234" Margin="0,0,20,0" Grid.Column="1" Grid.Row="0" FontAttributes="Bold" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </StackLayout>
+                            </control:CustomFrame>
+
+                            <control:CustomFrame Margin="20,10,20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <StackLayout Margin="20,5,0,10" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Label Text="Chase Bank account" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="Bank name" Margin="0,8,0,5" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" FontSize="15" TextColor="Gray"/>
+                                            <Label Text="Chanse Bank" Grid.Column="1" Grid.Row="0" Margin="0,0,20,0" FontAttributes="Bold" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                                        </Grid>
+                                    </StackLayout>
+                                    <BoxView Margin="20,0,0,0" Grid.Row="1" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                                    <StackLayout Margin="20,0,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="Account No" Margin="0,8,0,5" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" FontSize="15" TextColor="Gray"/>
+                                            <Label Text="********1334" Margin="0,0,20,0" Grid.Column="1" Grid.Row="0" FontAttributes="Bold" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </StackLayout>
+                            </control:CustomFrame>
+
+                            <control:CustomFrame Margin="20,10,20,0" HasShadow="False" Padding="0" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <StackLayout Margin="20,5,0,10" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Label Text="Wells Fargo Account" FontAttributes="Bold" FontSize="17" TextColor="Black"/>
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="Bank name" Margin="0,8,0,5" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" FontSize="15" TextColor="Gray"/>
+                                            <Label Text="Wells Fargo" Grid.Column="1" Grid.Row="0" Margin="0,0,20,0" FontAttributes="Bold" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                                        </Grid>
+                                    </StackLayout>
+                                    <BoxView Margin="20,0,0,0" Grid.Row="1" HeightRequest="1" BackgroundColor="LightGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                                    <StackLayout Margin="20,0,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"/>
+                                                <ColumnDefinition Width="5*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label Text="Account No" Margin="0,8,0,5" Grid.Column="0" Grid.Row="0" FontAttributes="Bold" FontSize="15" TextColor="Gray"/>
+                                            <Label Text="********1335" Margin="0,0,20,0" Grid.Column="1" Grid.Row="0" FontAttributes="Bold" TextColor="Gray" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </StackLayout>
+                            </control:CustomFrame>
+                        </StackLayout>
+                        <!--CustomBorderButton-->
+                        <control:CustomBorderButton TitleText="Add new Account" Margin="20,10" ClickCommand="{Binding AddnewAccountCommand}" TextColor="{Binding ThemeColor}" BorderColor="#157baf" />
+                    </StackLayout>
+                </ScrollView>
+                <!--CustomBottomNavigation-->
+                <control:CustomBottomNavigation  Grid.Row="2" VerticalOptions="EndAndExpand"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BuySell.Views.VerifyView"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true" NavigationPage.HasNavigationBar="False" NavigationPage.HasBackButton="False"
+             xmlns:FastEntry="clr-namespace:XamarinFastEntrySample.FastEntry;assembly=XamarinFastEntry.Behaviors"
+             xmlns:control="clr-namespace:BuySell.CustomControl">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--Title-->
+                <Grid Grid.Row="0" Margin="0,10,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Row="0" Grid.Column="0"  Source="Back_Img.png" Aspect="AspectFit" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" HeightRequest="25" WidthRequest="25">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label  Grid.Row="0"  Grid.Column="1" Text="VERIFY " TextColor="Black" VerticalOptions="CenterAndExpand" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" FontSize="18"/>
+                    <BoxView Grid.Row="1" Grid.ColumnSpan="3" Margin="0,10,0,0" BackgroundColor="{Binding ThemeColor}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HeightRequest="1"/>
+                </Grid>
+
+                <ScrollView Margin="20,10" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" >
+                        <Label Grid.Row="0"  Text="To confirm your number, we will send a security code to: " Margin="0,100,0,0" TextColor="Black" VerticalOptions="CenterAndExpand" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" FontSize="14"/>
+                        <control:CustomEntry Grid.Row="1" Placeholder="XXXXXX7996" Text="" HeightRequest="50" Margin="0,70,0,0" BorderColor="Gray" MaxLength="200" CornerRadius="5"/>
+                        <Label Grid.Row="2" Text="Edit number" TextColor="#157baf" Margin="0,15,0,0" FontSize="15" TextDecorations="Underline" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                        <control:CustomBorderButton Grid.Row="3" TitleText="Text me" fontsize="12" Margin="0,100,0,0" ClickCommand="{Binding EnterCodeCommand}" CommandParameter="{Binding .}" BgColor="{Binding ThemeColor}" TextColor="White" BorderColor="{Binding ThemeColor}" HorizontalOptions="FillAndExpand"/>
+                        <Label Grid.Row="4" Text="By requesting a text you confirm that this is your number and consent to recieve an automated text. Message or data rates may apply" Margin="0,50,0,0" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Center" TextDecorations="None" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+                    </Grid>
+                </ScrollView>
+            </Grid>
+            <!--CustomBottomNavigation--><!--
+            <control:CustomBottomNavigation  VerticalOptions="EndAndExpand" SelectedTabIndex="5"/>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

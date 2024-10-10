@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:BuySell.CustomControl"
+    x:Class="BuySell.CustomControl.CustomTitleControl"
+    x:Name="ContentTitleView">
+    <ContentView.Content>
+        <!--Title-->
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1"/>
+            </Grid.RowDefinitions>
+            <StackLayout x:Name="stk" Grid.Column="0" Margin="20,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Image x:Name="imgBack" Source="BackArrow" Aspect="AspectFit" HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" HeightRequest="25" WidthRequest="25">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference ContentTitleView}, Path=BackCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={x:Reference ContentTitleView}, Path=BackCommand}"/>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+
+            <StackLayout Grid.Column="1" Grid.Row="0" Spacing="0">
+                <Label x:Name="lblTitle" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="18"/>
+            </StackLayout>
+            <!--BoxView-->
+            <BoxView x:Name="boxView" Grid.Row="1" BackgroundColor="{Binding ThemeColor}" Grid.ColumnSpan="3" HorizontalOptions="FillAndExpand" VerticalOptions="End"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

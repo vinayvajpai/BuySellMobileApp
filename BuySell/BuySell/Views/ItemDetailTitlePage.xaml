@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:BuySell.CustomControl"
+             x:Class="BuySell.Views.ItemDetailTitlePage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <!--Header-->
+            <control:CustomHeaderControl x:Name="header" Grid.Row="0" IsShowAction="False"  VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand"  BackCommand="{Binding LogingoutCommand}" NavStack="{Binding navigation}"/>
+            <!--Title-->
+            <control:CustomTitleControl Grid.Row="1" TitleText="TITLE" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+            <!--Green Dress-->
+            <Label  Grid.Row="2" Text="Green Dress" Margin="20,10,0,0" FontSize="20" TextColor="Black" FontAttributes="Bold"/>
+            <!--CustomBorderButton-->
+            <control:CustomBorderButton Grid.Row="3" TitleText="Save" ClickCommand="{Binding SaveCommand}" Margin="20" VerticalOptions="End" TextColor="White" BgColor="#157baf" BorderColor="#157baf" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

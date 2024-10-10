@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"  
+    x:Class="BuySell.CustomControl.CustomFFImageLoader">
+    <ContentView.Content>
+        <Grid>
+            <ff:CachedImage x:Name="proImg" Source="{Binding ProductImage}"  Aspect="Fill" RetryCount="3" RetryDelay="0" CacheDuration="0" DownsampleToViewSize="True" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+            <ActivityIndicator Color="{Binding ThemeCol}" BindingContext="{x:Reference proImg}"  IsRunning="{Binding IsLoading}"  IsVisible="{Binding IsLoading}"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>
